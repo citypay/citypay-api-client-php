@@ -59,7 +59,7 @@ class RequestChallenged implements ModelInterface, ArrayAccess
         'acs_url' => 'string',
         'creq' => 'string',
         'merchantid' => 'int',
-        'three_d_server_trans_id' => 'string',
+        'threedserver_trans_id' => 'string',
         'transno' => 'int'
     ];
 
@@ -72,7 +72,7 @@ class RequestChallenged implements ModelInterface, ArrayAccess
         'acs_url' => 'url',
         'creq' => null,
         'merchantid' => 'int32',
-        'three_d_server_trans_id' => null,
+        'threedserver_trans_id' => null,
         'transno' => 'int32'
     ];
 
@@ -106,7 +106,7 @@ class RequestChallenged implements ModelInterface, ArrayAccess
         'acs_url' => 'acs_url',
         'creq' => 'creq',
         'merchantid' => 'merchantid',
-        'three_d_server_trans_id' => 'ThreeDServerTransId',
+        'threedserver_trans_id' => 'threedserver_trans_id',
         'transno' => 'transno'
     ];
 
@@ -119,7 +119,7 @@ class RequestChallenged implements ModelInterface, ArrayAccess
         'acs_url' => 'setAcsUrl',
         'creq' => 'setCreq',
         'merchantid' => 'setMerchantid',
-        'three_d_server_trans_id' => 'setThreeDServerTransId',
+        'threedserver_trans_id' => 'setThreedserverTransId',
         'transno' => 'setTransno'
     ];
 
@@ -132,7 +132,7 @@ class RequestChallenged implements ModelInterface, ArrayAccess
         'acs_url' => 'getAcsUrl',
         'creq' => 'getCreq',
         'merchantid' => 'getMerchantid',
-        'three_d_server_trans_id' => 'getThreeDServerTransId',
+        'threedserver_trans_id' => 'getThreedserverTransId',
         'transno' => 'getTransno'
     ];
 
@@ -199,7 +199,7 @@ class RequestChallenged implements ModelInterface, ArrayAccess
         $this->container['acs_url'] = isset($data['acs_url']) ? $data['acs_url'] : null;
         $this->container['creq'] = isset($data['creq']) ? $data['creq'] : null;
         $this->container['merchantid'] = isset($data['merchantid']) ? $data['merchantid'] : null;
-        $this->container['three_d_server_trans_id'] = isset($data['three_d_server_trans_id']) ? $data['three_d_server_trans_id'] : null;
+        $this->container['threedserver_trans_id'] = isset($data['threedserver_trans_id']) ? $data['threedserver_trans_id'] : null;
         $this->container['transno'] = isset($data['transno']) ? $data['transno'] : null;
     }
 
@@ -300,25 +300,25 @@ class RequestChallenged implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets three_d_server_trans_id
+     * Gets threedserver_trans_id
      *
      * @return string|null
      */
-    public function getThreeDServerTransId()
+    public function getThreedserverTransId()
     {
-        return $this->container['three_d_server_trans_id'];
+        return $this->container['threedserver_trans_id'];
     }
 
     /**
-     * Sets three_d_server_trans_id
+     * Sets threedserver_trans_id
      *
-     * @param string|null $three_d_server_trans_id The 3DSv2 trans id reference for the challenge process.
+     * @param string|null $threedserver_trans_id The 3DSv2 trans id reference for the challenge process.
      *
      * @return $this
      */
-    public function setThreeDServerTransId($three_d_server_trans_id)
+    public function setThreedserverTransId($threedserver_trans_id)
     {
-        $this->container['three_d_server_trans_id'] = $three_d_server_trans_id;
+        $this->container['threedserver_trans_id'] = $threedserver_trans_id;
 
         return $this;
     }
