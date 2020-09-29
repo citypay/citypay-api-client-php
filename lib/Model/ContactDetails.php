@@ -260,20 +260,20 @@ class ContactDetails implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['address1']) && (mb_strlen($this->container['address1']) > 40)) {
-            $invalidProperties[] = "invalid value for 'address1', the character length must be smaller than or equal to 40.";
+        if (!is_null($this->container['address1']) && (mb_strlen($this->container['address1']) > 50)) {
+            $invalidProperties[] = "invalid value for 'address1', the character length must be smaller than or equal to 50.";
         }
 
-        if (!is_null($this->container['address2']) && (mb_strlen($this->container['address2']) > 30)) {
-            $invalidProperties[] = "invalid value for 'address2', the character length must be smaller than or equal to 30.";
+        if (!is_null($this->container['address2']) && (mb_strlen($this->container['address2']) > 50)) {
+            $invalidProperties[] = "invalid value for 'address2', the character length must be smaller than or equal to 50.";
         }
 
-        if (!is_null($this->container['address3']) && (mb_strlen($this->container['address3']) > 20)) {
-            $invalidProperties[] = "invalid value for 'address3', the character length must be smaller than or equal to 20.";
+        if (!is_null($this->container['address3']) && (mb_strlen($this->container['address3']) > 50)) {
+            $invalidProperties[] = "invalid value for 'address3', the character length must be smaller than or equal to 50.";
         }
 
-        if (!is_null($this->container['area']) && (mb_strlen($this->container['area']) > 20)) {
-            $invalidProperties[] = "invalid value for 'area', the character length must be smaller than or equal to 20.";
+        if (!is_null($this->container['area']) && (mb_strlen($this->container['area']) > 50)) {
+            $invalidProperties[] = "invalid value for 'area', the character length must be smaller than or equal to 50.";
         }
 
         if (!is_null($this->container['country']) && (mb_strlen($this->container['country']) > 2)) {
@@ -330,8 +330,8 @@ class ContactDetails implements ModelInterface, ArrayAccess
      */
     public function setAddress1($address1)
     {
-        if (!is_null($address1) && (mb_strlen($address1) > 40)) {
-            throw new \InvalidArgumentException('invalid length for $address1 when calling ContactDetails., must be smaller than or equal to 40.');
+        if (!is_null($address1) && (mb_strlen($address1) > 50)) {
+            throw new \InvalidArgumentException('invalid length for $address1 when calling ContactDetails., must be smaller than or equal to 50.');
         }
 
         $this->container['address1'] = $address1;
@@ -358,8 +358,8 @@ class ContactDetails implements ModelInterface, ArrayAccess
      */
     public function setAddress2($address2)
     {
-        if (!is_null($address2) && (mb_strlen($address2) > 30)) {
-            throw new \InvalidArgumentException('invalid length for $address2 when calling ContactDetails., must be smaller than or equal to 30.');
+        if (!is_null($address2) && (mb_strlen($address2) > 50)) {
+            throw new \InvalidArgumentException('invalid length for $address2 when calling ContactDetails., must be smaller than or equal to 50.');
         }
 
         $this->container['address2'] = $address2;
@@ -386,8 +386,8 @@ class ContactDetails implements ModelInterface, ArrayAccess
      */
     public function setAddress3($address3)
     {
-        if (!is_null($address3) && (mb_strlen($address3) > 20)) {
-            throw new \InvalidArgumentException('invalid length for $address3 when calling ContactDetails., must be smaller than or equal to 20.');
+        if (!is_null($address3) && (mb_strlen($address3) > 50)) {
+            throw new \InvalidArgumentException('invalid length for $address3 when calling ContactDetails., must be smaller than or equal to 50.');
         }
 
         $this->container['address3'] = $address3;
@@ -414,8 +414,8 @@ class ContactDetails implements ModelInterface, ArrayAccess
      */
     public function setArea($area)
     {
-        if (!is_null($area) && (mb_strlen($area) > 20)) {
-            throw new \InvalidArgumentException('invalid length for $area when calling ContactDetails., must be smaller than or equal to 20.');
+        if (!is_null($area) && (mb_strlen($area) > 50)) {
+            throw new \InvalidArgumentException('invalid length for $area when calling ContactDetails., must be smaller than or equal to 50.');
         }
 
         $this->container['area'] = $area;
