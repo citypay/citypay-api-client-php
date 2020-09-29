@@ -65,7 +65,6 @@ class ChargeRequest implements ModelInterface, ArrayAccess
         'identifier' => 'string',
         'match_avsa' => 'string',
         'merchantid' => 'int',
-        'sdk' => 'string',
         'token' => 'string',
         'trans_info' => 'string',
         'trans_type' => 'string'
@@ -86,7 +85,6 @@ class ChargeRequest implements ModelInterface, ArrayAccess
         'identifier' => null,
         'match_avsa' => null,
         'merchantid' => 'int32',
-        'sdk' => null,
         'token' => 'base58',
         'trans_info' => null,
         'trans_type' => null
@@ -128,7 +126,6 @@ class ChargeRequest implements ModelInterface, ArrayAccess
         'identifier' => 'identifier',
         'match_avsa' => 'match_avsa',
         'merchantid' => 'merchantid',
-        'sdk' => 'sdk',
         'token' => 'token',
         'trans_info' => 'trans_info',
         'trans_type' => 'trans_type'
@@ -149,7 +146,6 @@ class ChargeRequest implements ModelInterface, ArrayAccess
         'identifier' => 'setIdentifier',
         'match_avsa' => 'setMatchAvsa',
         'merchantid' => 'setMerchantid',
-        'sdk' => 'setSdk',
         'token' => 'setToken',
         'trans_info' => 'setTransInfo',
         'trans_type' => 'setTransType'
@@ -170,7 +166,6 @@ class ChargeRequest implements ModelInterface, ArrayAccess
         'identifier' => 'getIdentifier',
         'match_avsa' => 'getMatchAvsa',
         'merchantid' => 'getMerchantid',
-        'sdk' => 'getSdk',
         'token' => 'getToken',
         'trans_info' => 'getTransInfo',
         'trans_type' => 'getTransType'
@@ -245,7 +240,6 @@ class ChargeRequest implements ModelInterface, ArrayAccess
         $this->container['identifier'] = isset($data['identifier']) ? $data['identifier'] : null;
         $this->container['match_avsa'] = isset($data['match_avsa']) ? $data['match_avsa'] : null;
         $this->container['merchantid'] = isset($data['merchantid']) ? $data['merchantid'] : null;
-        $this->container['sdk'] = isset($data['sdk']) ? $data['sdk'] : null;
         $this->container['token'] = isset($data['token']) ? $data['token'] : null;
         $this->container['trans_info'] = isset($data['trans_info']) ? $data['trans_info'] : null;
         $this->container['trans_type'] = isset($data['trans_type']) ? $data['trans_type'] : null;
@@ -490,7 +484,7 @@ class ChargeRequest implements ModelInterface, ArrayAccess
     /**
      * Sets identifier
      *
-     * @param string $identifier The identifier of the transaction to process. The value should be a valid reference and may be used to perform  post processing actions and to aid in reconciliation of transactions.  The value should be a valid printable string with ASCII character ranges from 32 to 127.  The identifier is recommended to be distinct for each transaction such as a [random unique identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier) this will aid in ensuring each transaction is identifiable.  When transactions are processed they are also checked for duplicate requests. Changing the identifier on a subsequent request will ensure that a transaction is considered as different.
+     * @param string $identifier The identifier of the transaction to process. The value should be a valid reference and may be used to perform  post processing actions and to aid in reconciliation of transactions.  The value should be a valid printable string with ASCII character ranges from 0x32 to 0x127.  The identifier is recommended to be distinct for each transaction such as a [random unique identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier) this will aid in ensuring each transaction is identifiable.  When transactions are processed they are also checked for duplicate requests. Changing the identifier on a subsequent request will ensure that a transaction is considered as different.
      *
      * @return $this
      */
@@ -552,30 +546,6 @@ class ChargeRequest implements ModelInterface, ArrayAccess
     public function setMerchantid($merchantid)
     {
         $this->container['merchantid'] = $merchantid;
-
-        return $this;
-    }
-
-    /**
-     * Gets sdk
-     *
-     * @return string|null
-     */
-    public function getSdk()
-    {
-        return $this->container['sdk'];
-    }
-
-    /**
-     * Sets sdk
-     *
-     * @param string|null $sdk An optional reference value for the calling client such as a version number i.e.
-     *
-     * @return $this
-     */
-    public function setSdk($sdk)
-    {
-        $this->container['sdk'] = $sdk;
 
         return $this;
     }
