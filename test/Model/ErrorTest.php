@@ -41,19 +41,19 @@ use PHPUnit\Framework\TestCase;
  */
 class ErrorTest extends TestCase
 {
-
-    /**
-     * Setup before running any test case
-     */
-    public static function setUpBeforeClass()
-    {
-    }
-
     /**
      * Setup before running each test case
      */
     public function setUp()
     {
+        $data = (object)array(
+            "code" => "000",
+            "context" => "1B12WmDZB3EYSbb",
+            "identifier" => "testIdentifier",
+            "message" => "System: Accepted Transaction",
+        );
+
+        $this->instance = ObjectSerializer::deserialize($data, '\CityPay\Model\Error');
     }
 
     /**
@@ -64,44 +64,15 @@ class ErrorTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass()
-    {
-    }
-
-    /**
      * Test "Error"
      */
     public function testError()
     {
+        self::assertEquals('000', $this->instance['code']);
+        self::assertEquals("1B12WmDZB3EYSbb", $this->instance['context']);
+        self::assertEquals("testIdentifier", $this->instance['identifier']);
+        self::assertEquals("System: Accepted Transaction", $this->instance['message']);
+
     }
 
-    /**
-     * Test attribute "code"
-     */
-    public function testPropertyCode()
-    {
-    }
-
-    /**
-     * Test attribute "context"
-     */
-    public function testPropertyContext()
-    {
-    }
-
-    /**
-     * Test attribute "identifier"
-     */
-    public function testPropertyIdentifier()
-    {
-    }
-
-    /**
-     * Test attribute "message"
-     */
-    public function testPropertyMessage()
-    {
-    }
 }

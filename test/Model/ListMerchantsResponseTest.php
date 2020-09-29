@@ -41,19 +41,37 @@ use PHPUnit\Framework\TestCase;
  */
 class ListMerchantsResponseTest extends TestCase
 {
-
-    /**
-     * Setup before running any test case
-     */
-    public static function setUpBeforeClass()
-    {
-    }
-
     /**
      * Setup before running each test case
      */
     public function setUp()
     {
+        $data = (object)array (
+            'client_name' => 'CityPay Demo',
+            'clientid' => 'PC123456',
+            'merchants' =>
+                (object)array (
+                    0 =>
+                        (object)array (
+                            'currency' => 'GBP',
+                            'merchantid' => 12345678,
+                            'name' => 'CityPay One',
+                            'status' => 'T',
+                            'status_label' => 'Test',
+                        ),
+                    1 =>
+                        (object)array (
+                            'currency' => 'GBP',
+                            'merchantid' => 87654321,
+                            'name' => 'CityPay Two',
+                            'status' => 'T',
+                            'status_label' => 'Test',
+                        ),
+                ),
+        );
+
+        $this->instance = ObjectSerializer::deserialize($data, '\CityPay\Model\ListMerchantsResponse');
+
     }
 
     /**
@@ -64,17 +82,22 @@ class ListMerchantsResponseTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass()
-    {
-    }
-
-    /**
      * Test "ListMerchantsResponse"
      */
     public function testListMerchantsResponse()
     {
+        self::assertEquals('CityPay Demo', $this->instance['client_name']);
+        self::assertEquals('PC123456', $this->instance['clientid']);
+        self::assertEquals('GBP', $this->instance['merchants'][0]['currency']);
+        self::assertEquals(12345678, $this->instance['merchants'][0]['merchantid']);
+        self::assertEquals('CityPay One', $this->instance['merchants'][0]['name']);
+        self::assertEquals('T', $this->instance['merchants'][0]['status']);
+        self::assertEquals('Test', $this->instance['merchants'][0]['status_label']);
+        self::assertEquals('GBP', $this->instance['merchants'][1]['currency']);
+        self::assertEquals(87654321, $this->instance['merchants'][1]['merchantid']);
+        self::assertEquals('CityPay Two', $this->instance['merchants'][1]['name']);
+        self::assertEquals('T', $this->instance['merchants'][1]['status']);
+        self::assertEquals('Test', $this->instance['merchants'][1]['status_label']);
     }
 
     /**
