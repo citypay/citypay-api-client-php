@@ -1287,6 +1287,299 @@ class PaymentProcessingApi
     }
 
     /**
+     * Operation refundRequest
+     *
+     * Refund
+     *
+     * @param  \CityPay\Model\RefundRequest $refund_request refund_request (required)
+     *
+     * @throws \CityPay\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return |\CityPay\Model\Error|\CityPay\Model\AuthResponse
+     */
+    public function refundRequest($refund_request)
+    {
+        list($response) = $this->refundRequestWithHttpInfo($refund_request);
+        return $response;
+    }
+
+    /**
+     * Operation refundRequestWithHttpInfo
+     *
+     * Refund
+     *
+     * @param  \CityPay\Model\RefundRequest $refund_request (required)
+     *
+     * @throws \CityPay\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of |\CityPay\Model\Error|\CityPay\Model\AuthResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function refundRequestWithHttpInfo($refund_request)
+    {
+        $request = $this->refundRequestRequest($refund_request);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            switch($statusCode) {
+                case 422:
+                    if ('\CityPay\Model\Error' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 200:
+                    if ('\CityPay\Model\AuthResponse' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\CityPay\Model\AuthResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\CityPay\Model\AuthResponse';
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = (string) $responseBody;
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\CityPay\Model\Error',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\CityPay\Model\AuthResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation refundRequestAsync
+     *
+     * Refund
+     *
+     * @param  \CityPay\Model\RefundRequest $refund_request (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function refundRequestAsync($refund_request)
+    {
+        return $this->refundRequestAsyncWithHttpInfo($refund_request)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation refundRequestAsyncWithHttpInfo
+     *
+     * Refund
+     *
+     * @param  \CityPay\Model\RefundRequest $refund_request (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function refundRequestAsyncWithHttpInfo($refund_request)
+    {
+        $returnType = '\CityPay\Model\AuthResponse';
+        $request = $this->refundRequestRequest($refund_request);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'refundRequest'
+     *
+     * @param  \CityPay\Model\RefundRequest $refund_request (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function refundRequestRequest($refund_request)
+    {
+        // verify the required parameter 'refund_request' is set
+        if ($refund_request === null || (is_array($refund_request) && count($refund_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $refund_request when calling refundRequest'
+            );
+        }
+
+        $resourcePath = '/refund';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+        // body params
+        $_tempBody = null;
+        if (isset($refund_request)) {
+            $_tempBody = $refund_request;
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json', 'text/xml']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json', 'text/xml'],
+                ['application/json', 'text/xml']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($_tempBody));
+            } else {
+                $httpBody = $_tempBody;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('cp-api-key');
+        if ($apiKey !== null) {
+            $headers['cp-api-key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation retrievalRequest
      *
      * Retrieval
