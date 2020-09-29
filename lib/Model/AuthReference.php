@@ -56,8 +56,8 @@ class AuthReference implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'amount' => 'int',
-        'amount_value' => 'string',
+        'amount' => 'string',
+        'amount_value' => 'int',
         'atrn' => 'string',
         'authcode' => 'string',
         'batchno' => 'string',
@@ -78,8 +78,8 @@ class AuthReference implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'amount' => 'int32',
-        'amount_value' => null,
+        'amount' => null,
+        'amount_value' => 'int32',
         'atrn' => null,
         'authcode' => null,
         'batchno' => null,
@@ -266,6 +266,10 @@ class AuthReference implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if (!is_null($this->container['amount']) && (mb_strlen($this->container['amount']) > 12)) {
+            $invalidProperties[] = "invalid value for 'amount', the character length must be smaller than or equal to 12.";
+        }
+
         if (!is_null($this->container['currency']) && (mb_strlen($this->container['currency']) > 3)) {
             $invalidProperties[] = "invalid value for 'currency', the character length must be smaller than or equal to 3.";
         }
@@ -304,7 +308,7 @@ class AuthReference implements ModelInterface, ArrayAccess
     /**
      * Gets amount
      *
-     * @return int|null
+     * @return string|null
      */
     public function getAmount()
     {
@@ -314,12 +318,16 @@ class AuthReference implements ModelInterface, ArrayAccess
     /**
      * Sets amount
      *
-     * @param int|null $amount The amount of the transaction in decimal currency format.
+     * @param string|null $amount The amount of the transaction in decimal currency format.
      *
      * @return $this
      */
     public function setAmount($amount)
     {
+        if (!is_null($amount) && (mb_strlen($amount) > 12)) {
+            throw new \InvalidArgumentException('invalid length for $amount when calling AuthReference., must be smaller than or equal to 12.');
+        }
+
         $this->container['amount'] = $amount;
 
         return $this;
@@ -328,7 +336,7 @@ class AuthReference implements ModelInterface, ArrayAccess
     /**
      * Gets amount_value
      *
-     * @return string|null
+     * @return int|null
      */
     public function getAmountValue()
     {
@@ -338,7 +346,7 @@ class AuthReference implements ModelInterface, ArrayAccess
     /**
      * Sets amount_value
      *
-     * @param string|null $amount_value The amount of the transaction in integer/request format.
+     * @param int|null $amount_value The amount of the transaction in integer/request format.
      *
      * @return $this
      */
