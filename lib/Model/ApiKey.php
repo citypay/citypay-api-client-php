@@ -56,7 +56,7 @@ class ApiKey
      */
     public function generate()
     {
-        self::generateWith(bin2hex(random_bytes(16)), new \DateTime("now", new \DateTimeZone("UTC")));
+        return self::generateWith(bin2hex(random_bytes(16)), new \DateTime("now", new \DateTimeZone("UTC")));
 
     }
 
