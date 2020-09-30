@@ -29,6 +29,7 @@
 namespace CityPay;
 
 use PHPUnit\Framework\TestCase;
+use DateTime;
 
 /**
  * AuthReferencesTest Class Doc Comment
@@ -41,19 +42,33 @@ use PHPUnit\Framework\TestCase;
  */
 class AuthReferencesTest extends TestCase
 {
-
-    /**
-     * Setup before running any test case
-     */
-    public static function setUpBeforeClass()
-    {
-    }
-
     /**
      * Setup before running each test case
      */
     public function setUp()
     {
+        $data = (object)array("auths" =>
+            (object)array(
+                (object)array(
+                    "amount" => "0.12",
+                    "amount_value" => 12,
+                    "atrn" => null,
+                    "authcode" => "A12345",
+                    "batchno" => null,
+                    "currency" => "GBP",
+                    "datetime" => "2020-07-21T15:55:04Z",
+                    "identifier" => "TestingAPI",
+                    "maskedpan" => "400000******0000",
+                    "merchantid" => 12345678,
+                    "result" => "Accepted",
+                    "trans_status" => "O",
+                    "trans_type" => "S",
+                    "transno" => 88
+                )
+            )
+        );
+        $this->instance = ObjectSerializer::deserialize($data, '\CityPay\Model\AuthReferences');
+
     }
 
     /**
@@ -64,23 +79,25 @@ class AuthReferencesTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass()
-    {
-    }
-
-    /**
      * Test "AuthReferences"
      */
     public function testAuthReferences()
     {
-    }
+        $date = DateTime::createFromFormat('Y-m-d\TH:i:s\Z', '2020-07-21T15:55:04Z');
 
-    /**
-     * Test attribute "auths"
-     */
-    public function testPropertyAuths()
-    {
+        self::assertEquals('0.12', $this->instance['auths'][0]['amount']);
+        self::assertEquals(12, $this->instance['auths'][0]['amount_value']);
+        self::assertNull($this->instance['auths'][0]['atrn']);
+        self::assertEquals("A12345", $this->instance['auths'][0]['authcode']);
+        self::assertNull($this->instance['auths'][0]['batchno']);
+        self::assertEquals("GBP", $this->instance['auths'][0]['currency']);
+        self::assertEquals($date, $this->instance['auths'][0]['datetime']);
+        self::assertEquals("TestingAPI", $this->instance['auths'][0]['identifier']);
+        self::assertEquals("400000******0000", $this->instance['auths'][0]['maskedpan']);
+        self::assertEquals(12345678, $this->instance['auths'][0]['merchantid']);
+        self::assertEquals("Accepted", $this->instance['auths'][0]['result']);
+        self::assertEquals("O", $this->instance['auths'][0]['trans_status']);
+        self::assertEquals("S", $this->instance['auths'][0]['trans_type']);
+        self::assertEquals(88, $this->instance['auths'][0]['transno']);
     }
 }

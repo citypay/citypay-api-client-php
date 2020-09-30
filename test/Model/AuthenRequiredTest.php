@@ -41,19 +41,18 @@ use PHPUnit\Framework\TestCase;
  */
 class AuthenRequiredTest extends TestCase
 {
-
-    /**
-     * Setup before running any test case
-     */
-    public static function setUpBeforeClass()
-    {
-    }
-
     /**
      * Setup before running each test case
      */
     public function setUp()
     {
+        $data = (object)array(
+            'acs_url' => 'https://www.acs.com/tdsecure/opt_in_dispatcher.jsp?partner=debit&VAA=B',
+            'md' => '0000000000000000000022',
+            'pareq' => 'eJxVUm1v2yAQ/itWv8dg/B5dmJyfw==',
+        );
+
+        $this->instance = ObjectSerializer::deserialize($data, '\CityPay\Model\AuthenRequired');
     }
 
     /**
@@ -64,37 +63,13 @@ class AuthenRequiredTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass()
-    {
-    }
-
-    /**
      * Test "AuthenRequired"
      */
     public function testAuthenRequired()
     {
-    }
+        self::assertEquals('https://www.acs.com/tdsecure/opt_in_dispatcher.jsp?partner=debit&VAA=B', $this->instance['acs_url']);
+        self::assertEquals('0000000000000000000022', $this->instance['md']);
+        self::assertEquals('eJxVUm1v2yAQ/itWv8dg/B5dmJyfw==', $this->instance['pareq']);
 
-    /**
-     * Test attribute "acs_url"
-     */
-    public function testPropertyAcsUrl()
-    {
-    }
-
-    /**
-     * Test attribute "md"
-     */
-    public function testPropertyMd()
-    {
-    }
-
-    /**
-     * Test attribute "pareq"
-     */
-    public function testPropertyPareq()
-    {
     }
 }

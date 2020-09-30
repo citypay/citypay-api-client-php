@@ -29,6 +29,7 @@
 namespace CityPay;
 
 use PHPUnit\Framework\TestCase;
+use DateTime;
 
 /**
  * AuthResponseTest Class Doc Comment
@@ -41,19 +42,43 @@ use PHPUnit\Framework\TestCase;
  */
 class AuthResponseTest extends TestCase
 {
-
-    /**
-     * Setup before running any test case
-     */
-    public static function setUpBeforeClass()
-    {
-    }
-
     /**
      * Setup before running each test case
      */
     public function setUp()
     {
+        $data = (object)array(
+            'amount' => 5500,
+            'atrn' => 'atrn1',
+            'atsd' => 'a',
+            'authcode' => '12345',
+            'authen_result' => 'R',
+            'authorised' => true,
+            'avs_result' => 'G',
+            'bin_commercial' => false,
+            'bin_debit' => false,
+            'bin_description' => 'bin_desc',
+            'cavv' => 'cavvvvvvvvvvvvv',
+            'context' => '20200812075906AAAGV4',
+            'csc_result' => 'C',
+            'currency' => 'GBP',
+            'datetime' => '2020-08-12T07:59:11Z',
+            'eci' => '0',
+            'identifier' => 'ident1',
+            'live' => true,
+            'maskedpan' => '400000******0002',
+            'merchantid' => 12345,
+            'result' => 1,
+            'result_code' => '000',
+            'result_message' => 'System: Accepted Transaction',
+            'scheme' => 'VISA_BUSINESS',
+            'sha256' => 'abcdefg',
+            'trans_status' => 'P',
+            'transno' => 74875,
+        );
+
+        $this->instance = ObjectSerializer::deserialize($data, '\CityPay\Model\AuthResponse');
+
     }
 
     /**
@@ -64,205 +89,38 @@ class AuthResponseTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass()
-    {
-    }
-
-    /**
      * Test "AuthResponse"
      */
     public function testAuthResponse()
     {
-    }
+        $date = DateTime::createFromFormat('Y-m-d\TH:i:s\Z', '2020-08-12T07:59:11Z');
 
-    /**
-     * Test attribute "amount"
-     */
-    public function testPropertyAmount()
-    {
-    }
-
-    /**
-     * Test attribute "atrn"
-     */
-    public function testPropertyAtrn()
-    {
-    }
-
-    /**
-     * Test attribute "atsd"
-     */
-    public function testPropertyAtsd()
-    {
-    }
-
-    /**
-     * Test attribute "authcode"
-     */
-    public function testPropertyAuthcode()
-    {
-    }
-
-    /**
-     * Test attribute "authen_result"
-     */
-    public function testPropertyAuthenResult()
-    {
-    }
-
-    /**
-     * Test attribute "authorised"
-     */
-    public function testPropertyAuthorised()
-    {
-    }
-
-    /**
-     * Test attribute "avs_result"
-     */
-    public function testPropertyAvsResult()
-    {
-    }
-
-    /**
-     * Test attribute "bin_commercial"
-     */
-    public function testPropertyBinCommercial()
-    {
-    }
-
-    /**
-     * Test attribute "bin_debit"
-     */
-    public function testPropertyBinDebit()
-    {
-    }
-
-    /**
-     * Test attribute "bin_description"
-     */
-    public function testPropertyBinDescription()
-    {
-    }
-
-    /**
-     * Test attribute "cavv"
-     */
-    public function testPropertyCavv()
-    {
-    }
-
-    /**
-     * Test attribute "context"
-     */
-    public function testPropertyContext()
-    {
-    }
-
-    /**
-     * Test attribute "csc_result"
-     */
-    public function testPropertyCscResult()
-    {
-    }
-
-    /**
-     * Test attribute "currency"
-     */
-    public function testPropertyCurrency()
-    {
-    }
-
-    /**
-     * Test attribute "datetime"
-     */
-    public function testPropertyDatetime()
-    {
-    }
-
-    /**
-     * Test attribute "eci"
-     */
-    public function testPropertyEci()
-    {
-    }
-
-    /**
-     * Test attribute "identifier"
-     */
-    public function testPropertyIdentifier()
-    {
-    }
-
-    /**
-     * Test attribute "live"
-     */
-    public function testPropertyLive()
-    {
-    }
-
-    /**
-     * Test attribute "maskedpan"
-     */
-    public function testPropertyMaskedpan()
-    {
-    }
-
-    /**
-     * Test attribute "merchantid"
-     */
-    public function testPropertyMerchantid()
-    {
-    }
-
-    /**
-     * Test attribute "result"
-     */
-    public function testPropertyResult()
-    {
-    }
-
-    /**
-     * Test attribute "result_code"
-     */
-    public function testPropertyResultCode()
-    {
-    }
-
-    /**
-     * Test attribute "result_message"
-     */
-    public function testPropertyResultMessage()
-    {
-    }
-
-    /**
-     * Test attribute "scheme"
-     */
-    public function testPropertyScheme()
-    {
-    }
-
-    /**
-     * Test attribute "sha256"
-     */
-    public function testPropertySha256()
-    {
-    }
-
-    /**
-     * Test attribute "trans_status"
-     */
-    public function testPropertyTransStatus()
-    {
-    }
-
-    /**
-     * Test attribute "transno"
-     */
-    public function testPropertyTransno()
-    {
+        self::assertEquals(5500, $this->instance['amount']);
+        self::assertEquals('atrn1', $this->instance['atrn']);
+        self::assertEquals('a', $this->instance['atsd']);
+        self::assertEquals('12345', $this->instance['authcode']);
+        self::assertEquals('R', $this->instance['authen_result']);
+        self::assertTrue($this->instance['authorised']);
+        self::assertEquals('G', $this->instance['avs_result']);
+        self::assertFalse($this->instance['bin_commercial']);
+        self::assertFalse($this->instance['bin_debit']);
+        self::assertEquals('bin_desc', $this->instance['bin_description']);
+        self::assertEquals('cavvvvvvvvvvvvv', $this->instance['cavv']);
+        self::assertEquals('20200812075906AAAGV4', $this->instance['context']);
+        self::assertEquals('C', $this->instance['csc_result']);
+        self::assertEquals('GBP', $this->instance['currency']);
+        self::assertEquals($date, $this->instance['datetime']);
+        self::assertEquals('0', $this->instance['eci']);
+        self::assertEquals('ident1', $this->instance['identifier']);
+        self::assertTrue($this->instance['live']);
+        self::assertEquals('400000******0002', $this->instance['maskedpan']);
+        self::assertEquals(12345, $this->instance['merchantid']);
+        self::assertEquals(1, $this->instance['result']);
+        self::assertEquals('000', $this->instance['result_code']);
+        self::assertEquals('System: Accepted Transaction', $this->instance['result_message']);
+        self::assertEquals('VISA_BUSINESS', $this->instance['scheme']);
+        self::assertEquals('abcdefg', $this->instance['sha256']);
+        self::assertEquals('P', $this->instance['trans_status']);
+        self::assertEquals(74875, $this->instance['transno']);
     }
 }

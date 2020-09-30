@@ -29,6 +29,7 @@
 namespace CityPay;
 
 use PHPUnit\Framework\TestCase;
+use DateTime;
 
 /**
  * CardHolderAccountTest Class Doc Comment
@@ -41,19 +42,59 @@ use PHPUnit\Framework\TestCase;
  */
 class CardHolderAccountTest extends TestCase
 {
-
-    /**
-     * Setup before running any test case
-     */
-    public static function setUpBeforeClass()
-    {
-    }
-
     /**
      * Setup before running each test case
      */
     public function setUp()
     {
+        $data = (object)array(
+            'account_id' => 'abc123',
+            'cards' =>
+                (object)array(
+                    0 =>
+                        (object)array(
+                            'bin_commercial' => false,
+                            'bin_corporate' => false,
+                            'bin_country_issued' => 'GBR',
+                            'bin_currency' => 'GBP',
+                            'bin_description' => 'Visa Classic',
+                            'bin_eu' => false,
+                            'card_id' => '2U1XV3PJSeUXFNzXidACn2TyCzAK',
+                            'card_status' => 'ACTIVE',
+                            'default' => true,
+                            'expmonth' => 7,
+                            'expyear' => 2022,
+                            'label' => 'TestVisa/0002',
+                            'label2' => 'TestVisa/0002,Exp:7/2022',
+                            'scheme' => 'TestVisa',
+                            'token' => 'ctPCzxq4WxEwWbkG7whRPLRCG27vYFNzsEDNihYmDwqsBc5QEXnFRvq2j5oRyb56ErRVEQaBN7PFMEDtjQQXDQpfxKkp3AxbyeGo61RhKBjFTFegaP4LBZUxFZimsXW8Deae9VyhWSgS2o8AXzTJU9UP3bo8kRcpataxuH3fJj3JHDnyeZt',
+                        ),
+                ),
+            'contact' =>
+                (object)array(
+                    'address1' => '7 Esplanade',
+                    'address2' => '',
+                    'address3' => '',
+                    'area' => 'St Helier',
+                    'company' => 'CityPay Ltd',
+                    'country' => 'JE',
+                    'email' => 'support@citypay.com',
+                    'firstname' => 'Joe',
+                    'lastname' => 'Wicks',
+                    'mobile_no' => '077112123456',
+                    'postcode' => 'JE2 3QA',
+                    'telephone_no' => '+4415341234567',
+                    'title' => 'Mr',
+                ),
+            'date_created' => '2020-08-01T09:15:24Z',
+            'default_card_id' => '2U1XV3PJSeUXFNzXidACn2TyCzAK',
+            'default_card_index' => 0,
+            'status' => 'ACTIVE',
+            'unique_id' => 'Ew3BKeWNdL3qKQU7XK7Sbt2eAL5WFW4AfoASDSA',
+        );
+
+        $this->instance = ObjectSerializer::deserialize($data, '\CityPay\Model\CardHolderAccount');
+
     }
 
     /**
@@ -64,72 +105,46 @@ class CardHolderAccountTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass()
-    {
-    }
-
-    /**
      * Test "CardHolderAccount"
      */
     public function testCardHolderAccount()
     {
-    }
+        $date = DateTime::createFromFormat('Y-m-d\TH:i:s\Z', '2020-08-01T09:15:24Z');
 
-    /**
-     * Test attribute "account_id"
-     */
-    public function testPropertyAccountId()
-    {
-    }
+        self::assertEquals('abc123', $this->instance['account_id']);
+        self::assertFalse($this->instance['cards'][0]['bin_commercial']);
+        self::assertFalse($this->instance['cards'][0]['bin_corporate']);
+        self::assertEquals('GBR', $this->instance['cards'][0]['bin_country_issued']);
+        self::assertEquals('GBP', $this->instance['cards'][0]['bin_currency']);
+        self::assertEquals('Visa Classic', $this->instance['cards'][0]['bin_description']);
+        self::assertFalse($this->instance['cards'][0]['bin_eu']);
+        self::assertEquals('2U1XV3PJSeUXFNzXidACn2TyCzAK', $this->instance['cards'][0]['card_id']);
+        self::assertEquals('ACTIVE', $this->instance['cards'][0]['card_status']);
+        self::assertTrue($this->instance['cards'][0]['default']);
+        self::assertEquals(7, $this->instance['cards'][0]['expmonth']);
+        self::assertEquals(2022, $this->instance['cards'][0]['expyear']);
+        self::assertEquals('TestVisa/0002', $this->instance['cards'][0]['label']);
+        self::assertEquals('TestVisa/0002,Exp:7/2022', $this->instance['cards'][0]['label2']);
+        self::assertEquals('TestVisa', $this->instance['cards'][0]['scheme']);
+        self::assertEquals('ctPCzxq4WxEwWbkG7whRPLRCG27vYFNzsEDNihYmDwqsBc5QEXnFRvq2j5oRyb56ErRVEQaBN7PFMEDtjQQXDQpfxKkp3AxbyeGo61RhKBjFTFegaP4LBZUxFZimsXW8Deae9VyhWSgS2o8AXzTJU9UP3bo8kRcpataxuH3fJj3JHDnyeZt', $this->instance['cards'][0]['token']);
+        self::assertEquals('7 Esplanade', $this->instance['contact']['address1']);
+        self::assertEquals('', $this->instance['contact']['address2']);
+        self::assertEquals('', $this->instance['contact']['address3']);
+        self::assertEquals('St Helier', $this->instance['contact']['area']);
+        self::assertEquals('CityPay Ltd', $this->instance['contact']['company']);
+        self::assertEquals('JE', $this->instance['contact']['country']);
+        self::assertEquals('support@citypay.com', $this->instance['contact']['email']);
+        self::assertEquals('Joe', $this->instance['contact']['firstname']);
+        self::assertEquals('Wicks', $this->instance['contact']['lastname']);
+        self::assertEquals('077112123456', $this->instance['contact']['mobile_no']);
+        self::assertEquals('JE2 3QA', $this->instance['contact']['postcode']);
+        self::assertEquals('+4415341234567', $this->instance['contact']['telephone_no']);
+        self::assertEquals('Mr', $this->instance['contact']['title']);
+        self::assertEquals($date, $this->instance['date_created']);
+        self::assertEquals('2U1XV3PJSeUXFNzXidACn2TyCzAK', $this->instance['default_card_id']);
+        self::assertEquals(0, $this->instance['default_card_index']);
+        self::assertEquals('ACTIVE', $this->instance['status']);
+        self::assertEquals('Ew3BKeWNdL3qKQU7XK7Sbt2eAL5WFW4AfoASDSA', $this->instance['unique_id']);
 
-    /**
-     * Test attribute "cards"
-     */
-    public function testPropertyCards()
-    {
-    }
-
-    /**
-     * Test attribute "contact"
-     */
-    public function testPropertyContact()
-    {
-    }
-
-    /**
-     * Test attribute "date_created"
-     */
-    public function testPropertyDateCreated()
-    {
-    }
-
-    /**
-     * Test attribute "default_card_id"
-     */
-    public function testPropertyDefaultCardId()
-    {
-    }
-
-    /**
-     * Test attribute "default_card_index"
-     */
-    public function testPropertyDefaultCardIndex()
-    {
-    }
-
-    /**
-     * Test attribute "status"
-     */
-    public function testPropertyStatus()
-    {
-    }
-
-    /**
-     * Test attribute "unique_id"
-     */
-    public function testPropertyUniqueId()
-    {
     }
 }

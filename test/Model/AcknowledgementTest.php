@@ -28,6 +28,8 @@
 
 namespace CityPay;
 
+use CityPay\Api\OperationalApi;
+use phpDocumentor\Reflection\Types\This;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -41,19 +43,18 @@ use PHPUnit\Framework\TestCase;
  */
 class AcknowledgementTest extends TestCase
 {
-
-    /**
-     * Setup before running any test case
-     */
-    public static function setUpBeforeClass()
-    {
-    }
-
     /**
      * Setup before running each test case
      */
     public function setUp()
     {
+        $data = (object)array(
+            "code" => "000",
+            "context" => "1B12WmDZB3EYSbb",
+            "identifier" => "testIdentifier",
+            "message" => "System: Accepted Transaction");
+
+        $this->instance = ObjectSerializer::deserialize($data, '\CityPay\Model\Acknowledgement');
     }
 
     /**
@@ -64,44 +65,13 @@ class AcknowledgementTest extends TestCase
     }
 
     /**
-     * Clean up after running all test cases
-     */
-    public static function tearDownAfterClass()
-    {
-    }
-
-    /**
      * Test "Acknowledgement"
      */
     public function testAcknowledgement()
     {
-    }
-
-    /**
-     * Test attribute "code"
-     */
-    public function testPropertyCode()
-    {
-    }
-
-    /**
-     * Test attribute "context"
-     */
-    public function testPropertyContext()
-    {
-    }
-
-    /**
-     * Test attribute "identifier"
-     */
-    public function testPropertyIdentifier()
-    {
-    }
-
-    /**
-     * Test attribute "message"
-     */
-    public function testPropertyMessage()
-    {
+        self::assertEquals('000', $this->instance['code']);
+        self::assertEquals('1B12WmDZB3EYSbb', $this->instance['context']);
+        self::assertEquals('testIdentifier', $this->instance['identifier']);
+        self::assertEquals('System: Accepted Transaction', $this->instance['message']);
     }
 }
