@@ -1,6 +1,6 @@
 <?php
 /**
- * VoidRequest
+ * RefundRequest
  *
  * PHP version 7.1
  *
@@ -32,14 +32,14 @@ use \ArrayAccess;
 use \CityPay\ObjectSerializer;
 
 /**
- * VoidRequest Class Doc Comment
+ * RefundRequest Class Doc Comment
  *
  * @category Class
  * @package  CityPay
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class VoidRequest implements ModelInterface, ArrayAccess
+class RefundRequest implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class VoidRequest implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'VoidRequest';
+    protected static $openAPIModelName = 'RefundRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -56,9 +56,11 @@ class VoidRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
+        'amount' => 'int',
         'identifier' => 'string',
         'merchantid' => 'int',
-        'transno' => 'int'
+        'refund_ref' => 'int',
+        'trans_info' => 'string'
     ];
 
     /**
@@ -67,9 +69,11 @@ class VoidRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
+        'amount' => 'int32',
         'identifier' => null,
         'merchantid' => 'int32',
-        'transno' => 'int32'
+        'refund_ref' => 'int32',
+        'trans_info' => null
     ];
 
     /**
@@ -99,9 +103,11 @@ class VoidRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
+        'amount' => 'amount',
         'identifier' => 'identifier',
         'merchantid' => 'merchantid',
-        'transno' => 'transno'
+        'refund_ref' => 'refund_ref',
+        'trans_info' => 'trans_info'
     ];
 
     /**
@@ -110,9 +116,11 @@ class VoidRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
+        'amount' => 'setAmount',
         'identifier' => 'setIdentifier',
         'merchantid' => 'setMerchantid',
-        'transno' => 'setTransno'
+        'refund_ref' => 'setRefundRef',
+        'trans_info' => 'setTransInfo'
     ];
 
     /**
@@ -121,9 +129,11 @@ class VoidRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
+        'amount' => 'getAmount',
         'identifier' => 'getIdentifier',
         'merchantid' => 'getMerchantid',
-        'transno' => 'getTransno'
+        'refund_ref' => 'getRefundRef',
+        'trans_info' => 'getTransInfo'
     ];
 
     /**
@@ -186,9 +196,11 @@ class VoidRequest implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->container['amount'] = isset($data['amount']) ? $data['amount'] : null;
         $this->container['identifier'] = isset($data['identifier']) ? $data['identifier'] : null;
         $this->container['merchantid'] = isset($data['merchantid']) ? $data['merchantid'] : null;
-        $this->container['transno'] = isset($data['transno']) ? $data['transno'] : null;
+        $this->container['refund_ref'] = isset($data['refund_ref']) ? $data['refund_ref'] : null;
+        $this->container['trans_info'] = isset($data['trans_info']) ? $data['trans_info'] : null;
     }
 
     /**
@@ -200,17 +212,30 @@ class VoidRequest implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['identifier']) && (mb_strlen($this->container['identifier']) > 50)) {
+        if ($this->container['amount'] === null) {
+            $invalidProperties[] = "'amount' can't be null";
+        }
+        if ($this->container['identifier'] === null) {
+            $invalidProperties[] = "'identifier' can't be null";
+        }
+        if ((mb_strlen($this->container['identifier']) > 50)) {
             $invalidProperties[] = "invalid value for 'identifier', the character length must be smaller than or equal to 50.";
         }
 
-        if (!is_null($this->container['identifier']) && (mb_strlen($this->container['identifier']) < 4)) {
+        if ((mb_strlen($this->container['identifier']) < 4)) {
             $invalidProperties[] = "invalid value for 'identifier', the character length must be bigger than or equal to 4.";
         }
 
         if ($this->container['merchantid'] === null) {
             $invalidProperties[] = "'merchantid' can't be null";
         }
+        if ($this->container['refund_ref'] === null) {
+            $invalidProperties[] = "'refund_ref' can't be null";
+        }
+        if (!is_null($this->container['trans_info']) && (mb_strlen($this->container['trans_info']) > 50)) {
+            $invalidProperties[] = "invalid value for 'trans_info', the character length must be smaller than or equal to 50.";
+        }
+
         return $invalidProperties;
     }
 
@@ -227,9 +252,33 @@ class VoidRequest implements ModelInterface, ArrayAccess
 
 
     /**
+     * Gets amount
+     *
+     * @return int
+     */
+    public function getAmount()
+    {
+        return $this->container['amount'];
+    }
+
+    /**
+     * Sets amount
+     *
+     * @param int $amount The amount to refund in the lowest unit of currency with a variable length to a maximum of 12 digits. The amount should be the total amount required to refund for the transaction up to the original processed amount. No decimal points are to be included and no divisional characters such as 1,024. For example with GBP £1,021.95 the amount value is 102195.
+     *
+     * @return $this
+     */
+    public function setAmount($amount)
+    {
+        $this->container['amount'] = $amount;
+
+        return $this;
+    }
+
+    /**
      * Gets identifier
      *
-     * @return string|null
+     * @return string
      */
     public function getIdentifier()
     {
@@ -239,17 +288,17 @@ class VoidRequest implements ModelInterface, ArrayAccess
     /**
      * Sets identifier
      *
-     * @param string|null $identifier The identifier of the transaction to void. If an empty value is supplied then a `trans_no` value must be supplied.
+     * @param string $identifier The identifier of the refund to process. The value should be a valid reference and may be used to perform  post processing actions and to aid in reconciliation of transactions.  The value should be a valid printable string with ASCII character ranges from 0x32 to 0x127.  The identifier is recommended to be distinct for each transaction such as a [random unique identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier) this will aid in ensuring each transaction is identifiable.  When transactions are processed they are also checked for duplicate requests. Changing the identifier on a subsequent request will ensure that a transaction is considered as different.
      *
      * @return $this
      */
     public function setIdentifier($identifier)
     {
-        if (!is_null($identifier) && (mb_strlen($identifier) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $identifier when calling VoidRequest., must be smaller than or equal to 50.');
+        if ((mb_strlen($identifier) > 50)) {
+            throw new \InvalidArgumentException('invalid length for $identifier when calling RefundRequest., must be smaller than or equal to 50.');
         }
-        if (!is_null($identifier) && (mb_strlen($identifier) < 4)) {
-            throw new \InvalidArgumentException('invalid length for $identifier when calling VoidRequest., must be bigger than or equal to 4.');
+        if ((mb_strlen($identifier) < 4)) {
+            throw new \InvalidArgumentException('invalid length for $identifier when calling RefundRequest., must be bigger than or equal to 4.');
         }
 
         $this->container['identifier'] = $identifier;
@@ -270,7 +319,7 @@ class VoidRequest implements ModelInterface, ArrayAccess
     /**
      * Sets merchantid
      *
-     * @param int $merchantid Identifies the merchant account to perform the void for.
+     * @param int $merchantid Identifies the merchant account to perform the refund for.
      *
      * @return $this
      */
@@ -282,25 +331,53 @@ class VoidRequest implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets transno
+     * Gets refund_ref
      *
-     * @return int|null
+     * @return int
      */
-    public function getTransno()
+    public function getRefundRef()
     {
-        return $this->container['transno'];
+        return $this->container['refund_ref'];
     }
 
     /**
-     * Sets transno
+     * Sets refund_ref
      *
-     * @param int|null $transno The transaction number of the transaction to look up and void. If an empty value is supplied then an identifier value must be supplied.
+     * @param int $refund_ref A reference to the original transaction number that is wanting to be refunded. The original  transaction must be on the same merchant id, previously authorised.
      *
      * @return $this
      */
-    public function setTransno($transno)
+    public function setRefundRef($refund_ref)
     {
-        $this->container['transno'] = $transno;
+        $this->container['refund_ref'] = $refund_ref;
+
+        return $this;
+    }
+
+    /**
+     * Gets trans_info
+     *
+     * @return string|null
+     */
+    public function getTransInfo()
+    {
+        return $this->container['trans_info'];
+    }
+
+    /**
+     * Sets trans_info
+     *
+     * @param string|null $trans_info Further information that can be added to the transaction will display in reporting. Can be used for flexible values such as operator id.
+     *
+     * @return $this
+     */
+    public function setTransInfo($trans_info)
+    {
+        if (!is_null($trans_info) && (mb_strlen($trans_info) > 50)) {
+            throw new \InvalidArgumentException('invalid length for $trans_info when calling RefundRequest., must be smaller than or equal to 50.');
+        }
+
+        $this->container['trans_info'] = $trans_info;
 
         return $this;
     }

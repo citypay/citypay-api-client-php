@@ -1,6 +1,6 @@
 <?php
 /**
- * ListMerchantsResponseTest
+ * RefundRequestTest
  *
  * PHP version 7.1
  *
@@ -31,15 +31,15 @@ namespace CityPay;
 use PHPUnit\Framework\TestCase;
 
 /**
- * ListMerchantsResponseTest Class Doc Comment
+ * RefundRequestTest Class Doc Comment
  *
  * @category    Class
- * @description ListMerchantsResponse
+ * @description RefundRequest
  * @package     CityPay
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class ListMerchantsResponseTest extends TestCase
+class RefundRequestTest extends TestCase
 {
 
     /**
@@ -71,30 +71,44 @@ class ListMerchantsResponseTest extends TestCase
     }
 
     /**
-     * Test "ListMerchantsResponse"
+     * Test "RefundRequest"
      */
-    public function testListMerchantsResponse()
+    public function testRefundRequest()
     {
     }
 
     /**
-     * Test attribute "client_name"
+     * Test attribute "amount"
      */
-    public function testPropertyClientName()
+    public function testPropertyAmount()
     {
     }
 
     /**
-     * Test attribute "clientid"
+     * Test attribute "identifier"
      */
-    public function testPropertyClientid()
+    public function testPropertyIdentifier()
     {
     }
 
     /**
-     * Test attribute "merchants"
+     * Test attribute "merchantid"
      */
-    public function testPropertyMerchants()
+    public function testPropertyMerchantid()
+    {
+    }
+
+    /**
+     * Test attribute "refund_ref"
+     */
+    public function testPropertyRefundRef()
+    {
+    }
+
+    /**
+     * Test attribute "trans_info"
+     */
+    public function testPropertyTransInfo()
     {
     }
 }

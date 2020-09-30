@@ -61,7 +61,7 @@ class CardHolderAccount implements ModelInterface, ArrayAccess
         'contact' => '\CityPay\Model\ContactDetails',
         'date_created' => '\DateTime',
         'default_card_id' => 'string',
-        'default_card_index' => 'string',
+        'default_card_index' => 'int',
         'status' => 'string',
         'unique_id' => 'string'
     ];
@@ -77,7 +77,7 @@ class CardHolderAccount implements ModelInterface, ArrayAccess
         'contact' => null,
         'date_created' => 'date-time',
         'default_card_id' => null,
-        'default_card_index' => null,
+        'default_card_index' => 'int32',
         'status' => null,
         'unique_id' => null
     ];
@@ -389,7 +389,7 @@ class CardHolderAccount implements ModelInterface, ArrayAccess
     /**
      * Gets default_card_index
      *
-     * @return string|null
+     * @return int|null
      */
     public function getDefaultCardIndex()
     {
@@ -399,7 +399,7 @@ class CardHolderAccount implements ModelInterface, ArrayAccess
     /**
      * Sets default_card_index
      *
-     * @param string|null $default_card_index The index in the array of the default card.
+     * @param int|null $default_card_index The index in the array of the default card.
      *
      * @return $this
      */

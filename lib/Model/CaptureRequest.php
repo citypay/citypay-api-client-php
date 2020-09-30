@@ -60,7 +60,6 @@ class CaptureRequest implements ModelInterface, ArrayAccess
         'amount' => 'int',
         'identifier' => 'string',
         'merchantid' => 'int',
-        'sdk' => 'string',
         'transno' => 'int'
     ];
 
@@ -74,7 +73,6 @@ class CaptureRequest implements ModelInterface, ArrayAccess
         'amount' => 'int32',
         'identifier' => null,
         'merchantid' => 'int32',
-        'sdk' => null,
         'transno' => 'int32'
     ];
 
@@ -109,7 +107,6 @@ class CaptureRequest implements ModelInterface, ArrayAccess
         'amount' => 'amount',
         'identifier' => 'identifier',
         'merchantid' => 'merchantid',
-        'sdk' => 'sdk',
         'transno' => 'transno'
     ];
 
@@ -123,7 +120,6 @@ class CaptureRequest implements ModelInterface, ArrayAccess
         'amount' => 'setAmount',
         'identifier' => 'setIdentifier',
         'merchantid' => 'setMerchantid',
-        'sdk' => 'setSdk',
         'transno' => 'setTransno'
     ];
 
@@ -137,7 +133,6 @@ class CaptureRequest implements ModelInterface, ArrayAccess
         'amount' => 'getAmount',
         'identifier' => 'getIdentifier',
         'merchantid' => 'getMerchantid',
-        'sdk' => 'getSdk',
         'transno' => 'getTransno'
     ];
 
@@ -205,7 +200,6 @@ class CaptureRequest implements ModelInterface, ArrayAccess
         $this->container['amount'] = isset($data['amount']) ? $data['amount'] : null;
         $this->container['identifier'] = isset($data['identifier']) ? $data['identifier'] : null;
         $this->container['merchantid'] = isset($data['merchantid']) ? $data['merchantid'] : null;
-        $this->container['sdk'] = isset($data['sdk']) ? $data['sdk'] : null;
         $this->container['transno'] = isset($data['transno']) ? $data['transno'] : null;
     }
 
@@ -343,30 +337,6 @@ class CaptureRequest implements ModelInterface, ArrayAccess
     public function setMerchantid($merchantid)
     {
         $this->container['merchantid'] = $merchantid;
-
-        return $this;
-    }
-
-    /**
-     * Gets sdk
-     *
-     * @return string|null
-     */
-    public function getSdk()
-    {
-        return $this->container['sdk'];
-    }
-
-    /**
-     * Sets sdk
-     *
-     * @param string|null $sdk An optional reference value for the calling client such as a version number i.e.
-     *
-     * @return $this
-     */
-    public function setSdk($sdk)
-    {
-        $this->container['sdk'] = $sdk;
 
         return $this;
     }

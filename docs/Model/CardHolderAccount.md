@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **contact** | [**\CityPay\Model\ContactDetails**](ContactDetails.md) |  | 
 **date_created** | [**\DateTime**](\DateTime.md) | The date and time the account was created. | [optional] 
 **default_card_id** | **string** | The id of the default card. | [optional] 
-**default_card_index** | **string** | The index in the array of the default card. | [optional] 
+**default_card_index** | **int** | The index in the array of the default card. | [optional] 
 **status** | **string** | Defines the status of the account for processing valid values are   - ACTIVE for active accounts that are able to process  - DISABLED for accounts that are currently disabled for processing. | [optional] 
 **unique_id** | **string** | A unique id of the card holder account which uniquely identifies the stored account. This value is not searchable. | [optional] 
 
