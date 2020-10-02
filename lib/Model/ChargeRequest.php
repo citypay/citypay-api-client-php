@@ -65,6 +65,7 @@ class ChargeRequest implements ModelInterface, ArrayAccess
         'identifier' => 'string',
         'match_avsa' => 'string',
         'merchantid' => 'int',
+        'threedsecure' => '\CityPay\Model\ThreeDSecure',
         'token' => 'string',
         'trans_info' => 'string',
         'trans_type' => 'string'
@@ -85,6 +86,7 @@ class ChargeRequest implements ModelInterface, ArrayAccess
         'identifier' => null,
         'match_avsa' => null,
         'merchantid' => 'int32',
+        'threedsecure' => null,
         'token' => 'base58',
         'trans_info' => null,
         'trans_type' => null
@@ -126,6 +128,7 @@ class ChargeRequest implements ModelInterface, ArrayAccess
         'identifier' => 'identifier',
         'match_avsa' => 'match_avsa',
         'merchantid' => 'merchantid',
+        'threedsecure' => 'threedsecure',
         'token' => 'token',
         'trans_info' => 'trans_info',
         'trans_type' => 'trans_type'
@@ -146,6 +149,7 @@ class ChargeRequest implements ModelInterface, ArrayAccess
         'identifier' => 'setIdentifier',
         'match_avsa' => 'setMatchAvsa',
         'merchantid' => 'setMerchantid',
+        'threedsecure' => 'setThreedsecure',
         'token' => 'setToken',
         'trans_info' => 'setTransInfo',
         'trans_type' => 'setTransType'
@@ -166,6 +170,7 @@ class ChargeRequest implements ModelInterface, ArrayAccess
         'identifier' => 'getIdentifier',
         'match_avsa' => 'getMatchAvsa',
         'merchantid' => 'getMerchantid',
+        'threedsecure' => 'getThreedsecure',
         'token' => 'getToken',
         'trans_info' => 'getTransInfo',
         'trans_type' => 'getTransType'
@@ -240,6 +245,7 @@ class ChargeRequest implements ModelInterface, ArrayAccess
         $this->container['identifier'] = isset($data['identifier']) ? $data['identifier'] : null;
         $this->container['match_avsa'] = isset($data['match_avsa']) ? $data['match_avsa'] : null;
         $this->container['merchantid'] = isset($data['merchantid']) ? $data['merchantid'] : null;
+        $this->container['threedsecure'] = isset($data['threedsecure']) ? $data['threedsecure'] : null;
         $this->container['token'] = isset($data['token']) ? $data['token'] : null;
         $this->container['trans_info'] = isset($data['trans_info']) ? $data['trans_info'] : null;
         $this->container['trans_type'] = isset($data['trans_type']) ? $data['trans_type'] : null;
@@ -546,6 +552,30 @@ class ChargeRequest implements ModelInterface, ArrayAccess
     public function setMerchantid($merchantid)
     {
         $this->container['merchantid'] = $merchantid;
+
+        return $this;
+    }
+
+    /**
+     * Gets threedsecure
+     *
+     * @return \CityPay\Model\ThreeDSecure|null
+     */
+    public function getThreedsecure()
+    {
+        return $this->container['threedsecure'];
+    }
+
+    /**
+     * Sets threedsecure
+     *
+     * @param \CityPay\Model\ThreeDSecure|null $threedsecure threedsecure
+     *
+     * @return $this
+     */
+    public function setThreedsecure($threedsecure)
+    {
+        $this->container['threedsecure'] = $threedsecure;
 
         return $this;
     }

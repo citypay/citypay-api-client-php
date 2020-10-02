@@ -1,6 +1,6 @@
 <?php
 /**
- * CardHolderAccount
+ * Exists
  *
  * PHP version 7.1
  *
@@ -32,14 +32,14 @@ use \ArrayAccess;
 use \CityPay\ObjectSerializer;
 
 /**
- * CardHolderAccount Class Doc Comment
+ * Exists Class Doc Comment
  *
  * @category Class
  * @package  CityPay
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class CardHolderAccount implements ModelInterface, ArrayAccess
+class Exists implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class CardHolderAccount implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'CardHolderAccount';
+    protected static $openAPIModelName = 'Exists';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -56,15 +56,9 @@ class CardHolderAccount implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'account_id' => 'string',
-        'cards' => '\CityPay\Model\Card[]',
-        'contact' => '\CityPay\Model\ContactDetails',
-        'date_created' => '\DateTime',
-        'default_card_id' => 'string',
-        'default_card_index' => 'int',
-        'last_modified' => '\DateTime',
-        'status' => 'string',
-        'unique_id' => 'string'
+        'active' => 'bool',
+        'exists' => 'bool',
+        'last_modified' => '\DateTime'
     ];
 
     /**
@@ -73,15 +67,9 @@ class CardHolderAccount implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'account_id' => null,
-        'cards' => null,
-        'contact' => null,
-        'date_created' => 'date-time',
-        'default_card_id' => null,
-        'default_card_index' => 'int32',
-        'last_modified' => null,
-        'status' => null,
-        'unique_id' => null
+        'active' => null,
+        'exists' => null,
+        'last_modified' => null
     ];
 
     /**
@@ -111,15 +99,9 @@ class CardHolderAccount implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'account_id' => 'account_id',
-        'cards' => 'cards',
-        'contact' => 'contact',
-        'date_created' => 'date_created',
-        'default_card_id' => 'default_card_id',
-        'default_card_index' => 'default_card_index',
-        'last_modified' => 'last_modified',
-        'status' => 'status',
-        'unique_id' => 'unique_id'
+        'active' => 'active',
+        'exists' => 'exists',
+        'last_modified' => 'last_modified'
     ];
 
     /**
@@ -128,15 +110,9 @@ class CardHolderAccount implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'account_id' => 'setAccountId',
-        'cards' => 'setCards',
-        'contact' => 'setContact',
-        'date_created' => 'setDateCreated',
-        'default_card_id' => 'setDefaultCardId',
-        'default_card_index' => 'setDefaultCardIndex',
-        'last_modified' => 'setLastModified',
-        'status' => 'setStatus',
-        'unique_id' => 'setUniqueId'
+        'active' => 'setActive',
+        'exists' => 'setExists',
+        'last_modified' => 'setLastModified'
     ];
 
     /**
@@ -145,15 +121,9 @@ class CardHolderAccount implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'account_id' => 'getAccountId',
-        'cards' => 'getCards',
-        'contact' => 'getContact',
-        'date_created' => 'getDateCreated',
-        'default_card_id' => 'getDefaultCardId',
-        'default_card_index' => 'getDefaultCardIndex',
-        'last_modified' => 'getLastModified',
-        'status' => 'getStatus',
-        'unique_id' => 'getUniqueId'
+        'active' => 'getActive',
+        'exists' => 'getExists',
+        'last_modified' => 'getLastModified'
     ];
 
     /**
@@ -216,15 +186,9 @@ class CardHolderAccount implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['account_id'] = isset($data['account_id']) ? $data['account_id'] : null;
-        $this->container['cards'] = isset($data['cards']) ? $data['cards'] : null;
-        $this->container['contact'] = isset($data['contact']) ? $data['contact'] : null;
-        $this->container['date_created'] = isset($data['date_created']) ? $data['date_created'] : null;
-        $this->container['default_card_id'] = isset($data['default_card_id']) ? $data['default_card_id'] : null;
-        $this->container['default_card_index'] = isset($data['default_card_index']) ? $data['default_card_index'] : null;
+        $this->container['active'] = isset($data['active']) ? $data['active'] : null;
+        $this->container['exists'] = isset($data['exists']) ? $data['exists'] : null;
         $this->container['last_modified'] = isset($data['last_modified']) ? $data['last_modified'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
-        $this->container['unique_id'] = isset($data['unique_id']) ? $data['unique_id'] : null;
     }
 
     /**
@@ -236,19 +200,8 @@ class CardHolderAccount implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['account_id'] === null) {
-            $invalidProperties[] = "'account_id' can't be null";
-        }
-        if ((mb_strlen($this->container['account_id']) > 50)) {
-            $invalidProperties[] = "invalid value for 'account_id', the character length must be smaller than or equal to 50.";
-        }
-
-        if ((mb_strlen($this->container['account_id']) < 5)) {
-            $invalidProperties[] = "invalid value for 'account_id', the character length must be bigger than or equal to 5.";
-        }
-
-        if ($this->container['contact'] === null) {
-            $invalidProperties[] = "'contact' can't be null";
+        if ($this->container['exists'] === null) {
+            $invalidProperties[] = "'exists' can't be null";
         }
         return $invalidProperties;
     }
@@ -266,152 +219,49 @@ class CardHolderAccount implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets account_id
+     * Gets active
      *
-     * @return string
+     * @return bool|null
      */
-    public function getAccountId()
+    public function getActive()
     {
-        return $this->container['account_id'];
+        return $this->container['active'];
     }
 
     /**
-     * Sets account_id
+     * Sets active
      *
-     * @param string $account_id The account id of the card holder account provided by the merchant which uniquely identifies the account.
+     * @param bool|null $active Boolean value whether the entity is active.
      *
      * @return $this
      */
-    public function setAccountId($account_id)
+    public function setActive($active)
     {
-        if ((mb_strlen($account_id) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $account_id when calling CardHolderAccount., must be smaller than or equal to 50.');
-        }
-        if ((mb_strlen($account_id) < 5)) {
-            throw new \InvalidArgumentException('invalid length for $account_id when calling CardHolderAccount., must be bigger than or equal to 5.');
-        }
-
-        $this->container['account_id'] = $account_id;
+        $this->container['active'] = $active;
 
         return $this;
     }
 
     /**
-     * Gets cards
+     * Gets exists
      *
-     * @return \CityPay\Model\Card[]|null
+     * @return bool
      */
-    public function getCards()
+    public function getExists()
     {
-        return $this->container['cards'];
+        return $this->container['exists'];
     }
 
     /**
-     * Sets cards
+     * Sets exists
      *
-     * @param \CityPay\Model\Card[]|null $cards cards
+     * @param bool $exists Boolean value whether the entity exists.
      *
      * @return $this
      */
-    public function setCards($cards)
+    public function setExists($exists)
     {
-        $this->container['cards'] = $cards;
-
-        return $this;
-    }
-
-    /**
-     * Gets contact
-     *
-     * @return \CityPay\Model\ContactDetails
-     */
-    public function getContact()
-    {
-        return $this->container['contact'];
-    }
-
-    /**
-     * Sets contact
-     *
-     * @param \CityPay\Model\ContactDetails $contact contact
-     *
-     * @return $this
-     */
-    public function setContact($contact)
-    {
-        $this->container['contact'] = $contact;
-
-        return $this;
-    }
-
-    /**
-     * Gets date_created
-     *
-     * @return \DateTime|null
-     */
-    public function getDateCreated()
-    {
-        return $this->container['date_created'];
-    }
-
-    /**
-     * Sets date_created
-     *
-     * @param \DateTime|null $date_created The date and time the account was created.
-     *
-     * @return $this
-     */
-    public function setDateCreated($date_created)
-    {
-        $this->container['date_created'] = $date_created;
-
-        return $this;
-    }
-
-    /**
-     * Gets default_card_id
-     *
-     * @return string|null
-     */
-    public function getDefaultCardId()
-    {
-        return $this->container['default_card_id'];
-    }
-
-    /**
-     * Sets default_card_id
-     *
-     * @param string|null $default_card_id The id of the default card.
-     *
-     * @return $this
-     */
-    public function setDefaultCardId($default_card_id)
-    {
-        $this->container['default_card_id'] = $default_card_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets default_card_index
-     *
-     * @return int|null
-     */
-    public function getDefaultCardIndex()
-    {
-        return $this->container['default_card_index'];
-    }
-
-    /**
-     * Sets default_card_index
-     *
-     * @param int|null $default_card_index The index in the array of the default card.
-     *
-     * @return $this
-     */
-    public function setDefaultCardIndex($default_card_index)
-    {
-        $this->container['default_card_index'] = $default_card_index;
+        $this->container['exists'] = $exists;
 
         return $this;
     }
@@ -429,61 +279,13 @@ class CardHolderAccount implements ModelInterface, ArrayAccess
     /**
      * Sets last_modified
      *
-     * @param \DateTime|null $last_modified The date and time the account was last modified.
+     * @param \DateTime|null $last_modified The last modified date of the entity.
      *
      * @return $this
      */
     public function setLastModified($last_modified)
     {
         $this->container['last_modified'] = $last_modified;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
-     *
-     * @return string|null
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string|null $status Defines the status of the account for processing valid values are   - ACTIVE for active accounts that are able to process  - DISABLED for accounts that are currently disabled for processing.
-     *
-     * @return $this
-     */
-    public function setStatus($status)
-    {
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Gets unique_id
-     *
-     * @return string|null
-     */
-    public function getUniqueId()
-    {
-        return $this->container['unique_id'];
-    }
-
-    /**
-     * Sets unique_id
-     *
-     * @param string|null $unique_id A unique id of the card holder account which uniquely identifies the stored account. This value is not searchable.
-     *
-     * @return $this
-     */
-    public function setUniqueId($unique_id)
-    {
-        $this->container['unique_id'] = $unique_id;
 
         return $this;
     }

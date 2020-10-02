@@ -66,6 +66,7 @@ class Card implements ModelInterface, ArrayAccess
         'bin_eu' => 'bool',
         'card_id' => 'string',
         'card_status' => 'string',
+        'date_created' => '\DateTime',
         'default' => 'bool',
         'expmonth' => 'int',
         'expyear' => 'int',
@@ -92,6 +93,7 @@ class Card implements ModelInterface, ArrayAccess
         'bin_eu' => null,
         'card_id' => null,
         'card_status' => null,
+        'date_created' => 'date-time',
         'default' => null,
         'expmonth' => 'int32',
         'expyear' => 'int32',
@@ -139,6 +141,7 @@ class Card implements ModelInterface, ArrayAccess
         'bin_eu' => 'bin_eu',
         'card_id' => 'card_id',
         'card_status' => 'card_status',
+        'date_created' => 'date_created',
         'default' => 'default',
         'expmonth' => 'expmonth',
         'expyear' => 'expyear',
@@ -165,6 +168,7 @@ class Card implements ModelInterface, ArrayAccess
         'bin_eu' => 'setBinEu',
         'card_id' => 'setCardId',
         'card_status' => 'setCardStatus',
+        'date_created' => 'setDateCreated',
         'default' => 'setDefault',
         'expmonth' => 'setExpmonth',
         'expyear' => 'setExpyear',
@@ -191,6 +195,7 @@ class Card implements ModelInterface, ArrayAccess
         'bin_eu' => 'getBinEu',
         'card_id' => 'getCardId',
         'card_status' => 'getCardStatus',
+        'date_created' => 'getDateCreated',
         'default' => 'getDefault',
         'expmonth' => 'getExpmonth',
         'expyear' => 'getExpyear',
@@ -271,6 +276,7 @@ class Card implements ModelInterface, ArrayAccess
         $this->container['bin_eu'] = isset($data['bin_eu']) ? $data['bin_eu'] : null;
         $this->container['card_id'] = isset($data['card_id']) ? $data['card_id'] : null;
         $this->container['card_status'] = isset($data['card_status']) ? $data['card_status'] : null;
+        $this->container['date_created'] = isset($data['date_created']) ? $data['date_created'] : null;
         $this->container['default'] = isset($data['default']) ? $data['default'] : null;
         $this->container['expmonth'] = isset($data['expmonth']) ? $data['expmonth'] : null;
         $this->container['expyear'] = isset($data['expyear']) ? $data['expyear'] : null;
@@ -557,6 +563,30 @@ class Card implements ModelInterface, ArrayAccess
     public function setCardStatus($card_status)
     {
         $this->container['card_status'] = $card_status;
+
+        return $this;
+    }
+
+    /**
+     * Gets date_created
+     *
+     * @return \DateTime|null
+     */
+    public function getDateCreated()
+    {
+        return $this->container['date_created'];
+    }
+
+    /**
+     * Sets date_created
+     *
+     * @param \DateTime|null $date_created The date time of when the card was created.
+     *
+     * @return $this
+     */
+    public function setDateCreated($date_created)
+    {
+        $this->container['date_created'] = $date_created;
 
         return $this;
     }

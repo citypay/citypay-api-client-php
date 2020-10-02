@@ -125,6 +125,7 @@ Class | Method | HTTP request | Description
 *CardHolderAccountApi* | [**accountChangeContactRequest**](docs/Api/CardHolderAccountApi.md#accountchangecontactrequest) | **POST** /account/{accountid}/contact | Contact Details Update
 *CardHolderAccountApi* | [**accountCreate**](docs/Api/CardHolderAccountApi.md#accountcreate) | **POST** /account/create | Account Create
 *CardHolderAccountApi* | [**accountDeleteRequest**](docs/Api/CardHolderAccountApi.md#accountdeleterequest) | **DELETE** /account/{accountid} | Account Deletion
+*CardHolderAccountApi* | [**accountExistsRequest**](docs/Api/CardHolderAccountApi.md#accountexistsrequest) | **GET** /account-exists/{accountid} | Account Exists
 *CardHolderAccountApi* | [**accountRetrieveRequest**](docs/Api/CardHolderAccountApi.md#accountretrieverequest) | **GET** /account/{accountid} | Account Retrieval
 *CardHolderAccountApi* | [**accountStatusRequest**](docs/Api/CardHolderAccountApi.md#accountstatusrequest) | **POST** /account/{accountid}/status | Account Status
 *CardHolderAccountApi* | [**chargeRequest**](docs/Api/CardHolderAccountApi.md#chargerequest) | **POST** /charge | Charge
@@ -160,6 +161,7 @@ Class | Method | HTTP request | Description
  - [ContactDetails](docs/Model/ContactDetails.md)
  - [Decision](docs/Model/Decision.md)
  - [Error](docs/Model/Error.md)
+ - [Exists](docs/Model/Exists.md)
  - [ExternalMPI](docs/Model/ExternalMPI.md)
  - [ListMerchantsResponse](docs/Model/ListMerchantsResponse.md)
  - [MCC6012](docs/Model/MCC6012.md)

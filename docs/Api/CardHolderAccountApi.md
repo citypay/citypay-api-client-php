@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**accountChangeContactRequest**](CardHolderAccountApi.md#accountChangeContactRequest) | **POST** /account/{accountid}/contact | Contact Details Update
 [**accountCreate**](CardHolderAccountApi.md#accountCreate) | **POST** /account/create | Account Create
 [**accountDeleteRequest**](CardHolderAccountApi.md#accountDeleteRequest) | **DELETE** /account/{accountid} | Account Deletion
+[**accountExistsRequest**](CardHolderAccountApi.md#accountExistsRequest) | **GET** /account-exists/{accountid} | Account Exists
 [**accountRetrieveRequest**](CardHolderAccountApi.md#accountRetrieveRequest) | **GET** /account/{accountid} | Account Retrieval
 [**accountStatusRequest**](CardHolderAccountApi.md#accountStatusRequest) | **POST** /account/{accountid}/status | Account Status
 [**chargeRequest**](CardHolderAccountApi.md#chargeRequest) | **POST** /charge | Charge
@@ -389,6 +390,69 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\CityPay\Model\Acknowledgement**](../Model/Acknowledgement.md)
+
+### Authorization
+
+[cp-api-key](../../README.md#cp-api-key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, text/xml
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
+
+
+## accountExistsRequest
+
+> \CityPay\Model\Exists accountExistsRequest($accountid)
+
+Account Exists
+
+.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: cp-api-key
+$config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
+
+
+$apiInstance = new CityPay\Api\CardHolderAccountApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$accountid = 'accountid_example'; // string | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
+
+try {
+    $result = $apiInstance->accountExistsRequest($accountid);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CardHolderAccountApi->accountExistsRequest: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accountid** | **string**| The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. |
+
+### Return type
+
+[**\CityPay\Model\Exists**](../Model/Exists.md)
 
 ### Authorization
 
