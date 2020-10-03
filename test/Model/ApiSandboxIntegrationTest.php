@@ -48,21 +48,26 @@ class ApiSandboxIntegrationTest extends TestCase
      */
     public static function setUpBeforeClass()
     {
-        if (getenv("CP_MERCHANT_ID") && getenv("CP_LICENCE_KEY") && getenv("CP_CLIENT_ID")){
+        if (getenv("CP_MERCHANT_ID") && getenv("CP_LICENCE_KEY") && getenv("CP_CLIENT_ID")) {
             $merchantId = getenv("CP_MERCHANT_ID");
             $licenceKey = getenv("CP_LICENCE_KEY");
             $clientId = getenv("CP_CLIENT_ID");
             self::$client_id = $clientId;
             self::$merchant_id = $merchantId;
 
-            $apiKeyCredentials = new ApiKey($clientId, $licenceKey);
-            $apiKey = $apiKeyCredentials->generate();
+            // long method
+            // $apiKeyCredentials = new ApiKey($clientId, $licenceKey);
+            // $apiKey = $apiKeyCredentials->generate();
+
+            // static method
+            $apiKey = ApiKey::newKey($clientId, $licenceKey);
+
             self::$config = Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', $apiKey);
             self::$config = Configuration::getDefaultConfiguration()->setHost('https://sandbox.citypay.com/v6');
 
 
         } else {
-            echo ('Unable to obtain ENV variables to generate API Key!!');
+            echo('Unable to obtain ENV variables to generate API Key!!');
         }
     }
 
@@ -95,7 +100,7 @@ class ApiSandboxIntegrationTest extends TestCase
     {
         $apiInstance = new OperationalApi(new GuzzleHttp\Client(), self::$config);
 
-        $pingWithIdentifier = new Ping(array('identifier'=>'it_test'));
+        $pingWithIdentifier = new Ping(array('identifier' => 'it_test'));
         $resultWithIdentifier = $apiInstance->pingRequest($pingWithIdentifier);
         self::assertEquals('044', $resultWithIdentifier['code']);
         self::assertNotNull($resultWithIdentifier['context']);
