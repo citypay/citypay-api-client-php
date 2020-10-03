@@ -49,6 +49,19 @@ class ApiKey
         $this->licenceKey = $licenceKey;
     }
 
+    /**
+     * Generates a new key statically
+     * @param $clientId string the client id to use
+     * @param $licenceKey string the licence key to use
+     * @return string of the new key
+     * @throws \Exception
+     */
+    public static function newKey($clientId, $licenceKey)
+    {
+        $key = new ApiKey($clientId, $licenceKey);
+        return $key->generate();
+    }
+
 
     /**
      * Generates a new key with a random value and the current system data time in UTC
