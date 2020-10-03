@@ -90,7 +90,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: cp-api-key
-$config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
+$config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', $apiKey = ApiKey::newKey($clientId, $licenceKey);
+);
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
 
