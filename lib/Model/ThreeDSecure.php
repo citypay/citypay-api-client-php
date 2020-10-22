@@ -57,6 +57,7 @@ class ThreeDSecure implements ModelInterface, ArrayAccess
       */
     protected static $openAPITypes = [
         'accept_headers' => 'string',
+        'cp_bx' => 'string',
         'downgrade1' => 'bool',
         'merchant_termurl' => 'string',
         'tds_policy' => 'string',
@@ -70,6 +71,7 @@ class ThreeDSecure implements ModelInterface, ArrayAccess
       */
     protected static $openAPIFormats = [
         'accept_headers' => null,
+        'cp_bx' => null,
         'downgrade1' => null,
         'merchant_termurl' => null,
         'tds_policy' => null,
@@ -104,6 +106,7 @@ class ThreeDSecure implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'accept_headers' => 'accept_headers',
+        'cp_bx' => 'cp_bx',
         'downgrade1' => 'downgrade1',
         'merchant_termurl' => 'merchant_termurl',
         'tds_policy' => 'tds_policy',
@@ -117,6 +120,7 @@ class ThreeDSecure implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'accept_headers' => 'setAcceptHeaders',
+        'cp_bx' => 'setCpBx',
         'downgrade1' => 'setDowngrade1',
         'merchant_termurl' => 'setMerchantTermurl',
         'tds_policy' => 'setTdsPolicy',
@@ -130,6 +134,7 @@ class ThreeDSecure implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'accept_headers' => 'getAcceptHeaders',
+        'cp_bx' => 'getCpBx',
         'downgrade1' => 'getDowngrade1',
         'merchant_termurl' => 'getMerchantTermurl',
         'tds_policy' => 'getTdsPolicy',
@@ -197,6 +202,7 @@ class ThreeDSecure implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['accept_headers'] = isset($data['accept_headers']) ? $data['accept_headers'] : null;
+        $this->container['cp_bx'] = isset($data['cp_bx']) ? $data['cp_bx'] : null;
         $this->container['downgrade1'] = isset($data['downgrade1']) ? $data['downgrade1'] : null;
         $this->container['merchant_termurl'] = isset($data['merchant_termurl']) ? $data['merchant_termurl'] : null;
         $this->container['tds_policy'] = isset($data['tds_policy']) ? $data['tds_policy'] : null;
@@ -240,13 +246,37 @@ class ThreeDSecure implements ModelInterface, ArrayAccess
     /**
      * Sets accept_headers
      *
-     * @param string|null $accept_headers The content of the HTTP accept header as sent to the merchant from the cardholder's user agent. This value will be validated by the ACS when the card holder authenticates themselves to verify that no intermediary is performing this action. Required for 3DSv1.
+     * @param string|null $accept_headers Required for 3DSv1. Optional if the `cp_bx` value is provided otherwise required for 3Dv2 processing operating in browser authentication mode.  The `cp_bx` value will override any value supplied to this field.  The content of the HTTP accept header as sent to the merchant from the cardholder's user agent. This value will be validated by the ACS when the card holder authenticates themselves to verify that no intermediary is performing this action. Required for 3DSv1.
      *
      * @return $this
      */
     public function setAcceptHeaders($accept_headers)
     {
         $this->container['accept_headers'] = $accept_headers;
+
+        return $this;
+    }
+
+    /**
+     * Gets cp_bx
+     *
+     * @return string|null
+     */
+    public function getCpBx()
+    {
+        return $this->container['cp_bx'];
+    }
+
+    /**
+     * Sets cp_bx
+     *
+     * @param string|null $cp_bx Required for 3DSv2.  Browser extension value produced by the citypay.js `bx` function. See https://sandbox.citypay.com/3dsv2/bx for  details.
+     *
+     * @return $this
+     */
+    public function setCpBx($cp_bx)
+    {
+        $this->container['cp_bx'] = $cp_bx;
 
         return $this;
     }
@@ -288,7 +318,7 @@ class ThreeDSecure implements ModelInterface, ArrayAccess
     /**
      * Sets merchant_termurl
      *
-     * @param string|null $merchant_termurl A controller URL for 3D-Secure processing that any response from an authentication request or challenge request should be sent to.  The controller should forward on the response from the URL back via this API for subsequent processing. Required if 3DSv1 or 3DSv2 is required.
+     * @param string|null $merchant_termurl Required for 3DSv1 and 3Dv2 processing.  A controller URL for 3D-Secure processing that any response from an authentication request or challenge request should be sent to.  The controller should forward on the response from the URL back via this API for subsequent processing. Required if 3DSv1 or 3DSv2 is required.
      *
      * @return $this
      */
@@ -336,7 +366,7 @@ class ThreeDSecure implements ModelInterface, ArrayAccess
     /**
      * Sets user_agent
      *
-     * @param string|null $user_agent The content of the HTTP user-agent header as sent to the merchant from the cardholder's user agent. This value will be validated by the ACS when the card holder authenticates themselves to verify that no intermediary is performing this action. Required for 3DSv1.
+     * @param string|null $user_agent Required for 3DSv1. Optional if the `cp_bx` value is provided otherwise required 3Dv2 processing operating in browser authentication mode.  The `cp_bx` value will override any value supplied to this field.  The content of the HTTP user-agent header as sent to the merchant from the cardholder's user agent. This value will be validated by the ACS when the card holder authenticates themselves to verify that no intermediary is performing this action. Required for 3DSv1.
      *
      * @return $this
      */
