@@ -1,17 +1,18 @@
 # CityPay\OperationalApi
 
-All URIs are relative to *https://api.citypay.com/v6*
+All URIs are relative to https://api.citypay.com/v6.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**listMerchantsRequest**](OperationalApi.md#listMerchantsRequest) | **GET** /merchants/{clientid} | List Merchants Request
-[**pingRequest**](OperationalApi.md#pingRequest) | **POST** /ping | Ping Request
+[**listMerchantsRequest()**](OperationalApi.md#listMerchantsRequest) | **GET** /merchants/{clientid} | List Merchants Request
+[**pingRequest()**](OperationalApi.md#pingRequest) | **POST** /ping | Ping Request
 
 
+## `listMerchantsRequest()`
 
-## listMerchantsRequest
-
-> \CityPay\Model\ListMerchantsResponse listMerchantsRequest($clientid)
+```php
+listMerchantsRequest($clientid): \CityPay\Model\ListMerchantsResponse
+```
 
 List Merchants Request
 
@@ -44,11 +45,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling OperationalApi->listMerchantsRequest: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -65,16 +64,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/xml
+- **Accept**: `application/json`, `text/xml`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `pingRequest()`
 
-## pingRequest
-
-> \CityPay\Model\Acknowledgement pingRequest($ping)
+```php
+pingRequest($ping): \CityPay\Model\Acknowledgement
+```
 
 Ping Request
 
@@ -99,7 +99,7 @@ $apiInstance = new CityPay\Api\OperationalApi(
     new GuzzleHttp\Client(),
     $config
 );
-$ping = new \CityPay\Model\Ping(); // \CityPay\Model\Ping | 
+$ping = new \CityPay\Model\Ping(); // \CityPay\Model\Ping
 
 try {
     $result = $apiInstance->pingRequest($ping);
@@ -107,11 +107,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling OperationalApi->pingRequest: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -127,10 +125,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/xml
-- **Accept**: application/json, text/xml
+- **Content-Type**: `application/json`, `text/xml`
+- **Accept**: `application/json`, `text/xml`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

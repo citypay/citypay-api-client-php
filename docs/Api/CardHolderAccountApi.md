@@ -1,25 +1,26 @@
 # CityPay\CardHolderAccountApi
 
-All URIs are relative to *https://api.citypay.com/v6*
+All URIs are relative to https://api.citypay.com/v6.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**accountCardDeleteRequest**](CardHolderAccountApi.md#accountCardDeleteRequest) | **DELETE** /account/{accountid}/card/{cardId} | Card Deletion
-[**accountCardRegisterRequest**](CardHolderAccountApi.md#accountCardRegisterRequest) | **POST** /account/{accountid}/register | Card Registration
-[**accountCardStatusRequest**](CardHolderAccountApi.md#accountCardStatusRequest) | **POST** /account/{accountid}/card/{cardId}/status | Card Status
-[**accountChangeContactRequest**](CardHolderAccountApi.md#accountChangeContactRequest) | **POST** /account/{accountid}/contact | Contact Details Update
-[**accountCreate**](CardHolderAccountApi.md#accountCreate) | **POST** /account/create | Account Create
-[**accountDeleteRequest**](CardHolderAccountApi.md#accountDeleteRequest) | **DELETE** /account/{accountid} | Account Deletion
-[**accountExistsRequest**](CardHolderAccountApi.md#accountExistsRequest) | **GET** /account-exists/{accountid} | Account Exists
-[**accountRetrieveRequest**](CardHolderAccountApi.md#accountRetrieveRequest) | **GET** /account/{accountid} | Account Retrieval
-[**accountStatusRequest**](CardHolderAccountApi.md#accountStatusRequest) | **POST** /account/{accountid}/status | Account Status
-[**chargeRequest**](CardHolderAccountApi.md#chargeRequest) | **POST** /charge | Charge
+[**accountCardDeleteRequest()**](CardHolderAccountApi.md#accountCardDeleteRequest) | **DELETE** /account/{accountid}/card/{cardId} | Card Deletion
+[**accountCardRegisterRequest()**](CardHolderAccountApi.md#accountCardRegisterRequest) | **POST** /account/{accountid}/register | Card Registration
+[**accountCardStatusRequest()**](CardHolderAccountApi.md#accountCardStatusRequest) | **POST** /account/{accountid}/card/{cardId}/status | Card Status
+[**accountChangeContactRequest()**](CardHolderAccountApi.md#accountChangeContactRequest) | **POST** /account/{accountid}/contact | Contact Details Update
+[**accountCreate()**](CardHolderAccountApi.md#accountCreate) | **POST** /account/create | Account Create
+[**accountDeleteRequest()**](CardHolderAccountApi.md#accountDeleteRequest) | **DELETE** /account/{accountid} | Account Deletion
+[**accountExistsRequest()**](CardHolderAccountApi.md#accountExistsRequest) | **GET** /account-exists/{accountid} | Account Exists
+[**accountRetrieveRequest()**](CardHolderAccountApi.md#accountRetrieveRequest) | **GET** /account/{accountid} | Account Retrieval
+[**accountStatusRequest()**](CardHolderAccountApi.md#accountStatusRequest) | **POST** /account/{accountid}/status | Account Status
+[**chargeRequest()**](CardHolderAccountApi.md#chargeRequest) | **POST** /charge | Charge
 
 
+## `accountCardDeleteRequest()`
 
-## accountCardDeleteRequest
-
-> \CityPay\Model\Acknowledgement accountCardDeleteRequest($accountid, $card_id)
+```php
+accountCardDeleteRequest($accountid, $card_id): \CityPay\Model\Acknowledgement
+```
 
 Card Deletion
 
@@ -53,11 +54,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CardHolderAccountApi->accountCardDeleteRequest: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -75,16 +74,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/xml
+- **Accept**: `application/json`, `text/xml`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `accountCardRegisterRequest()`
 
-## accountCardRegisterRequest
-
-> \CityPay\Model\CardHolderAccount accountCardRegisterRequest($accountid, $register_card)
+```php
+accountCardRegisterRequest($accountid, $register_card): \CityPay\Model\CardHolderAccount
+```
 
 Card Registration
 
@@ -110,7 +110,7 @@ $apiInstance = new CityPay\Api\CardHolderAccountApi(
     $config
 );
 $accountid = 'accountid_example'; // string | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
-$register_card = new \CityPay\Model\RegisterCard(); // \CityPay\Model\RegisterCard | 
+$register_card = new \CityPay\Model\RegisterCard(); // \CityPay\Model\RegisterCard
 
 try {
     $result = $apiInstance->accountCardRegisterRequest($accountid, $register_card);
@@ -118,11 +118,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CardHolderAccountApi->accountCardRegisterRequest: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -139,17 +137,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/xml
-- **Accept**: application/json, text/xml
+- **Content-Type**: `application/json`, `text/xml`
+- **Accept**: `application/json`, `text/xml`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `accountCardStatusRequest()`
 
-## accountCardStatusRequest
-
-> \CityPay\Model\Acknowledgement accountCardStatusRequest($accountid, $card_id, $card_status)
+```php
+accountCardStatusRequest($accountid, $card_id, $card_status): \CityPay\Model\Acknowledgement
+```
 
 Card Status
 
@@ -176,7 +175,7 @@ $apiInstance = new CityPay\Api\CardHolderAccountApi(
 );
 $accountid = 'accountid_example'; // string | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
 $card_id = 'card_id_example'; // string | The id of the card that is presented by a call to retrieve a card holder account.
-$card_status = new \CityPay\Model\CardStatus(); // \CityPay\Model\CardStatus | 
+$card_status = new \CityPay\Model\CardStatus(); // \CityPay\Model\CardStatus
 
 try {
     $result = $apiInstance->accountCardStatusRequest($accountid, $card_id, $card_status);
@@ -184,11 +183,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CardHolderAccountApi->accountCardStatusRequest: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -206,17 +203,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/xml
-- **Accept**: application/json, text/xml
+- **Content-Type**: `application/json`, `text/xml`
+- **Accept**: `application/json`, `text/xml`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `accountChangeContactRequest()`
 
-## accountChangeContactRequest
-
-> \CityPay\Model\CardHolderAccount accountChangeContactRequest($accountid, $contact_details)
+```php
+accountChangeContactRequest($accountid, $contact_details): \CityPay\Model\CardHolderAccount
+```
 
 Contact Details Update
 
@@ -242,7 +240,7 @@ $apiInstance = new CityPay\Api\CardHolderAccountApi(
     $config
 );
 $accountid = 'accountid_example'; // string | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
-$contact_details = new \CityPay\Model\ContactDetails(); // \CityPay\Model\ContactDetails | 
+$contact_details = new \CityPay\Model\ContactDetails(); // \CityPay\Model\ContactDetails
 
 try {
     $result = $apiInstance->accountChangeContactRequest($accountid, $contact_details);
@@ -250,11 +248,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CardHolderAccountApi->accountChangeContactRequest: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -271,17 +267,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/xml
-- **Accept**: application/json, text/xml
+- **Content-Type**: `application/json`, `text/xml`
+- **Accept**: `application/json`, `text/xml`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `accountCreate()`
 
-## accountCreate
-
-> \CityPay\Model\CardHolderAccount accountCreate($account_create)
+```php
+accountCreate($account_create): \CityPay\Model\CardHolderAccount
+```
 
 Account Create
 
@@ -306,7 +303,7 @@ $apiInstance = new CityPay\Api\CardHolderAccountApi(
     new GuzzleHttp\Client(),
     $config
 );
-$account_create = new \CityPay\Model\AccountCreate(); // \CityPay\Model\AccountCreate | 
+$account_create = new \CityPay\Model\AccountCreate(); // \CityPay\Model\AccountCreate
 
 try {
     $result = $apiInstance->accountCreate($account_create);
@@ -314,11 +311,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CardHolderAccountApi->accountCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -334,17 +329,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/xml
-- **Accept**: application/json, text/xml
+- **Content-Type**: `application/json`, `text/xml`
+- **Accept**: `application/json`, `text/xml`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `accountDeleteRequest()`
 
-## accountDeleteRequest
-
-> \CityPay\Model\Acknowledgement accountDeleteRequest($accountid)
+```php
+accountDeleteRequest($accountid): \CityPay\Model\Acknowledgement
+```
 
 Account Deletion
 
@@ -377,11 +373,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CardHolderAccountApi->accountDeleteRequest: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -398,20 +392,21 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/xml
+- **Accept**: `application/json`, `text/xml`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `accountExistsRequest()`
 
-## accountExistsRequest
-
-> \CityPay\Model\Exists accountExistsRequest($accountid)
+```php
+accountExistsRequest($accountid): \CityPay\Model\Exists
+```
 
 Account Exists
 
-.
+Checks that an account exists and is active by providing the account id as a url parameter  Checks that an account exists and is active by providing the account id as a url parameter.
 
 ### Example
 
@@ -440,11 +435,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CardHolderAccountApi->accountExistsRequest: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -461,16 +454,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/xml
+- **Accept**: `application/json`, `text/xml`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `accountRetrieveRequest()`
 
-## accountRetrieveRequest
-
-> \CityPay\Model\CardHolderAccount accountRetrieveRequest($accountid)
+```php
+accountRetrieveRequest($accountid): \CityPay\Model\CardHolderAccount
+```
 
 Account Retrieval
 
@@ -503,11 +497,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CardHolderAccountApi->accountRetrieveRequest: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -524,16 +516,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, text/xml
+- **Accept**: `application/json`, `text/xml`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `accountStatusRequest()`
 
-## accountStatusRequest
-
-> \CityPay\Model\Acknowledgement accountStatusRequest($accountid, $account_status)
+```php
+accountStatusRequest($accountid, $account_status): \CityPay\Model\Acknowledgement
+```
 
 Account Status
 
@@ -559,7 +552,7 @@ $apiInstance = new CityPay\Api\CardHolderAccountApi(
     $config
 );
 $accountid = 'accountid_example'; // string | The account id that refers to the customer's account no. This value will have been provided when setting up the card holder account.
-$account_status = new \CityPay\Model\AccountStatus(); // \CityPay\Model\AccountStatus | 
+$account_status = new \CityPay\Model\AccountStatus(); // \CityPay\Model\AccountStatus
 
 try {
     $result = $apiInstance->accountStatusRequest($accountid, $account_status);
@@ -567,11 +560,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CardHolderAccountApi->accountStatusRequest: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -588,17 +579,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/xml
-- **Accept**: application/json, text/xml
+- **Content-Type**: `application/json`, `text/xml`
+- **Accept**: `application/json`, `text/xml`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `chargeRequest()`
 
-## chargeRequest
-
-> \CityPay\Model\Decision chargeRequest($charge_request)
+```php
+chargeRequest($charge_request): \CityPay\Model\Decision
+```
 
 Charge
 
@@ -623,7 +615,7 @@ $apiInstance = new CityPay\Api\CardHolderAccountApi(
     new GuzzleHttp\Client(),
     $config
 );
-$charge_request = new \CityPay\Model\ChargeRequest(); // \CityPay\Model\ChargeRequest | 
+$charge_request = new \CityPay\Model\ChargeRequest(); // \CityPay\Model\ChargeRequest
 
 try {
     $result = $apiInstance->chargeRequest($charge_request);
@@ -631,11 +623,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CardHolderAccountApi->chargeRequest: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -651,10 +641,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, text/xml
-- **Accept**: application/json, text/xml
+- **Content-Type**: `application/json`, `text/xml`
+- **Accept**: `application/json`, `text/xml`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-
