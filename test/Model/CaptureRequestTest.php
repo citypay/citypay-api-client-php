@@ -45,77 +45,77 @@ class CaptureRequestTest extends TestCase
     /**
      * Setup before running any test case
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
     }
 
     /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
     }
 
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
     }
 
     /**
      * Test "CaptureRequest"
      */
-    public function testCaptureRequest()
+    public function testCaptureRequest(): void
     {
     }
 
     /**
      * Test attribute "airline_data"
      */
-    public function testPropertyAirlineData()
+    public function testPropertyAirlineData(): void
     {
     }
 
     /**
      * Test attribute "amount"
      */
-    public function testPropertyAmount()
+    public function testPropertyAmount(): void
     {
     }
 
     /**
      * Test attribute "identifier"
      */
-    public function testPropertyIdentifier()
+    public function testPropertyIdentifier(): void
     {
     }
 
     /**
      * Test attribute "merchantid"
      */
-    public function testPropertyMerchantid()
+    public function testPropertyMerchantid(): void
     {
     }
 
     /**
      * Test attribute "sdk"
      */
-    public function testPropertySdk()
+    public function testPropertySdk(): void
     {
     }
 
     /**
      * Test attribute "transno"
      */
-    public function testPropertyTransno()
+    public function testPropertyTransno(): void
     {
     }
 }

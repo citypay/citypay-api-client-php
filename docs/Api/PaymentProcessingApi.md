@@ -5,6 +5,7 @@ All URIs are relative to https://api.citypay.com/v6.
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**authorisationRequest()**](PaymentProcessingApi.md#authorisationRequest) | **POST** /authorise | Authorisation
+[**binRangeLookupRequest()**](PaymentProcessingApi.md#binRangeLookupRequest) | **POST** /bin | Bin Lookup
 [**cResRequest()**](PaymentProcessingApi.md#cResRequest) | **POST** /cres | CRes
 [**captureRequest()**](PaymentProcessingApi.md#captureRequest) | **POST** /capture | Capture
 [**paResRequest()**](PaymentProcessingApi.md#paResRequest) | **POST** /pares | PaRes
@@ -61,6 +62,68 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\CityPay\Model\Decision**](../Model/Decision.md)
+
+### Authorization
+
+[cp-api-key](../../README.md#cp-api-key)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`, `text/xml`
+- **Accept**: `application/json`, `text/xml`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `binRangeLookupRequest()`
+
+```php
+binRangeLookupRequest($bin_lookup): \CityPay\Model\Bin
+```
+
+Bin Lookup
+
+A bin range lookup service can be used to check what a card is, as seen by the gateway. Each card number's  leading digits help to identify who  0. the card scheme is such as Visa, MasterCard or American Express  1. the issuer of the card, such as the bank 2. it's country of origin 3. it's currency of origin  Our gateway has 450 thousand possible bin ranges and uses a number of algorithms to determine the likelihood of the bin data. The request requires a bin value of between 6 and 12 digits. The more digits provided may ensure a more accurate result.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: cp-api-key
+$config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
+
+
+$apiInstance = new CityPay\Api\PaymentProcessingApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$bin_lookup = new \CityPay\Model\BinLookup(); // \CityPay\Model\BinLookup
+
+try {
+    $result = $apiInstance->binRangeLookupRequest($bin_lookup);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PaymentProcessingApi->binRangeLookupRequest: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **bin_lookup** | [**\CityPay\Model\BinLookup**](../Model/BinLookup.md)|  |
+
+### Return type
+
+[**\CityPay\Model\Bin**](../Model/Bin.md)
 
 ### Authorization
 

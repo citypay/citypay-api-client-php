@@ -45,63 +45,63 @@ class MCC6012Test extends TestCase
     /**
      * Setup before running any test case
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
     }
 
     /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
     }
 
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
     }
 
     /**
      * Test "MCC6012"
      */
-    public function testMCC6012()
+    public function testMCC6012(): void
     {
     }
 
     /**
      * Test attribute "recipient_account"
      */
-    public function testPropertyRecipientAccount()
+    public function testPropertyRecipientAccount(): void
     {
     }
 
     /**
      * Test attribute "recipient_dob"
      */
-    public function testPropertyRecipientDob()
+    public function testPropertyRecipientDob(): void
     {
     }
 
     /**
      * Test attribute "recipient_lastname"
      */
-    public function testPropertyRecipientLastname()
+    public function testPropertyRecipientLastname(): void
     {
     }
 
     /**
      * Test attribute "recipient_postcode"
      */
-    public function testPropertyRecipientPostcode()
+    public function testPropertyRecipientPostcode(): void
     {
     }
 }

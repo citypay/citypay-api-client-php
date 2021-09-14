@@ -73,7 +73,7 @@ class BatchTransactionTest extends TestCase
     /**
      * Test "BatchTransaction"
      */
-    public function testBatchTransaction()
+    public function testBatchTransaction(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -82,7 +82,7 @@ class BatchTransactionTest extends TestCase
     /**
      * Test attribute "account_id"
      */
-    public function testPropertyAccountId()
+    public function testPropertyAccountId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -91,7 +91,7 @@ class BatchTransactionTest extends TestCase
     /**
      * Test attribute "amount"
      */
-    public function testPropertyAmount()
+    public function testPropertyAmount(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -100,7 +100,7 @@ class BatchTransactionTest extends TestCase
     /**
      * Test attribute "identifier"
      */
-    public function testPropertyIdentifier()
+    public function testPropertyIdentifier(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -109,7 +109,7 @@ class BatchTransactionTest extends TestCase
     /**
      * Test attribute "merchantid"
      */
-    public function testPropertyMerchantid()
+    public function testPropertyMerchantid(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

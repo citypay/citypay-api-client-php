@@ -45,147 +45,147 @@ class AirlineAdviceTest extends TestCase
     /**
      * Setup before running any test case
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
     }
 
     /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
     }
 
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
     }
 
     /**
      * Test "AirlineAdvice"
      */
-    public function testAirlineAdvice()
+    public function testAirlineAdvice(): void
     {
     }
 
     /**
      * Test attribute "carrier_name"
      */
-    public function testPropertyCarrierName()
+    public function testPropertyCarrierName(): void
     {
     }
 
     /**
      * Test attribute "conjunction_ticket_indicator"
      */
-    public function testPropertyConjunctionTicketIndicator()
+    public function testPropertyConjunctionTicketIndicator(): void
     {
     }
 
     /**
      * Test attribute "eticket_indicator"
      */
-    public function testPropertyEticketIndicator()
+    public function testPropertyEticketIndicator(): void
     {
     }
 
     /**
      * Test attribute "no_air_segments"
      */
-    public function testPropertyNoAirSegments()
+    public function testPropertyNoAirSegments(): void
     {
     }
 
     /**
      * Test attribute "number_in_party"
      */
-    public function testPropertyNumberInParty()
+    public function testPropertyNumberInParty(): void
     {
     }
 
     /**
      * Test attribute "original_ticket_no"
      */
-    public function testPropertyOriginalTicketNo()
+    public function testPropertyOriginalTicketNo(): void
     {
     }
 
     /**
      * Test attribute "passenger_name"
      */
-    public function testPropertyPassengerName()
+    public function testPropertyPassengerName(): void
     {
     }
 
     /**
      * Test attribute "segment1"
      */
-    public function testPropertySegment1()
+    public function testPropertySegment1(): void
     {
     }
 
     /**
      * Test attribute "segment2"
      */
-    public function testPropertySegment2()
+    public function testPropertySegment2(): void
     {
     }
 
     /**
      * Test attribute "segment3"
      */
-    public function testPropertySegment3()
+    public function testPropertySegment3(): void
     {
     }
 
     /**
      * Test attribute "segment4"
      */
-    public function testPropertySegment4()
+    public function testPropertySegment4(): void
     {
     }
 
     /**
      * Test attribute "ticket_issue_city"
      */
-    public function testPropertyTicketIssueCity()
+    public function testPropertyTicketIssueCity(): void
     {
     }
 
     /**
      * Test attribute "ticket_issue_date"
      */
-    public function testPropertyTicketIssueDate()
+    public function testPropertyTicketIssueDate(): void
     {
     }
 
     /**
      * Test attribute "ticket_issue_name"
      */
-    public function testPropertyTicketIssueName()
+    public function testPropertyTicketIssueName(): void
     {
     }
 
     /**
      * Test attribute "ticket_no"
      */
-    public function testPropertyTicketNo()
+    public function testPropertyTicketNo(): void
     {
     }
 
     /**
      * Test attribute "transaction_type"
      */
-    public function testPropertyTransactionType()
+    public function testPropertyTransactionType(): void
     {
     }
 }

@@ -45,70 +45,70 @@ class MerchantTest extends TestCase
     /**
      * Setup before running any test case
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
     }
 
     /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
     }
 
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
     }
 
     /**
      * Test "Merchant"
      */
-    public function testMerchant()
+    public function testMerchant(): void
     {
     }
 
     /**
      * Test attribute "currency"
      */
-    public function testPropertyCurrency()
+    public function testPropertyCurrency(): void
     {
     }
 
     /**
      * Test attribute "merchantid"
      */
-    public function testPropertyMerchantid()
+    public function testPropertyMerchantid(): void
     {
     }
 
     /**
      * Test attribute "name"
      */
-    public function testPropertyName()
+    public function testPropertyName(): void
     {
     }
 
     /**
      * Test attribute "status"
      */
-    public function testPropertyStatus()
+    public function testPropertyStatus(): void
     {
     }
 
     /**
      * Test attribute "status_label"
      */
-    public function testPropertyStatusLabel()
+    public function testPropertyStatusLabel(): void
     {
     }
 }

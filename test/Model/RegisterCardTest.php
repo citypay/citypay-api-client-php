@@ -45,63 +45,63 @@ class RegisterCardTest extends TestCase
     /**
      * Setup before running any test case
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
     }
 
     /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
     }
 
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
     }
 
     /**
      * Test "RegisterCard"
      */
-    public function testRegisterCard()
+    public function testRegisterCard(): void
     {
     }
 
     /**
      * Test attribute "cardnumber"
      */
-    public function testPropertyCardnumber()
+    public function testPropertyCardnumber(): void
     {
     }
 
     /**
      * Test attribute "default"
      */
-    public function testPropertyDefault()
+    public function testPropertyDefault(): void
     {
     }
 
     /**
      * Test attribute "expmonth"
      */
-    public function testPropertyExpmonth()
+    public function testPropertyExpmonth(): void
     {
     }
 
     /**
      * Test attribute "expyear"
      */
-    public function testPropertyExpyear()
+    public function testPropertyExpyear(): void
     {
     }
 }

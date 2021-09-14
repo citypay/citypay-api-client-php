@@ -46,7 +46,7 @@ class AcknowledgementTest extends TestCase
     /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
         $data = (object)array(
             "code" => "000",
@@ -60,14 +60,14 @@ class AcknowledgementTest extends TestCase
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Test "Acknowledgement"
      */
-    public function testAcknowledgement()
+    public function testAcknowledgement(): void
     {
         self::assertEquals('000', $this->instance['code']);
         self::assertEquals('1B12WmDZB3EYSbb', $this->instance['context']);

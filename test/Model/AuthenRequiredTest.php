@@ -44,7 +44,7 @@ class AuthenRequiredTest extends TestCase
     /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
         $data = (object)array(
             'acs_url' => 'https://www.acs.com/tdsecure/opt_in_dispatcher.jsp?partner=debit&VAA=B',
@@ -58,14 +58,14 @@ class AuthenRequiredTest extends TestCase
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Test "AuthenRequired"
      */
-    public function testAuthenRequired()
+    public function testAuthenRequired(): void
     {
         self::assertEquals('https://www.acs.com/tdsecure/opt_in_dispatcher.jsp?partner=debit&VAA=B', $this->instance['acs_url']);
         self::assertEquals('0000000000000000000022', $this->instance['md']);

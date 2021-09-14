@@ -45,70 +45,70 @@ class RefundRequestTest extends TestCase
     /**
      * Setup before running any test case
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
     }
 
     /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
     }
 
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
     }
 
     /**
      * Test "RefundRequest"
      */
-    public function testRefundRequest()
+    public function testRefundRequest(): void
     {
     }
 
     /**
      * Test attribute "amount"
      */
-    public function testPropertyAmount()
+    public function testPropertyAmount(): void
     {
     }
 
     /**
      * Test attribute "identifier"
      */
-    public function testPropertyIdentifier()
+    public function testPropertyIdentifier(): void
     {
     }
 
     /**
      * Test attribute "merchantid"
      */
-    public function testPropertyMerchantid()
+    public function testPropertyMerchantid(): void
     {
     }
 
     /**
      * Test attribute "refund_ref"
      */
-    public function testPropertyRefundRef()
+    public function testPropertyRefundRef(): void
     {
     }
 
     /**
      * Test attribute "trans_info"
      */
-    public function testPropertyTransInfo()
+    public function testPropertyTransInfo(): void
     {
     }
 }

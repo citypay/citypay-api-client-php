@@ -45,189 +45,189 @@ class AuthRequestTest extends TestCase
     /**
      * Setup before running any test case
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
     }
 
     /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
     }
 
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
     }
 
     /**
      * Test "AuthRequest"
      */
-    public function testAuthRequest()
+    public function testAuthRequest(): void
     {
     }
 
     /**
      * Test attribute "airline_data"
      */
-    public function testPropertyAirlineData()
+    public function testPropertyAirlineData(): void
     {
     }
 
     /**
      * Test attribute "amount"
      */
-    public function testPropertyAmount()
+    public function testPropertyAmount(): void
     {
     }
 
     /**
      * Test attribute "avs_postcode_policy"
      */
-    public function testPropertyAvsPostcodePolicy()
+    public function testPropertyAvsPostcodePolicy(): void
     {
     }
 
     /**
      * Test attribute "bill_to"
      */
-    public function testPropertyBillTo()
+    public function testPropertyBillTo(): void
     {
     }
 
     /**
      * Test attribute "card_holder_name"
      */
-    public function testPropertyCardHolderName()
+    public function testPropertyCardHolderName(): void
     {
     }
 
     /**
      * Test attribute "cardnumber"
      */
-    public function testPropertyCardnumber()
+    public function testPropertyCardnumber(): void
     {
     }
 
     /**
      * Test attribute "csc"
      */
-    public function testPropertyCsc()
+    public function testPropertyCsc(): void
     {
     }
 
     /**
      * Test attribute "csc_policy"
      */
-    public function testPropertyCscPolicy()
+    public function testPropertyCscPolicy(): void
     {
     }
 
     /**
      * Test attribute "currency"
      */
-    public function testPropertyCurrency()
+    public function testPropertyCurrency(): void
     {
     }
 
     /**
      * Test attribute "duplicate_policy"
      */
-    public function testPropertyDuplicatePolicy()
+    public function testPropertyDuplicatePolicy(): void
     {
     }
 
     /**
      * Test attribute "expmonth"
      */
-    public function testPropertyExpmonth()
+    public function testPropertyExpmonth(): void
     {
     }
 
     /**
      * Test attribute "expyear"
      */
-    public function testPropertyExpyear()
+    public function testPropertyExpyear(): void
     {
     }
 
     /**
      * Test attribute "external_mpi"
      */
-    public function testPropertyExternalMpi()
+    public function testPropertyExternalMpi(): void
     {
     }
 
     /**
      * Test attribute "identifier"
      */
-    public function testPropertyIdentifier()
+    public function testPropertyIdentifier(): void
     {
     }
 
     /**
      * Test attribute "match_avsa"
      */
-    public function testPropertyMatchAvsa()
+    public function testPropertyMatchAvsa(): void
     {
     }
 
     /**
      * Test attribute "mcc6012"
      */
-    public function testPropertyMcc6012()
+    public function testPropertyMcc6012(): void
     {
     }
 
     /**
      * Test attribute "merchantid"
      */
-    public function testPropertyMerchantid()
+    public function testPropertyMerchantid(): void
     {
     }
 
     /**
      * Test attribute "sdk"
      */
-    public function testPropertySdk()
+    public function testPropertySdk(): void
     {
     }
 
     /**
      * Test attribute "ship_to"
      */
-    public function testPropertyShipTo()
+    public function testPropertyShipTo(): void
     {
     }
 
     /**
      * Test attribute "threedsecure"
      */
-    public function testPropertyThreedsecure()
+    public function testPropertyThreedsecure(): void
     {
     }
 
     /**
      * Test attribute "trans_info"
      */
-    public function testPropertyTransInfo()
+    public function testPropertyTransInfo(): void
     {
     }
 
     /**
      * Test attribute "trans_type"
      */
-    public function testPropertyTransType()
+    public function testPropertyTransType(): void
     {
     }
 }

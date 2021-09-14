@@ -43,45 +43,48 @@ use DateTime;
 class AuthReferencesTest extends TestCase
 {
     /**
+     * @var array|Model\ModelInterface|DateTime|object|\SplFileObject|null
+     */
+    private $instance;
+
+    /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
-        $data = (object)array("auths" =>
-            (object)array(
-                (object)array(
-                    "amount" => "0.12",
-                    "amount_value" => 12,
-                    "atrn" => null,
-                    "authcode" => "A12345",
-                    "batchno" => null,
-                    "currency" => "GBP",
-                    "datetime" => "2020-07-21T15:55:04Z",
-                    "identifier" => "TestingAPI",
-                    "maskedpan" => "400000******0000",
-                    "merchantid" => 12345678,
-                    "result" => "Accepted",
-                    "trans_status" => "O",
-                    "trans_type" => "S",
-                    "transno" => 88
-                )
-            )
-        );
-        $this->instance = ObjectSerializer::deserialize($data, '\CityPay\Model\AuthReferences');
+        $data = '{"auths": [
+            {
+                "amount": "0.12",
+                "amount_value": 12,
+                "atrn": null,
+                "authcode": "A12345",
+                "batchno": null,
+                "currency": "GBP",
+                "datetime": "2020-07-21T15:55:04Z",
+                "identifier": "TestingAPI",
+                "maskedpan": "400000******0000",
+                "merchantid": 12345678,
+                "result": "Accepted",
+                "trans_status": "O",
+                "trans_type": "S",
+                "transno": 88
+            }]
+        }';
 
+        $this->instance = ObjectSerializer::deserialize($data, '\CityPay\Model\AuthReferences');
     }
 
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Test "AuthReferences"
      */
-    public function testAuthReferences()
+    public function testAuthReferences(): void
     {
         $date = DateTime::createFromFormat('Y-m-d\TH:i:s\Z', '2020-07-21T15:55:04Z');
 
