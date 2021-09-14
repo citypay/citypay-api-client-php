@@ -45,42 +45,42 @@ class PingTest extends TestCase
     /**
      * Setup before running any test case
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
     }
 
     /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
     }
 
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
     }
 
     /**
      * Test "Ping"
      */
-    public function testPing()
+    public function testPing(): void
     {
     }
 
     /**
      * Test attribute "identifier"
      */
-    public function testPropertyIdentifier()
+    public function testPropertyIdentifier(): void
     {
     }
 }

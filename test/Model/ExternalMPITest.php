@@ -45,70 +45,70 @@ class ExternalMPITest extends TestCase
     /**
      * Setup before running any test case
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
     }
 
     /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
     }
 
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
     }
 
     /**
      * Test "ExternalMPI"
      */
-    public function testExternalMPI()
+    public function testExternalMPI(): void
     {
     }
 
     /**
      * Test attribute "authen_result"
      */
-    public function testPropertyAuthenResult()
+    public function testPropertyAuthenResult(): void
     {
     }
 
     /**
      * Test attribute "cavv"
      */
-    public function testPropertyCavv()
+    public function testPropertyCavv(): void
     {
     }
 
     /**
      * Test attribute "eci"
      */
-    public function testPropertyEci()
+    public function testPropertyEci(): void
     {
     }
 
     /**
      * Test attribute "enrolled"
      */
-    public function testPropertyEnrolled()
+    public function testPropertyEnrolled(): void
     {
     }
 
     /**
      * Test attribute "xid"
      */
-    public function testPropertyXid()
+    public function testPropertyXid(): void
     {
     }
 }

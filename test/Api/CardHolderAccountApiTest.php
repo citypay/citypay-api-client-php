@@ -46,28 +46,28 @@ class CardHolderAccountApiTest extends TestCase
     /**
      * Setup before running any test cases
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
     }
 
     /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
     }
 
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
     }
 
@@ -77,7 +77,7 @@ class CardHolderAccountApiTest extends TestCase
      * Card Deletion.
      *
      */
-    public function testAccountCardDeleteRequest()
+    public function testAccountCardDeleteRequest(): void
     {
     }
 
@@ -87,7 +87,7 @@ class CardHolderAccountApiTest extends TestCase
      * Card Registration.
      *
      */
-    public function testAccountCardRegisterRequest()
+    public function testAccountCardRegisterRequest(): void
     {
     }
 
@@ -97,7 +97,7 @@ class CardHolderAccountApiTest extends TestCase
      * Card Status.
      *
      */
-    public function testAccountCardStatusRequest()
+    public function testAccountCardStatusRequest(): void
     {
     }
 
@@ -107,7 +107,7 @@ class CardHolderAccountApiTest extends TestCase
      * Contact Details Update.
      *
      */
-    public function testAccountChangeContactRequest()
+    public function testAccountChangeContactRequest(): void
     {
     }
 
@@ -117,7 +117,7 @@ class CardHolderAccountApiTest extends TestCase
      * Account Create.
      *
      */
-    public function testAccountCreate()
+    public function testAccountCreate(): void
     {
     }
 
@@ -127,7 +127,7 @@ class CardHolderAccountApiTest extends TestCase
      * Account Deletion.
      *
      */
-    public function testAccountDeleteRequest()
+    public function testAccountDeleteRequest(): void
     {
     }
 
@@ -137,7 +137,7 @@ class CardHolderAccountApiTest extends TestCase
      * Account Retrieval.
      *
      */
-    public function testAccountRetrieveRequest()
+    public function testAccountRetrieveRequest(): void
     {
     }
 
@@ -147,7 +147,7 @@ class CardHolderAccountApiTest extends TestCase
      * Account Status.
      *
      */
-    public function testAccountStatusRequest()
+    public function testAccountStatusRequest(): void
     {
     }
 
@@ -157,7 +157,7 @@ class CardHolderAccountApiTest extends TestCase
      * Charge.
      *
      */
-    public function testChargeRequest()
+    public function testChargeRequest(): void
     {
     }
 }

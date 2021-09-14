@@ -44,31 +44,28 @@ class ListMerchantsResponseTest extends TestCase
     /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
-        $data = (object)array (
-            'client_name' => 'CityPay Demo',
-            'clientid' => 'PC123456',
-            'merchants' =>
-                (object)array (
-                    0 =>
-                        (object)array (
-                            'currency' => 'GBP',
-                            'merchantid' => 12345678,
-                            'name' => 'CityPay One',
-                            'status' => 'T',
-                            'status_label' => 'Test',
-                        ),
-                    1 =>
-                        (object)array (
-                            'currency' => 'GBP',
-                            'merchantid' => 87654321,
-                            'name' => 'CityPay Two',
-                            'status' => 'T',
-                            'status_label' => 'Test',
-                        ),
-                ),
-        );
+        $data = '{
+            "client_name": "CityPay Demo",
+            "clientid": "PC123456",
+            "merchants": [
+                {
+                    "currency": "GBP",
+                    "merchantid": 12345678,
+                    "name": "CityPay One",
+                    "status": "T",
+                    "status_label": "Test"
+                },
+                {
+                    "currency": "GBP",
+                    "merchantid": 87654321,
+                    "name": "CityPay Two",
+                    "status": "T",
+                    "status_label": "Test"
+                }
+            ]
+        }';
 
         $this->instance = ObjectSerializer::deserialize($data, '\CityPay\Model\ListMerchantsResponse');
 
@@ -77,14 +74,14 @@ class ListMerchantsResponseTest extends TestCase
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Test "ListMerchantsResponse"
      */
-    public function testListMerchantsResponse()
+    public function testListMerchantsResponse(): void
     {
         self::assertEquals('CityPay Demo', $this->instance['client_name']);
         self::assertEquals('PC123456', $this->instance['clientid']);
@@ -103,21 +100,21 @@ class ListMerchantsResponseTest extends TestCase
     /**
      * Test attribute "client_name"
      */
-    public function testPropertyClientName()
+    public function testPropertyClientName(): void
     {
     }
 
     /**
      * Test attribute "clientid"
      */
-    public function testPropertyClientid()
+    public function testPropertyClientid(): void
     {
     }
 
     /**
      * Test attribute "merchants"
      */
-    public function testPropertyMerchants()
+    public function testPropertyMerchants(): void
     {
     }
 }

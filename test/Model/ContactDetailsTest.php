@@ -45,126 +45,126 @@ class ContactDetailsTest extends TestCase
     /**
      * Setup before running any test case
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
     }
 
     /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
     }
 
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
     }
 
     /**
      * Test "ContactDetails"
      */
-    public function testContactDetails()
+    public function testContactDetails(): void
     {
     }
 
     /**
      * Test attribute "address1"
      */
-    public function testPropertyAddress1()
+    public function testPropertyAddress1(): void
     {
     }
 
     /**
      * Test attribute "address2"
      */
-    public function testPropertyAddress2()
+    public function testPropertyAddress2(): void
     {
     }
 
     /**
      * Test attribute "address3"
      */
-    public function testPropertyAddress3()
+    public function testPropertyAddress3(): void
     {
     }
 
     /**
      * Test attribute "area"
      */
-    public function testPropertyArea()
+    public function testPropertyArea(): void
     {
     }
 
     /**
      * Test attribute "company"
      */
-    public function testPropertyCompany()
+    public function testPropertyCompany(): void
     {
     }
 
     /**
      * Test attribute "country"
      */
-    public function testPropertyCountry()
+    public function testPropertyCountry(): void
     {
     }
 
     /**
      * Test attribute "email"
      */
-    public function testPropertyEmail()
+    public function testPropertyEmail(): void
     {
     }
 
     /**
      * Test attribute "firstname"
      */
-    public function testPropertyFirstname()
+    public function testPropertyFirstname(): void
     {
     }
 
     /**
      * Test attribute "lastname"
      */
-    public function testPropertyLastname()
+    public function testPropertyLastname(): void
     {
     }
 
     /**
      * Test attribute "mobile_no"
      */
-    public function testPropertyMobileNo()
+    public function testPropertyMobileNo(): void
     {
     }
 
     /**
      * Test attribute "postcode"
      */
-    public function testPropertyPostcode()
+    public function testPropertyPostcode(): void
     {
     }
 
     /**
      * Test attribute "telephone_no"
      */
-    public function testPropertyTelephoneNo()
+    public function testPropertyTelephoneNo(): void
     {
     }
 
     /**
      * Test attribute "title"
      */
-    public function testPropertyTitle()
+    public function testPropertyTitle(): void
     {
     }
 }

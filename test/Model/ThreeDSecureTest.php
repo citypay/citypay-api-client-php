@@ -45,70 +45,70 @@ class ThreeDSecureTest extends TestCase
     /**
      * Setup before running any test case
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
     }
 
     /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
     }
 
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
     }
 
     /**
      * Test "ThreeDSecure"
      */
-    public function testThreeDSecure()
+    public function testThreeDSecure(): void
     {
     }
 
     /**
      * Test attribute "accept_headers"
      */
-    public function testPropertyAcceptHeaders()
+    public function testPropertyAcceptHeaders(): void
     {
     }
 
     /**
      * Test attribute "downgrade1"
      */
-    public function testPropertyDowngrade1()
+    public function testPropertyDowngrade1(): void
     {
     }
 
     /**
      * Test attribute "merchant_termurl"
      */
-    public function testPropertyMerchantTermurl()
+    public function testPropertyMerchantTermurl(): void
     {
     }
 
     /**
      * Test attribute "tds_policy"
      */
-    public function testPropertyTdsPolicy()
+    public function testPropertyTdsPolicy(): void
     {
     }
 
     /**
      * Test attribute "user_agent"
      */
-    public function testPropertyUserAgent()
+    public function testPropertyUserAgent(): void
     {
     }
 }

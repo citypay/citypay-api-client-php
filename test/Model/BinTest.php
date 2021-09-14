@@ -1,6 +1,6 @@
 <?php
 /**
- * ProcessBatchRequestTest
+ * BinTest
  *
  * PHP version 7.3
  *
@@ -31,15 +31,15 @@ namespace CityPay\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * ProcessBatchRequestTest Class Doc Comment
+ * BinTest Class Doc Comment
  *
  * @category    Class
- * @description ProcessBatchRequest
+ * @description Bin
  * @package     CityPay
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class ProcessBatchRequestTest extends TestCase
+class BinTest extends TestCase
 {
 
     /**
@@ -71,45 +71,90 @@ class ProcessBatchRequestTest extends TestCase
     }
 
     /**
-     * Test "ProcessBatchRequest"
+     * Test "Bin"
      */
-    public function testProcessBatchRequest(): void
+    public function testBin(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "account_id"
+     * Test attribute "bin_commercial"
      */
-    public function testPropertyAccountId(): void
+    public function testPropertyBinCommercial(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "batch_date"
+     * Test attribute "bin_corporate"
      */
-    public function testPropertyBatchDate(): void
+    public function testPropertyBinCorporate(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "batch_id"
+     * Test attribute "bin_country_issued"
      */
-    public function testPropertyBatchId(): void
+    public function testPropertyBinCountryIssued(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "transactions"
+     * Test attribute "bin_credit"
      */
-    public function testPropertyTransactions(): void
+    public function testPropertyBinCredit(): void
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "bin_currency"
+     */
+    public function testPropertyBinCurrency(): void
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "bin_debit"
+     */
+    public function testPropertyBinDebit(): void
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "bin_description"
+     */
+    public function testPropertyBinDescription(): void
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "bin_eu"
+     */
+    public function testPropertyBinEu(): void
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "scheme"
+     */
+    public function testPropertyScheme(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

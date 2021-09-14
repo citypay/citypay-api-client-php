@@ -1,6 +1,6 @@
 <?php
 /**
- * ProcessBatchRequestTest
+ * BinLookupTest
  *
  * PHP version 7.3
  *
@@ -31,15 +31,15 @@ namespace CityPay\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * ProcessBatchRequestTest Class Doc Comment
+ * BinLookupTest Class Doc Comment
  *
  * @category    Class
- * @description ProcessBatchRequest
+ * @description BinLookup
  * @package     CityPay
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class ProcessBatchRequestTest extends TestCase
+class BinLookupTest extends TestCase
 {
 
     /**
@@ -71,45 +71,18 @@ class ProcessBatchRequestTest extends TestCase
     }
 
     /**
-     * Test "ProcessBatchRequest"
+     * Test "BinLookup"
      */
-    public function testProcessBatchRequest(): void
+    public function testBinLookup(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "account_id"
+     * Test attribute "bin"
      */
-    public function testPropertyAccountId(): void
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "batch_date"
-     */
-    public function testPropertyBatchDate(): void
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "batch_id"
-     */
-    public function testPropertyBatchId(): void
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "transactions"
-     */
-    public function testPropertyTransactions(): void
+    public function testPropertyBin(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

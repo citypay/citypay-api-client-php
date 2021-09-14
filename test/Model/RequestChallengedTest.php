@@ -45,70 +45,70 @@ class RequestChallengedTest extends TestCase
     /**
      * Setup before running any test case
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
     }
 
     /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
     }
 
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
     }
 
     /**
      * Test "RequestChallenged"
      */
-    public function testRequestChallenged()
+    public function testRequestChallenged(): void
     {
     }
 
     /**
      * Test attribute "acs_url"
      */
-    public function testPropertyAcsUrl()
+    public function testPropertyAcsUrl(): void
     {
     }
 
     /**
      * Test attribute "creq"
      */
-    public function testPropertyCreq()
+    public function testPropertyCreq(): void
     {
     }
 
     /**
      * Test attribute "merchantid"
      */
-    public function testPropertyMerchantid()
+    public function testPropertyMerchantid(): void
     {
     }
 
     /**
      * Test attribute "three_d_server_trans_id"
      */
-    public function testPropertyThreeDServerTransId()
+    public function testPropertyThreeDServerTransId(): void
     {
     }
 
     /**
      * Test attribute "transno"
      */
-    public function testPropertyTransno()
+    public function testPropertyTransno(): void
     {
     }
 }

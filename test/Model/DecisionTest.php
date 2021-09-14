@@ -45,40 +45,38 @@ class DecisionTest extends TestCase
     /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
-        $data1 = (object)array(
-            'AuthResponse' =>
-                (object)array(
-                    'amount' => 5500,
-                    'atrn' => 'atrn1',
-                    'atsd' => 'a',
-                    'authcode' => '12345',
-                    'authen_result' => 'R',
-                    'authorised' => true,
-                    'avs_result' => 'G',
-                    'bin_commercial' => false,
-                    'bin_debit' => false,
-                    'bin_description' => 'bin_desc',
-                    'cavv' => 'cavvvvvvvvvvvvv',
-                    'context' => '20200812075906AAAGV4',
-                    'csc_result' => 'C',
-                    'currency' => 'GBP',
-                    'datetime' => '2020-08-12T07:59:11Z',
-                    'eci' => '0',
-                    'identifier' => 'ident1',
-                    'live' => true,
-                    'maskedpan' => '400000******0002',
-                    'merchantid' => 12345,
-                    'result' => 1,
-                    'result_code' => '000',
-                    'result_message' => 'System: Accepted Transaction',
-                    'scheme' => 'VISA_BUSINESS',
-                    'sha256' => 'abcdefg',
-                    'trans_status' => 'P',
-                    'transno' => 74875,
-                ),
-        );
+        $data1 = '{
+        "AuthResponse": {
+            "amount": 5500,
+            "atrn": "atrn1",
+            "atsd": "a",
+            "authcode": "12345",
+            "authen_result": "R",
+            "authorised": true,
+            "avs_result": "G",
+            "bin_commercial": false,
+            "bin_debit": false,
+            "bin_description": "bin_desc",
+            "cavv": "cavvvvvvvvvvvvv",
+            "context": "20200812075906AAAGV4",
+            "csc_result": "C",
+            "currency": "GBP",
+            "datetime": "2020-08-12T07:59:11Z",
+            "eci": "0",
+            "identifier": "ident1",
+            "live": true,
+            "maskedpan": "400000******0002",
+            "merchantid": 12345,
+            "result": 1,
+            "result_code": "000",
+            "result_message": "System: Accepted Transaction",
+            "scheme": "VISA_BUSINESS",
+            "sha256": "abcdefg",
+            "trans_status": "P",
+            "transno": 74875}
+        }';
 
         $data2 = (object)array(
             'AuthenRequired' => (object)array(
@@ -96,14 +94,14 @@ class DecisionTest extends TestCase
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Test "Decision"
      */
-    public function testDecision()
+    public function testDecision(): void
     {
         //auth request decision
         self::assertNotNull($this->instance1['auth_response']);
@@ -119,7 +117,7 @@ class DecisionTest extends TestCase
     /**
      * Test attribute "authen_required"
      */
-    public function testPropertyAuthenRequired()
+    public function testPropertyAuthenRequired(): void
     {
         self::assertEquals('https://www.acs.com/tdsecure/opt_in_dispatcher.jsp?partner=debit&VAA=B', $this->instance2['authen_required']['acs_url']);
         self::assertEquals('0000000000000000000022', $this->instance2['authen_required']['md']);
@@ -130,7 +128,7 @@ class DecisionTest extends TestCase
     /**
      * Test attribute "auth_response"
      */
-    public function testPropertyAuthResponse()
+    public function testPropertyAuthResponse(): void
     {
         $date = DateTime::createFromFormat('Y-m-d\TH:i:s\Z', '2020-08-12T07:59:11Z');
 
@@ -166,7 +164,7 @@ class DecisionTest extends TestCase
     /**
      * Test attribute "request_challenged"
      */
-    public function testPropertyRequestChallenged()
+    public function testPropertyRequestChallenged(): void
     {
     }
 }

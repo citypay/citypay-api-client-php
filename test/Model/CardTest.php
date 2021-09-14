@@ -45,161 +45,161 @@ class CardTest extends TestCase
     /**
      * Setup before running any test case
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
     }
 
     /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
     }
 
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
     }
 
     /**
      * Test "Card"
      */
-    public function testCard()
+    public function testCard(): void
     {
     }
 
     /**
      * Test attribute "bin_commercial"
      */
-    public function testPropertyBinCommercial()
+    public function testPropertyBinCommercial(): void
     {
     }
 
     /**
      * Test attribute "bin_corporate"
      */
-    public function testPropertyBinCorporate()
+    public function testPropertyBinCorporate(): void
     {
     }
 
     /**
      * Test attribute "bin_country_issued"
      */
-    public function testPropertyBinCountryIssued()
+    public function testPropertyBinCountryIssued(): void
     {
     }
 
     /**
      * Test attribute "bin_credit"
      */
-    public function testPropertyBinCredit()
+    public function testPropertyBinCredit(): void
     {
     }
 
     /**
      * Test attribute "bin_currency"
      */
-    public function testPropertyBinCurrency()
+    public function testPropertyBinCurrency(): void
     {
     }
 
     /**
      * Test attribute "bin_debit"
      */
-    public function testPropertyBinDebit()
+    public function testPropertyBinDebit(): void
     {
     }
 
     /**
      * Test attribute "bin_description"
      */
-    public function testPropertyBinDescription()
+    public function testPropertyBinDescription(): void
     {
     }
 
     /**
      * Test attribute "bin_eu"
      */
-    public function testPropertyBinEu()
+    public function testPropertyBinEu(): void
     {
     }
 
     /**
      * Test attribute "card_id"
      */
-    public function testPropertyCardId()
+    public function testPropertyCardId(): void
     {
     }
 
     /**
      * Test attribute "card_status"
      */
-    public function testPropertyCardStatus()
+    public function testPropertyCardStatus(): void
     {
     }
 
     /**
      * Test attribute "default"
      */
-    public function testPropertyDefault()
+    public function testPropertyDefault(): void
     {
     }
 
     /**
      * Test attribute "expmonth"
      */
-    public function testPropertyExpmonth()
+    public function testPropertyExpmonth(): void
     {
     }
 
     /**
      * Test attribute "expyear"
      */
-    public function testPropertyExpyear()
+    public function testPropertyExpyear(): void
     {
     }
 
     /**
      * Test attribute "label"
      */
-    public function testPropertyLabel()
+    public function testPropertyLabel(): void
     {
     }
 
     /**
      * Test attribute "label2"
      */
-    public function testPropertyLabel2()
+    public function testPropertyLabel2(): void
     {
     }
 
     /**
      * Test attribute "last4digits"
      */
-    public function testPropertyLast4digits()
+    public function testPropertyLast4digits(): void
     {
     }
 
     /**
      * Test attribute "scheme"
      */
-    public function testPropertyScheme()
+    public function testPropertyScheme(): void
     {
     }
 
     /**
      * Test attribute "token"
      */
-    public function testPropertyToken()
+    public function testPropertyToken(): void
     {
     }
 }

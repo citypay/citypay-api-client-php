@@ -45,126 +45,126 @@ class ChargeRequestTest extends TestCase
     /**
      * Setup before running any test case
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
     }
 
     /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
     }
 
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
     }
 
     /**
      * Test "ChargeRequest"
      */
-    public function testChargeRequest()
+    public function testChargeRequest(): void
     {
     }
 
     /**
      * Test attribute "amount"
      */
-    public function testPropertyAmount()
+    public function testPropertyAmount(): void
     {
     }
 
     /**
      * Test attribute "avs_postcode_policy"
      */
-    public function testPropertyAvsPostcodePolicy()
+    public function testPropertyAvsPostcodePolicy(): void
     {
     }
 
     /**
      * Test attribute "csc"
      */
-    public function testPropertyCsc()
+    public function testPropertyCsc(): void
     {
     }
 
     /**
      * Test attribute "csc_policy"
      */
-    public function testPropertyCscPolicy()
+    public function testPropertyCscPolicy(): void
     {
     }
 
     /**
      * Test attribute "currency"
      */
-    public function testPropertyCurrency()
+    public function testPropertyCurrency(): void
     {
     }
 
     /**
      * Test attribute "duplicate_policy"
      */
-    public function testPropertyDuplicatePolicy()
+    public function testPropertyDuplicatePolicy(): void
     {
     }
 
     /**
      * Test attribute "identifier"
      */
-    public function testPropertyIdentifier()
+    public function testPropertyIdentifier(): void
     {
     }
 
     /**
      * Test attribute "match_avsa"
      */
-    public function testPropertyMatchAvsa()
+    public function testPropertyMatchAvsa(): void
     {
     }
 
     /**
      * Test attribute "merchantid"
      */
-    public function testPropertyMerchantid()
+    public function testPropertyMerchantid(): void
     {
     }
 
     /**
      * Test attribute "sdk"
      */
-    public function testPropertySdk()
+    public function testPropertySdk(): void
     {
     }
 
     /**
      * Test attribute "token"
      */
-    public function testPropertyToken()
+    public function testPropertyToken(): void
     {
     }
 
     /**
      * Test attribute "trans_info"
      */
-    public function testPropertyTransInfo()
+    public function testPropertyTransInfo(): void
     {
     }
 
     /**
      * Test attribute "trans_type"
      */
-    public function testPropertyTransType()
+    public function testPropertyTransType(): void
     {
     }
 }
