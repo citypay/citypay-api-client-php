@@ -152,6 +152,7 @@ class ApiSandboxIntegrationTest extends TestCase
             'csc' => '012',
             'identifier' => $id,
             'merchantid' => self::$merchant_id,
+            'threedsecure' => array("tds_policy" => "2")
         );
         $authRequest = new AuthRequest($data);
         $decision = $apiInstance->authorisationRequest($authRequest);
@@ -212,6 +213,7 @@ class ApiSandboxIntegrationTest extends TestCase
             'merchantid' => self::$merchant_id,
             'token' => $retrieve['cards'][0]['token'],
             'csc' => "012",
+            'threedsecure' => array("tds_policy" => "2")
         ];
         $charge_req = new ChargeRequest($req_data);
         $charge_cha = $apiInstance->chargeRequest($charge_req);
