@@ -108,6 +108,3 @@ lib/Model/ThreeDSecure.php
 lib/Model/VoidRequest.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
-test/Model/AclCheckRequestTest.php
-test/Model/AclCheckResponseModelTest.php
-test/Model/BatchTest.php
