@@ -45,49 +45,49 @@ class CardStatusTest extends TestCase
     /**
      * Setup before running any test case
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
     }
 
     /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
     }
 
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
     }
 
     /**
      * Test "CardStatus"
      */
-    public function testCardStatus()
+    public function testCardStatus(): void
     {
     }
 
     /**
      * Test attribute "card_status"
      */
-    public function testPropertyCardStatus()
+    public function testPropertyCardStatus(): void
     {
     }
 
     /**
      * Test attribute "default"
      */
-    public function testPropertyDefault()
+    public function testPropertyDefault(): void
     {
     }
 }

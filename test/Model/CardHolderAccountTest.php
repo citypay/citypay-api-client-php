@@ -43,55 +43,54 @@ use DateTime;
 class CardHolderAccountTest extends TestCase
 {
     /**
+     * @var array|Model\ModelInterface|DateTime|object|\SplFileObject|null
+     */
+    private $instance;
+
+    /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
-        $data = (object)array(
-            'account_id' => 'abc123',
-            'cards' =>
-                (object)array(
-                    0 =>
-                        (object)array(
-                            'bin_commercial' => false,
-                            'bin_corporate' => false,
-                            'bin_country_issued' => 'GBR',
-                            'bin_currency' => 'GBP',
-                            'bin_description' => 'Visa Classic',
-                            'bin_eu' => false,
-                            'card_id' => '2U1XV3PJSeUXFNzXidACn2TyCzAK',
-                            'card_status' => 'ACTIVE',
-                            'default' => true,
-                            'expmonth' => 7,
-                            'expyear' => 2022,
-                            'label' => 'TestVisa/0002',
-                            'label2' => 'TestVisa/0002,Exp:7/2022',
-                            'scheme' => 'TestVisa',
-                            'token' => 'ctPCzxq4WxEwWbkG7whRPLRCG27vYFNzsEDNihYmDwqsBc5QEXnFRvq2j5oRyb56ErRVEQaBN7PFMEDtjQQXDQpfxKkp3AxbyeGo61RhKBjFTFegaP4LBZUxFZimsXW8Deae9VyhWSgS2o8AXzTJU9UP3bo8kRcpataxuH3fJj3JHDnyeZt',
-                        ),
-                ),
-            'contact' =>
-                (object)array(
-                    'address1' => '7 Esplanade',
-                    'address2' => '',
-                    'address3' => '',
-                    'area' => 'St Helier',
-                    'company' => 'CityPay Ltd',
-                    'country' => 'JE',
-                    'email' => 'support@citypay.com',
-                    'firstname' => 'Joe',
-                    'lastname' => 'Wicks',
-                    'mobile_no' => '077112123456',
-                    'postcode' => 'JE2 3QA',
-                    'telephone_no' => '+4415341234567',
-                    'title' => 'Mr',
-                ),
-            'date_created' => '2020-08-01T09:15:24Z',
-            'default_card_id' => '2U1XV3PJSeUXFNzXidACn2TyCzAK',
-            'default_card_index' => 0,
-            'status' => 'ACTIVE',
-            'unique_id' => 'Ew3BKeWNdL3qKQU7XK7Sbt2eAL5WFW4AfoASDSA',
-        );
+        $data = '{
+        "account_id": "abc123",
+        "cards": [{
+                      "bin_commercial": false,
+                      "bin_corporate": false,
+                      "bin_country_issued": "GBR",
+                      "bin_currency": "GBP",
+                      "bin_description": "Visa Classic",
+                      "bin_eu": false,
+                      "card_id": "2U1XV3PJSeUXFNzXidACn2TyCzAK",
+                      "card_status": "ACTIVE",
+                      "default": true,
+                      "expmonth": 7,
+                      "expyear": 2022,
+                      "label": "TestVisa/0002",
+                      "label2": "TestVisa/0002,Exp:7/2022",
+                      "scheme": "TestVisa",
+                      "token": "ctPCzxq4WxEwWbkG7whRPLRCG27vYFNzsEDNihYmDwqsBc5QEXnFRvq2j5oRyb56ErRVEQaBN7PFMEDtjQQXDQpfxKkp3AxbyeGo61RhKBjFTFegaP4LBZUxFZimsXW8Deae9VyhWSgS2o8AXzTJU9UP3bo8kRcpataxuH3fJj3JHDnyeZt"
+                  }],
+        "contact": {
+            "address1": "7 Esplanade",
+            "address2": "",
+            "address3": "",
+            "area": "St Helier",
+            "company": "CityPay Ltd",
+            "country": "JE",
+            "email": "support@citypay.com",
+            "firstname": "Joe",
+            "lastname": "Wicks",
+            "mobile_no": "077112123456",
+            "postcode": "JE2 3QA",
+            "telephone_no": "+4415341234567",
+            "title": "Mr"},
+        "date_created": "2020-08-01T09:15:24Z",
+        "default_card_id": "2U1XV3PJSeUXFNzXidACn2TyCzAK",
+        "default_card_index": 0,
+        "status": "ACTIVE",
+        "unique_id": "Ew3BKeWNdL3qKQU7XK7Sbt2eAL5WFW4AfoASDSA"
+    }';
 
         $this->instance = ObjectSerializer::deserialize($data, '\CityPay\Model\CardHolderAccount');
 
@@ -100,18 +99,18 @@ class CardHolderAccountTest extends TestCase
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Test "CardHolderAccount"
      */
-    public function testCardHolderAccount()
+    public function testCardHolderAccount(): void
     {
         $date = DateTime::createFromFormat('Y-m-d\TH:i:s\Z', '2020-08-01T09:15:24Z');
 
-        self::assertEquals('abc123', $this->instance['account_id']);
+        self::assertEquals("abc123", $this->instance['account_id']);
         self::assertFalse($this->instance['cards'][0]['bin_commercial']);
         self::assertFalse($this->instance['cards'][0]['bin_corporate']);
         self::assertEquals('GBR', $this->instance['cards'][0]['bin_country_issued']);

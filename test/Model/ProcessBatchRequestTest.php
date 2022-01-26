@@ -73,7 +73,7 @@ class ProcessBatchRequestTest extends TestCase
     /**
      * Test "ProcessBatchRequest"
      */
-    public function testProcessBatchRequest()
+    public function testProcessBatchRequest(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -82,7 +82,7 @@ class ProcessBatchRequestTest extends TestCase
     /**
      * Test attribute "account_id"
      */
-    public function testPropertyAccountId()
+    public function testPropertyAccountId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -91,7 +91,7 @@ class ProcessBatchRequestTest extends TestCase
     /**
      * Test attribute "batch_date"
      */
-    public function testPropertyBatchDate()
+    public function testPropertyBatchDate(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -100,7 +100,7 @@ class ProcessBatchRequestTest extends TestCase
     /**
      * Test attribute "batch_id"
      */
-    public function testPropertyBatchId()
+    public function testPropertyBatchId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -109,7 +109,7 @@ class ProcessBatchRequestTest extends TestCase
     /**
      * Test attribute "transactions"
      */
-    public function testPropertyTransactions()
+    public function testPropertyTransactions(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

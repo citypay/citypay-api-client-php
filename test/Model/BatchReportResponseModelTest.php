@@ -73,7 +73,7 @@ class BatchReportResponseModelTest extends TestCase
     /**
      * Test "BatchReportResponseModel"
      */
-    public function testBatchReportResponseModel()
+    public function testBatchReportResponseModel(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -82,7 +82,7 @@ class BatchReportResponseModelTest extends TestCase
     /**
      * Test attribute "account_id"
      */
-    public function testPropertyAccountId()
+    public function testPropertyAccountId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -91,7 +91,7 @@ class BatchReportResponseModelTest extends TestCase
     /**
      * Test attribute "amount"
      */
-    public function testPropertyAmount()
+    public function testPropertyAmount(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -100,7 +100,7 @@ class BatchReportResponseModelTest extends TestCase
     /**
      * Test attribute "batch_date"
      */
-    public function testPropertyBatchDate()
+    public function testPropertyBatchDate(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -109,7 +109,7 @@ class BatchReportResponseModelTest extends TestCase
     /**
      * Test attribute "batch_id"
      */
-    public function testPropertyBatchId()
+    public function testPropertyBatchId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -118,7 +118,7 @@ class BatchReportResponseModelTest extends TestCase
     /**
      * Test attribute "batch_status"
      */
-    public function testPropertyBatchStatus()
+    public function testPropertyBatchStatus(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -127,7 +127,7 @@ class BatchReportResponseModelTest extends TestCase
     /**
      * Test attribute "transactions"
      */
-    public function testPropertyTransactions()
+    public function testPropertyTransactions(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

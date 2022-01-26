@@ -46,28 +46,28 @@ class PaymentProcessingApiTest extends TestCase
     /**
      * Setup before running any test cases
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
     }
 
     /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
     }
 
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
     }
 
@@ -77,7 +77,7 @@ class PaymentProcessingApiTest extends TestCase
      * Authorisation.
      *
      */
-    public function testAuthorisationRequest()
+    public function testAuthorisationRequest(): void
     {
     }
 
@@ -87,7 +87,7 @@ class PaymentProcessingApiTest extends TestCase
      * CRes.
      *
      */
-    public function testCResRequest()
+    public function testCResRequest(): void
     {
     }
 
@@ -97,7 +97,7 @@ class PaymentProcessingApiTest extends TestCase
      * Capture.
      *
      */
-    public function testCaptureRequest()
+    public function testCaptureRequest(): void
     {
     }
 
@@ -107,7 +107,7 @@ class PaymentProcessingApiTest extends TestCase
      * PaRes.
      *
      */
-    public function testPaResRequest()
+    public function testPaResRequest(): void
     {
     }
 
@@ -117,7 +117,7 @@ class PaymentProcessingApiTest extends TestCase
      * Retrieval.
      *
      */
-    public function testRetrievalRequest()
+    public function testRetrievalRequest(): void
     {
     }
 
@@ -127,7 +127,7 @@ class PaymentProcessingApiTest extends TestCase
      * Void.
      *
      */
-    public function testVoidRequest()
+    public function testVoidRequest(): void
     {
     }
 }

@@ -123,7 +123,7 @@ class BatchProcessingApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return |\CityPay\Model\Error|\CityPay\Model\ProcessBatchResponse
+     * @return \CityPay\Model\ProcessBatchResponse|\CityPay\Model\Error
      */
     public function batchProcessRequest($process_batch_request)
     {
@@ -140,7 +140,7 @@ class BatchProcessingApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of |\CityPay\Model\Error|\CityPay\Model\ProcessBatchResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \CityPay\Model\ProcessBatchResponse|\CityPay\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
     public function batchProcessRequestWithHttpInfo($process_batch_request)
     {
@@ -175,18 +175,6 @@ class BatchProcessingApi
             }
 
             switch($statusCode) {
-                case 422:
-                    if ('\CityPay\Model\Error' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
                 case 200:
                     if ('\CityPay\Model\ProcessBatchResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -196,6 +184,18 @@ class BatchProcessingApi
 
                     return [
                         ObjectSerializer::deserialize($content, '\CityPay\Model\ProcessBatchResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\CityPay\Model\Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -216,18 +216,18 @@ class BatchProcessingApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CityPay\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\CityPay\Model\ProcessBatchResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\CityPay\Model\Error',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -410,7 +410,7 @@ class BatchProcessingApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return |\CityPay\Model\Error|\CityPay\Model\CheckBatchStatusResponse
+     * @return \CityPay\Model\CheckBatchStatusResponse|\CityPay\Model\Error
      */
     public function checkBatchStatusRequest($check_batch_status)
     {
@@ -427,7 +427,7 @@ class BatchProcessingApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of |\CityPay\Model\Error|\CityPay\Model\CheckBatchStatusResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \CityPay\Model\CheckBatchStatusResponse|\CityPay\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
     public function checkBatchStatusRequestWithHttpInfo($check_batch_status)
     {
@@ -462,18 +462,6 @@ class BatchProcessingApi
             }
 
             switch($statusCode) {
-                case 422:
-                    if ('\CityPay\Model\Error' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
                 case 200:
                     if ('\CityPay\Model\CheckBatchStatusResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -483,6 +471,18 @@ class BatchProcessingApi
 
                     return [
                         ObjectSerializer::deserialize($content, '\CityPay\Model\CheckBatchStatusResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\CityPay\Model\Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -503,18 +503,18 @@ class BatchProcessingApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CityPay\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\CityPay\Model\CheckBatchStatusResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\CityPay\Model\Error',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -697,7 +697,7 @@ class BatchProcessingApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return |\CityPay\Model\Error|\CityPay\Model\BatchReportResponseModel
+     * @return \CityPay\Model\BatchReportResponseModel|\CityPay\Model\Error
      */
     public function getBatchReportRequest($batch_report_request)
     {
@@ -714,7 +714,7 @@ class BatchProcessingApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of |\CityPay\Model\Error|\CityPay\Model\BatchReportResponseModel, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \CityPay\Model\BatchReportResponseModel|\CityPay\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
     public function getBatchReportRequestWithHttpInfo($batch_report_request)
     {
@@ -749,18 +749,6 @@ class BatchProcessingApi
             }
 
             switch($statusCode) {
-                case 422:
-                    if ('\CityPay\Model\Error' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
                 case 200:
                     if ('\CityPay\Model\BatchReportResponseModel' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -770,6 +758,18 @@ class BatchProcessingApi
 
                     return [
                         ObjectSerializer::deserialize($content, '\CityPay\Model\BatchReportResponseModel', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\CityPay\Model\Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -790,18 +790,18 @@ class BatchProcessingApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CityPay\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\CityPay\Model\BatchReportResponseModel',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\CityPay\Model\Error',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);

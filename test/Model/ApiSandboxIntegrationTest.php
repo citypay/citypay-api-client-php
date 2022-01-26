@@ -46,7 +46,7 @@ class ApiSandboxIntegrationTest extends TestCase
     /**
      * Setup before running any test case
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         if (getenv("CP_MERCHANT_ID") && getenv("CP_LICENCE_KEY") && getenv("CP_CLIENT_ID")) {
             $merchantId = getenv("CP_MERCHANT_ID");
@@ -74,7 +74,7 @@ class ApiSandboxIntegrationTest extends TestCase
     /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
 
     }
@@ -82,21 +82,21 @@ class ApiSandboxIntegrationTest extends TestCase
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
     }
 
     /**
      * Test Operational "Ping"
      */
-    public function testPing()
+    public function testPing(): void
     {
         $apiInstance = new OperationalApi(new GuzzleHttp\Client(), self::$config);
 
@@ -119,19 +119,19 @@ class ApiSandboxIntegrationTest extends TestCase
     /**
      * Test Operational "ListMerchants"
      */
-    public function testListMerchants()
+    public function testListMerchants(): void
     {
         $apiInstance = new OperationalApi(new GuzzleHttp\Client(), self::$config);
         $result = $apiInstance->listMerchantsRequest(self::$client_id);
         self::assertEquals('CityPay Test', $result['client_name']);
-        self::assertEquals('PC03480', $result['clientid']);
+        self::assertEquals(self::$client_id, $result['clientid']);
         self::assertEquals('GBP', $result['merchants'][0]['currency']);
         self::assertEquals(41412435, $result['merchants'][0]['merchantid']);
         self::assertEquals('BOS FTPS Tests', $result['merchants'][0]['name']);
         self::assertEquals('T', $result['merchants'][0]['status']);
         self::assertEquals('Test', $result['merchants'][0]['status_label']);
         self::assertEquals('GBP', $result['merchants'][1]['currency']);
-        self::assertEquals(105, $result['merchants'][1]['merchantid']);
+        self::assertEquals(self::$merchant_id, $result['merchants'][1]['merchantid']);
         self::assertEquals('CityPay Test Account', $result['merchants'][1]['name']);
         self::assertEquals('T', $result['merchants'][1]['status']);
         self::assertEquals('Test', $result['merchants'][1]['status_label']);
@@ -140,7 +140,7 @@ class ApiSandboxIntegrationTest extends TestCase
     /**
      * Test Payment Processing "Authorise"
      */
-    public function testAuthorise()
+    public function testAuthorise(): void
     {
         $apiInstance = new PaymentProcessingApi(new GuzzleHttp\Client(), self::$config);
         $id = uniqid();
@@ -164,7 +164,7 @@ class ApiSandboxIntegrationTest extends TestCase
     /**
      * Test Cardholder Accounts
      */
-    public function testCardholderAccounts()
+    public function testCardholderAccounts(): void
     {
         $cha_id = uniqid();
         $apiInstance = new CardHolderAccountApi(new GuzzleHttp\Client(), self::$config);

@@ -278,6 +278,10 @@ class ContactDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = "invalid value for 'area', the character length must be smaller than or equal to 50.";
         }
 
+        if (!is_null($this->container['company']) && (mb_strlen($this->container['company']) > 50)) {
+            $invalidProperties[] = "invalid value for 'company', the character length must be smaller than or equal to 50.";
+        }
+
         if (!is_null($this->container['country']) && (mb_strlen($this->container['country']) > 2)) {
             $invalidProperties[] = "invalid value for 'country', the character length must be smaller than or equal to 2.";
         }
@@ -286,12 +290,16 @@ class ContactDetails implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = "invalid value for 'country', the character length must be bigger than or equal to 2.";
         }
 
+        if (!is_null($this->container['email']) && (mb_strlen($this->container['email']) > 254)) {
+            $invalidProperties[] = "invalid value for 'email', the character length must be smaller than or equal to 254.";
+        }
+
         if (!is_null($this->container['mobile_no']) && (mb_strlen($this->container['mobile_no']) > 20)) {
             $invalidProperties[] = "invalid value for 'mobile_no', the character length must be smaller than or equal to 20.";
         }
 
-        if (!is_null($this->container['postcode']) && (mb_strlen($this->container['postcode']) > 10)) {
-            $invalidProperties[] = "invalid value for 'postcode', the character length must be smaller than or equal to 10.";
+        if (!is_null($this->container['postcode']) && (mb_strlen($this->container['postcode']) > 16)) {
+            $invalidProperties[] = "invalid value for 'postcode', the character length must be smaller than or equal to 16.";
         }
 
         if (!is_null($this->container['telephone_no']) && (mb_strlen($this->container['telephone_no']) > 20)) {
@@ -444,6 +452,10 @@ class ContactDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCompany($company)
     {
+        if (!is_null($company) && (mb_strlen($company) > 50)) {
+            throw new \InvalidArgumentException('invalid length for $company when calling ContactDetails., must be smaller than or equal to 50.');
+        }
+
         $this->container['company'] = $company;
 
         return $this;
@@ -499,6 +511,10 @@ class ContactDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEmail($email)
     {
+        if (!is_null($email) && (mb_strlen($email) > 254)) {
+            throw new \InvalidArgumentException('invalid length for $email when calling ContactDetails., must be smaller than or equal to 254.');
+        }
+
         $this->container['email'] = $email;
 
         return $this;
@@ -599,8 +615,8 @@ class ContactDetails implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPostcode($postcode)
     {
-        if (!is_null($postcode) && (mb_strlen($postcode) > 10)) {
-            throw new \InvalidArgumentException('invalid length for $postcode when calling ContactDetails., must be smaller than or equal to 10.');
+        if (!is_null($postcode) && (mb_strlen($postcode) > 16)) {
+            throw new \InvalidArgumentException('invalid length for $postcode when calling ContactDetails., must be smaller than or equal to 16.');
         }
 
         $this->container['postcode'] = $postcode;

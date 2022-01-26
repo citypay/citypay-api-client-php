@@ -45,91 +45,91 @@ class AirlineSegmentTest extends TestCase
     /**
      * Setup before running any test case
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
     }
 
     /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
     }
 
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
     }
 
     /**
      * Test "AirlineSegment"
      */
-    public function testAirlineSegment()
+    public function testAirlineSegment(): void
     {
     }
 
     /**
      * Test attribute "arrival_location_code"
      */
-    public function testPropertyArrivalLocationCode()
+    public function testPropertyArrivalLocationCode(): void
     {
     }
 
     /**
      * Test attribute "carrier_code"
      */
-    public function testPropertyCarrierCode()
+    public function testPropertyCarrierCode(): void
     {
     }
 
     /**
      * Test attribute "class_service_code"
      */
-    public function testPropertyClassServiceCode()
+    public function testPropertyClassServiceCode(): void
     {
     }
 
     /**
      * Test attribute "departure_date"
      */
-    public function testPropertyDepartureDate()
+    public function testPropertyDepartureDate(): void
     {
     }
 
     /**
      * Test attribute "departure_location_code"
      */
-    public function testPropertyDepartureLocationCode()
+    public function testPropertyDepartureLocationCode(): void
     {
     }
 
     /**
      * Test attribute "flight_number"
      */
-    public function testPropertyFlightNumber()
+    public function testPropertyFlightNumber(): void
     {
     }
 
     /**
      * Test attribute "segment_fare"
      */
-    public function testPropertySegmentFare()
+    public function testPropertySegmentFare(): void
     {
     }
 
     /**
      * Test attribute "stop_over_indicator"
      */
-    public function testPropertyStopOverIndicator()
+    public function testPropertyStopOverIndicator(): void
     {
     }
 }

@@ -45,56 +45,56 @@ class ExistsTest extends TestCase
     /**
      * Setup before running any test case
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
     }
 
     /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
     }
 
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
     }
 
     /**
      * Test "Exists"
      */
-    public function testExists()
+    public function testExists(): void
     {
     }
 
     /**
      * Test attribute "active"
      */
-    public function testPropertyActive()
+    public function testPropertyActive(): void
     {
     }
 
     /**
      * Test attribute "exists"
      */
-    public function testPropertyExists()
+    public function testPropertyExists(): void
     {
     }
 
     /**
      * Test attribute "last_modified"
      */
-    public function testPropertyLastModified()
+    public function testPropertyLastModified(): void
     {
     }
 }

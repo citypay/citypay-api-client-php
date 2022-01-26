@@ -45,133 +45,133 @@ class AuthReferenceTest extends TestCase
     /**
      * Setup before running any test case
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
     }
 
     /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
     }
 
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Clean up after running all test cases
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
     }
 
     /**
      * Test "AuthReference"
      */
-    public function testAuthReference()
+    public function testAuthReference(): void
     {
     }
 
     /**
      * Test attribute "amount"
      */
-    public function testPropertyAmount()
+    public function testPropertyAmount(): void
     {
     }
 
     /**
      * Test attribute "amount_value"
      */
-    public function testPropertyAmountValue()
+    public function testPropertyAmountValue(): void
     {
     }
 
     /**
      * Test attribute "atrn"
      */
-    public function testPropertyAtrn()
+    public function testPropertyAtrn(): void
     {
     }
 
     /**
      * Test attribute "authcode"
      */
-    public function testPropertyAuthcode()
+    public function testPropertyAuthcode(): void
     {
     }
 
     /**
      * Test attribute "batchno"
      */
-    public function testPropertyBatchno()
+    public function testPropertyBatchno(): void
     {
     }
 
     /**
      * Test attribute "currency"
      */
-    public function testPropertyCurrency()
+    public function testPropertyCurrency(): void
     {
     }
 
     /**
      * Test attribute "datetime"
      */
-    public function testPropertyDatetime()
+    public function testPropertyDatetime(): void
     {
     }
 
     /**
      * Test attribute "identifier"
      */
-    public function testPropertyIdentifier()
+    public function testPropertyIdentifier(): void
     {
     }
 
     /**
      * Test attribute "maskedpan"
      */
-    public function testPropertyMaskedpan()
+    public function testPropertyMaskedpan(): void
     {
     }
 
     /**
      * Test attribute "merchantid"
      */
-    public function testPropertyMerchantid()
+    public function testPropertyMerchantid(): void
     {
     }
 
     /**
      * Test attribute "result"
      */
-    public function testPropertyResult()
+    public function testPropertyResult(): void
     {
     }
 
     /**
      * Test attribute "trans_status"
      */
-    public function testPropertyTransStatus()
+    public function testPropertyTransStatus(): void
     {
     }
 
     /**
      * Test attribute "trans_type"
      */
-    public function testPropertyTransType()
+    public function testPropertyTransType(): void
     {
     }
 
     /**
      * Test attribute "transno"
      */
-    public function testPropertyTransno()
+    public function testPropertyTransno(): void
     {
     }
 }

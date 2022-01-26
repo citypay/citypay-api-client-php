@@ -45,7 +45,7 @@ class AuthResponseTest extends TestCase
     /**
      * Setup before running each test case
      */
-    public function setUp()
+    public function setUp(): void
     {
         $data = (object)array(
             'amount' => 5500,
@@ -84,14 +84,14 @@ class AuthResponseTest extends TestCase
     /**
      * Clean up after running each test case
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     /**
      * Test "AuthResponse"
      */
-    public function testAuthResponse()
+    public function testAuthResponse(): void
     {
         $date = DateTime::createFromFormat('Y-m-d\TH:i:s\Z', '2020-08-12T07:59:11Z');
 

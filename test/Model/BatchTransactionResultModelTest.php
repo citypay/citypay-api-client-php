@@ -73,7 +73,7 @@ class BatchTransactionResultModelTest extends TestCase
     /**
      * Test "BatchTransactionResultModel"
      */
-    public function testBatchTransactionResultModel()
+    public function testBatchTransactionResultModel(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -82,7 +82,7 @@ class BatchTransactionResultModelTest extends TestCase
     /**
      * Test attribute "account_id"
      */
-    public function testPropertyAccountId()
+    public function testPropertyAccountId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -91,7 +91,7 @@ class BatchTransactionResultModelTest extends TestCase
     /**
      * Test attribute "amount"
      */
-    public function testPropertyAmount()
+    public function testPropertyAmount(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -100,7 +100,7 @@ class BatchTransactionResultModelTest extends TestCase
     /**
      * Test attribute "authcode"
      */
-    public function testPropertyAuthcode()
+    public function testPropertyAuthcode(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -109,7 +109,7 @@ class BatchTransactionResultModelTest extends TestCase
     /**
      * Test attribute "authorised"
      */
-    public function testPropertyAuthorised()
+    public function testPropertyAuthorised(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -118,7 +118,7 @@ class BatchTransactionResultModelTest extends TestCase
     /**
      * Test attribute "identifier"
      */
-    public function testPropertyIdentifier()
+    public function testPropertyIdentifier(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -127,7 +127,7 @@ class BatchTransactionResultModelTest extends TestCase
     /**
      * Test attribute "maskedpan"
      */
-    public function testPropertyMaskedpan()
+    public function testPropertyMaskedpan(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -136,7 +136,7 @@ class BatchTransactionResultModelTest extends TestCase
     /**
      * Test attribute "merchantid"
      */
-    public function testPropertyMerchantid()
+    public function testPropertyMerchantid(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -145,7 +145,7 @@ class BatchTransactionResultModelTest extends TestCase
     /**
      * Test attribute "message"
      */
-    public function testPropertyMessage()
+    public function testPropertyMessage(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -154,7 +154,7 @@ class BatchTransactionResultModelTest extends TestCase
     /**
      * Test attribute "result"
      */
-    public function testPropertyResult()
+    public function testPropertyResult(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -163,7 +163,7 @@ class BatchTransactionResultModelTest extends TestCase
     /**
      * Test attribute "scheme"
      */
-    public function testPropertyScheme()
+    public function testPropertyScheme(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

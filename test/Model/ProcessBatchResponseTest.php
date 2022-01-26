@@ -73,7 +73,7 @@ class ProcessBatchResponseTest extends TestCase
     /**
      * Test "ProcessBatchResponse"
      */
-    public function testProcessBatchResponse()
+    public function testProcessBatchResponse(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -82,7 +82,7 @@ class ProcessBatchResponseTest extends TestCase
     /**
      * Test attribute "message"
      */
-    public function testPropertyMessage()
+    public function testPropertyMessage(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -91,7 +91,7 @@ class ProcessBatchResponseTest extends TestCase
     /**
      * Test attribute "valid"
      */
-    public function testPropertyValid()
+    public function testPropertyValid(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

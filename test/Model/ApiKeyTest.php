@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 class ApiKeyTest extends TestCase
 {
 
-    public function testGeneration()
+    public function testGeneration(): void
     {
         $apiKey = new ApiKey("PC2", "7G79TG62BAJTK669");
         $key = $apiKey->generateWith("acb875aef083de292299bd69fcdeb5c5", new \DateTime("2020-01-01T09:23:12Z"));

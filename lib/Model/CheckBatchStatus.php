@@ -59,8 +59,8 @@ class CheckBatchStatus implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'account_id' => 'string',
-        'batch_id' => 'int'
+        'batch_id' => 'int[]',
+        'client_account_id' => 'string'
     ];
 
     /**
@@ -71,8 +71,8 @@ class CheckBatchStatus implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'account_id' => null,
-        'batch_id' => 'int32'
+        'batch_id' => 'int32',
+        'client_account_id' => null
     ];
 
     /**
@@ -102,8 +102,8 @@ class CheckBatchStatus implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'account_id' => 'account_id',
-        'batch_id' => 'batch_id'
+        'batch_id' => 'batch_id',
+        'client_account_id' => 'client_account_id'
     ];
 
     /**
@@ -112,8 +112,8 @@ class CheckBatchStatus implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'account_id' => 'setAccountId',
-        'batch_id' => 'setBatchId'
+        'batch_id' => 'setBatchId',
+        'client_account_id' => 'setClientAccountId'
     ];
 
     /**
@@ -122,8 +122,8 @@ class CheckBatchStatus implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'account_id' => 'getAccountId',
-        'batch_id' => 'getBatchId'
+        'batch_id' => 'getBatchId',
+        'client_account_id' => 'getClientAccountId'
     ];
 
     /**
@@ -183,8 +183,8 @@ class CheckBatchStatus implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['account_id'] = $data['account_id'] ?? null;
         $this->container['batch_id'] = $data['batch_id'] ?? null;
+        $this->container['client_account_id'] = $data['client_account_id'] ?? null;
     }
 
     /**
@@ -196,19 +196,15 @@ class CheckBatchStatus implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['account_id']) && (mb_strlen($this->container['account_id']) > 20)) {
-            $invalidProperties[] = "invalid value for 'account_id', the character length must be smaller than or equal to 20.";
-        }
-
-        if (!is_null($this->container['account_id']) && (mb_strlen($this->container['account_id']) < 3)) {
-            $invalidProperties[] = "invalid value for 'account_id', the character length must be bigger than or equal to 3.";
-        }
-
         if ($this->container['batch_id'] === null) {
             $invalidProperties[] = "'batch_id' can't be null";
         }
-        if (($this->container['batch_id'] < 1)) {
-            $invalidProperties[] = "invalid value for 'batch_id', must be bigger than or equal to 1.";
+        if (!is_null($this->container['client_account_id']) && (mb_strlen($this->container['client_account_id']) > 20)) {
+            $invalidProperties[] = "invalid value for 'client_account_id', the character length must be smaller than or equal to 20.";
+        }
+
+        if (!is_null($this->container['client_account_id']) && (mb_strlen($this->container['client_account_id']) < 3)) {
+            $invalidProperties[] = "invalid value for 'client_account_id', the character length must be bigger than or equal to 3.";
         }
 
         return $invalidProperties;
@@ -227,40 +223,9 @@ class CheckBatchStatus implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets account_id
-     *
-     * @return string|null
-     */
-    public function getAccountId()
-    {
-        return $this->container['account_id'];
-    }
-
-    /**
-     * Sets account_id
-     *
-     * @param string|null $account_id The batch account id to obtain the batch for. Defaults to your client id if not provided.
-     *
-     * @return self
-     */
-    public function setAccountId($account_id)
-    {
-        if (!is_null($account_id) && (mb_strlen($account_id) > 20)) {
-            throw new \InvalidArgumentException('invalid length for $account_id when calling CheckBatchStatus., must be smaller than or equal to 20.');
-        }
-        if (!is_null($account_id) && (mb_strlen($account_id) < 3)) {
-            throw new \InvalidArgumentException('invalid length for $account_id when calling CheckBatchStatus., must be bigger than or equal to 3.');
-        }
-
-        $this->container['account_id'] = $account_id;
-
-        return $this;
-    }
-
-    /**
      * Gets batch_id
      *
-     * @return int
+     * @return int[]
      */
     public function getBatchId()
     {
@@ -270,18 +235,44 @@ class CheckBatchStatus implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets batch_id
      *
-     * @param int $batch_id The batch id to obtain the status for.
+     * @param int[] $batch_id batch_id
      *
      * @return self
      */
     public function setBatchId($batch_id)
     {
+        $this->container['batch_id'] = $batch_id;
 
-        if (($batch_id < 1)) {
-            throw new \InvalidArgumentException('invalid value for $batch_id when calling CheckBatchStatus., must be bigger than or equal to 1.');
+        return $this;
+    }
+
+    /**
+     * Gets client_account_id
+     *
+     * @return string|null
+     */
+    public function getClientAccountId()
+    {
+        return $this->container['client_account_id'];
+    }
+
+    /**
+     * Sets client_account_id
+     *
+     * @param string|null $client_account_id The batch account id to obtain the batch for. Defaults to your client id if not provided.
+     *
+     * @return self
+     */
+    public function setClientAccountId($client_account_id)
+    {
+        if (!is_null($client_account_id) && (mb_strlen($client_account_id) > 20)) {
+            throw new \InvalidArgumentException('invalid length for $client_account_id when calling CheckBatchStatus., must be smaller than or equal to 20.');
+        }
+        if (!is_null($client_account_id) && (mb_strlen($client_account_id) < 3)) {
+            throw new \InvalidArgumentException('invalid length for $client_account_id when calling CheckBatchStatus., must be bigger than or equal to 3.');
         }
 
-        $this->container['batch_id'] = $batch_id;
+        $this->container['client_account_id'] = $client_account_id;
 
         return $this;
     }

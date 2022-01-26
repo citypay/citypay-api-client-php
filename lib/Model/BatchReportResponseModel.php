@@ -59,11 +59,11 @@ class BatchReportResponseModel implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'account_id' => 'string',
         'amount' => 'int',
         'batch_date' => '\DateTime',
-        'batch_id' => 'int',
+        'batch_id' => 'int[]',
         'batch_status' => 'string',
+        'client_account_id' => 'string',
         'transactions' => '\CityPay\Model\BatchTransactionResultModel[]'
     ];
 
@@ -75,11 +75,11 @@ class BatchReportResponseModel implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'account_id' => null,
         'amount' => 'int32',
-        'batch_date' => 'date-time',
+        'batch_date' => 'date',
         'batch_id' => 'int32',
         'batch_status' => null,
+        'client_account_id' => null,
         'transactions' => null
     ];
 
@@ -110,11 +110,11 @@ class BatchReportResponseModel implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'account_id' => 'account_id',
         'amount' => 'amount',
         'batch_date' => 'batch_date',
         'batch_id' => 'batch_id',
         'batch_status' => 'batch_status',
+        'client_account_id' => 'client_account_id',
         'transactions' => 'transactions'
     ];
 
@@ -124,11 +124,11 @@ class BatchReportResponseModel implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'account_id' => 'setAccountId',
         'amount' => 'setAmount',
         'batch_date' => 'setBatchDate',
         'batch_id' => 'setBatchId',
         'batch_status' => 'setBatchStatus',
+        'client_account_id' => 'setClientAccountId',
         'transactions' => 'setTransactions'
     ];
 
@@ -138,11 +138,11 @@ class BatchReportResponseModel implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'account_id' => 'getAccountId',
         'amount' => 'getAmount',
         'batch_date' => 'getBatchDate',
         'batch_id' => 'getBatchId',
         'batch_status' => 'getBatchStatus',
+        'client_account_id' => 'getClientAccountId',
         'transactions' => 'getTransactions'
     ];
 
@@ -203,11 +203,11 @@ class BatchReportResponseModel implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->container['account_id'] = $data['account_id'] ?? null;
         $this->container['amount'] = $data['amount'] ?? null;
         $this->container['batch_date'] = $data['batch_date'] ?? null;
         $this->container['batch_id'] = $data['batch_id'] ?? null;
         $this->container['batch_status'] = $data['batch_status'] ?? null;
+        $this->container['client_account_id'] = $data['client_account_id'] ?? null;
         $this->container['transactions'] = $data['transactions'] ?? null;
     }
 
@@ -220,17 +220,6 @@ class BatchReportResponseModel implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
-        if ($this->container['account_id'] === null) {
-            $invalidProperties[] = "'account_id' can't be null";
-        }
-        if ((mb_strlen($this->container['account_id']) > 20)) {
-            $invalidProperties[] = "invalid value for 'account_id', the character length must be smaller than or equal to 20.";
-        }
-
-        if ((mb_strlen($this->container['account_id']) < 3)) {
-            $invalidProperties[] = "invalid value for 'account_id', the character length must be bigger than or equal to 3.";
-        }
-
         if ($this->container['amount'] === null) {
             $invalidProperties[] = "'amount' can't be null";
         }
@@ -240,13 +229,20 @@ class BatchReportResponseModel implements ModelInterface, ArrayAccess, \JsonSeri
         if ($this->container['batch_id'] === null) {
             $invalidProperties[] = "'batch_id' can't be null";
         }
-        if (($this->container['batch_id'] < 1)) {
-            $invalidProperties[] = "invalid value for 'batch_id', must be bigger than or equal to 1.";
-        }
-
         if ($this->container['batch_status'] === null) {
             $invalidProperties[] = "'batch_status' can't be null";
         }
+        if ($this->container['client_account_id'] === null) {
+            $invalidProperties[] = "'client_account_id' can't be null";
+        }
+        if ((mb_strlen($this->container['client_account_id']) > 20)) {
+            $invalidProperties[] = "invalid value for 'client_account_id', the character length must be smaller than or equal to 20.";
+        }
+
+        if ((mb_strlen($this->container['client_account_id']) < 3)) {
+            $invalidProperties[] = "invalid value for 'client_account_id', the character length must be bigger than or equal to 3.";
+        }
+
         if ($this->container['transactions'] === null) {
             $invalidProperties[] = "'transactions' can't be null";
         }
@@ -264,37 +260,6 @@ class BatchReportResponseModel implements ModelInterface, ArrayAccess, \JsonSeri
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets account_id
-     *
-     * @return string
-     */
-    public function getAccountId()
-    {
-        return $this->container['account_id'];
-    }
-
-    /**
-     * Sets account_id
-     *
-     * @param string $account_id The batch account id that the batch was processed with.
-     *
-     * @return self
-     */
-    public function setAccountId($account_id)
-    {
-        if ((mb_strlen($account_id) > 20)) {
-            throw new \InvalidArgumentException('invalid length for $account_id when calling BatchReportResponseModel., must be smaller than or equal to 20.');
-        }
-        if ((mb_strlen($account_id) < 3)) {
-            throw new \InvalidArgumentException('invalid length for $account_id when calling BatchReportResponseModel., must be bigger than or equal to 3.');
-        }
-
-        $this->container['account_id'] = $account_id;
-
-        return $this;
-    }
 
     /**
      * Gets amount
@@ -349,7 +314,7 @@ class BatchReportResponseModel implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets batch_id
      *
-     * @return int
+     * @return int[]
      */
     public function getBatchId()
     {
@@ -359,17 +324,12 @@ class BatchReportResponseModel implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets batch_id
      *
-     * @param int $batch_id The batch id specified in the batch processing request.
+     * @param int[] $batch_id batch_id
      *
      * @return self
      */
     public function setBatchId($batch_id)
     {
-
-        if (($batch_id < 1)) {
-            throw new \InvalidArgumentException('invalid value for $batch_id when calling BatchReportResponseModel., must be bigger than or equal to 1.');
-        }
-
         $this->container['batch_id'] = $batch_id;
 
         return $this;
@@ -388,13 +348,44 @@ class BatchReportResponseModel implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets batch_status
      *
-     * @param string $batch_status The status of the batch. Possible values are.
+     * @param string $batch_status The status of the batch. Possible values are - CANCELLED. The file has been cancelled by an administrator or server process.  - COMPLETE. The file has passed through the processing cycle and is determined as being complete further information should be obtained on the results of the processing - ERROR_IN_PROCESSING. Errors have occurred in the processing that has deemed that processing can not continue. - INITIALISED. The file has been initialised and no action has yet been performed - LOCKED. The file has been locked for processing - QUEUED. The file has been queued for processing yet no processing has yet been performed - UNKNOWN. The file is of an unknown status, that is the file can either not be determined by the information requested of the file has not yet been received.
      *
      * @return self
      */
     public function setBatchStatus($batch_status)
     {
         $this->container['batch_status'] = $batch_status;
+
+        return $this;
+    }
+
+    /**
+     * Gets client_account_id
+     *
+     * @return string
+     */
+    public function getClientAccountId()
+    {
+        return $this->container['client_account_id'];
+    }
+
+    /**
+     * Sets client_account_id
+     *
+     * @param string $client_account_id The batch account id that the batch was processed with.
+     *
+     * @return self
+     */
+    public function setClientAccountId($client_account_id)
+    {
+        if ((mb_strlen($client_account_id) > 20)) {
+            throw new \InvalidArgumentException('invalid length for $client_account_id when calling BatchReportResponseModel., must be smaller than or equal to 20.');
+        }
+        if ((mb_strlen($client_account_id) < 3)) {
+            throw new \InvalidArgumentException('invalid length for $client_account_id when calling BatchReportResponseModel., must be bigger than or equal to 3.');
+        }
+
+        $this->container['client_account_id'] = $client_account_id;
 
         return $this;
     }

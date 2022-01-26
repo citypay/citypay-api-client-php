@@ -73,7 +73,7 @@ class CheckBatchStatusResponseTest extends TestCase
     /**
      * Test "CheckBatchStatusResponse"
      */
-    public function testCheckBatchStatusResponse()
+    public function testCheckBatchStatusResponse(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -82,7 +82,7 @@ class CheckBatchStatusResponseTest extends TestCase
     /**
      * Test attribute "batch_date"
      */
-    public function testPropertyBatchDate()
+    public function testPropertyBatchDate(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -91,7 +91,7 @@ class CheckBatchStatusResponseTest extends TestCase
     /**
      * Test attribute "batch_id"
      */
-    public function testPropertyBatchId()
+    public function testPropertyBatchId(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -100,7 +100,7 @@ class CheckBatchStatusResponseTest extends TestCase
     /**
      * Test attribute "batch_status"
      */
-    public function testPropertyBatchStatus()
+    public function testPropertyBatchStatus(): void
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
