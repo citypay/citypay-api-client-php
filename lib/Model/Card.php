@@ -76,6 +76,7 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
         'label' => 'string',
         'label2' => 'string',
         'last4digits' => 'string',
+        'name_on_card' => 'string',
         'scheme' => 'string',
         'token' => 'string'
     ];
@@ -105,6 +106,7 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
         'label' => null,
         'label2' => null,
         'last4digits' => null,
+        'name_on_card' => null,
         'scheme' => null,
         'token' => 'base58'
     ];
@@ -153,6 +155,7 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
         'label' => 'label',
         'label2' => 'label2',
         'last4digits' => 'last4digits',
+        'name_on_card' => 'name_on_card',
         'scheme' => 'scheme',
         'token' => 'token'
     ];
@@ -180,6 +183,7 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
         'label' => 'setLabel',
         'label2' => 'setLabel2',
         'last4digits' => 'setLast4digits',
+        'name_on_card' => 'setNameOnCard',
         'scheme' => 'setScheme',
         'token' => 'setToken'
     ];
@@ -207,6 +211,7 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
         'label' => 'getLabel',
         'label2' => 'getLabel2',
         'last4digits' => 'getLast4digits',
+        'name_on_card' => 'getNameOnCard',
         'scheme' => 'getScheme',
         'token' => 'getToken'
     ];
@@ -285,6 +290,7 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['label'] = $data['label'] ?? null;
         $this->container['label2'] = $data['label2'] ?? null;
         $this->container['last4digits'] = $data['last4digits'] ?? null;
+        $this->container['name_on_card'] = $data['name_on_card'] ?? null;
         $this->container['scheme'] = $data['scheme'] ?? null;
         $this->container['token'] = $data['token'] ?? null;
     }
@@ -312,6 +318,14 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
 
         if (!is_null($this->container['expyear']) && ($this->container['expyear'] < 2000)) {
             $invalidProperties[] = "invalid value for 'expyear', must be bigger than or equal to 2000.";
+        }
+
+        if (!is_null($this->container['name_on_card']) && (mb_strlen($this->container['name_on_card']) > 45)) {
+            $invalidProperties[] = "invalid value for 'name_on_card', the character length must be smaller than or equal to 45.";
+        }
+
+        if (!is_null($this->container['name_on_card']) && (mb_strlen($this->container['name_on_card']) < 2)) {
+            $invalidProperties[] = "invalid value for 'name_on_card', the character length must be bigger than or equal to 2.";
         }
 
         return $invalidProperties;
@@ -749,6 +763,37 @@ class Card implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setLast4digits($last4digits)
     {
         $this->container['last4digits'] = $last4digits;
+
+        return $this;
+    }
+
+    /**
+     * Gets name_on_card
+     *
+     * @return string|null
+     */
+    public function getNameOnCard()
+    {
+        return $this->container['name_on_card'];
+    }
+
+    /**
+     * Sets name_on_card
+     *
+     * @param string|null $name_on_card The name on the card.
+     *
+     * @return self
+     */
+    public function setNameOnCard($name_on_card)
+    {
+        if (!is_null($name_on_card) && (mb_strlen($name_on_card) > 45)) {
+            throw new \InvalidArgumentException('invalid length for $name_on_card when calling Card., must be smaller than or equal to 45.');
+        }
+        if (!is_null($name_on_card) && (mb_strlen($name_on_card) < 2)) {
+            throw new \InvalidArgumentException('invalid length for $name_on_card when calling Card., must be bigger than or equal to 2.');
+        }
+
+        $this->container['name_on_card'] = $name_on_card;
 
         return $this;
     }

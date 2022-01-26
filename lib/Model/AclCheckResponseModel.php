@@ -1,6 +1,6 @@
 <?php
 /**
- * ThreeDSecure
+ * AclCheckResponseModel
  *
  * PHP version 7.3
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \CityPay\ObjectSerializer;
 
 /**
- * ThreeDSecure Class Doc Comment
+ * AclCheckResponseModel Class Doc Comment
  *
  * @category Class
  * @package  CityPay
@@ -42,7 +42,7 @@ use \CityPay\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class ThreeDSecure implements ModelInterface, ArrayAccess, \JsonSerializable
+class AclCheckResponseModel implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class ThreeDSecure implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ThreeDSecure';
+    protected static $openAPIModelName = 'AclCheckResponseModel';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,12 +59,10 @@ class ThreeDSecure implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'accept_headers' => 'string',
-        'cp_bx' => 'string',
-        'downgrade1' => 'bool',
-        'merchant_termurl' => 'string',
-        'tds_policy' => 'string',
-        'user_agent' => 'string'
+        'acl' => 'string',
+        'cache' => 'bool',
+        'ip' => 'string',
+        'provider' => 'string'
     ];
 
     /**
@@ -75,12 +73,10 @@ class ThreeDSecure implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'accept_headers' => null,
-        'cp_bx' => null,
-        'downgrade1' => null,
-        'merchant_termurl' => null,
-        'tds_policy' => null,
-        'user_agent' => null
+        'acl' => null,
+        'cache' => null,
+        'ip' => 'ipv4',
+        'provider' => null
     ];
 
     /**
@@ -110,12 +106,10 @@ class ThreeDSecure implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'accept_headers' => 'accept_headers',
-        'cp_bx' => 'cp_bx',
-        'downgrade1' => 'downgrade1',
-        'merchant_termurl' => 'merchant_termurl',
-        'tds_policy' => 'tds_policy',
-        'user_agent' => 'user_agent'
+        'acl' => 'acl',
+        'cache' => 'cache',
+        'ip' => 'ip',
+        'provider' => 'provider'
     ];
 
     /**
@@ -124,12 +118,10 @@ class ThreeDSecure implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'accept_headers' => 'setAcceptHeaders',
-        'cp_bx' => 'setCpBx',
-        'downgrade1' => 'setDowngrade1',
-        'merchant_termurl' => 'setMerchantTermurl',
-        'tds_policy' => 'setTdsPolicy',
-        'user_agent' => 'setUserAgent'
+        'acl' => 'setAcl',
+        'cache' => 'setCache',
+        'ip' => 'setIp',
+        'provider' => 'setProvider'
     ];
 
     /**
@@ -138,12 +130,10 @@ class ThreeDSecure implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'accept_headers' => 'getAcceptHeaders',
-        'cp_bx' => 'getCpBx',
-        'downgrade1' => 'getDowngrade1',
-        'merchant_termurl' => 'getMerchantTermurl',
-        'tds_policy' => 'getTdsPolicy',
-        'user_agent' => 'getUserAgent'
+        'acl' => 'getAcl',
+        'cache' => 'getCache',
+        'ip' => 'getIp',
+        'provider' => 'getProvider'
     ];
 
     /**
@@ -203,12 +193,10 @@ class ThreeDSecure implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['accept_headers'] = $data['accept_headers'] ?? null;
-        $this->container['cp_bx'] = $data['cp_bx'] ?? null;
-        $this->container['downgrade1'] = $data['downgrade1'] ?? null;
-        $this->container['merchant_termurl'] = $data['merchant_termurl'] ?? null;
-        $this->container['tds_policy'] = $data['tds_policy'] ?? null;
-        $this->container['user_agent'] = $data['user_agent'] ?? null;
+        $this->container['acl'] = $data['acl'] ?? null;
+        $this->container['cache'] = $data['cache'] ?? null;
+        $this->container['ip'] = $data['ip'] ?? null;
+        $this->container['provider'] = $data['provider'] ?? null;
     }
 
     /**
@@ -236,145 +224,97 @@ class ThreeDSecure implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets accept_headers
+     * Gets acl
      *
      * @return string|null
      */
-    public function getAcceptHeaders()
+    public function getAcl()
     {
-        return $this->container['accept_headers'];
+        return $this->container['acl'];
     }
 
     /**
-     * Sets accept_headers
+     * Sets acl
      *
-     * @param string|null $accept_headers Required for 3DSv1. Optional if the `cp_bx` value is provided otherwise required for 3Dv2 processing operating in browser authentication mode.  The `cp_bx` value will override any value supplied to this field.  The content of the HTTP accept header as sent to the merchant from the cardholder's user agent.  This value will be validated by the ACS when the card holder authenticates themselves to verify that no intermediary is performing this action. Required for 3DSv1.
+     * @param string|null $acl The name or value of the acl which was found to match the ip address.
      *
      * @return self
      */
-    public function setAcceptHeaders($accept_headers)
+    public function setAcl($acl)
     {
-        $this->container['accept_headers'] = $accept_headers;
+        $this->container['acl'] = $acl;
 
         return $this;
     }
 
     /**
-     * Gets cp_bx
-     *
-     * @return string|null
-     */
-    public function getCpBx()
-    {
-        return $this->container['cp_bx'];
-    }
-
-    /**
-     * Sets cp_bx
-     *
-     * @param string|null $cp_bx Required for 3DSv2.  Browser extension value produced by the citypay.js `bx` function. See [https://sandbox.citypay.com/3dsv2/bx](https://sandbox.citypay.com/3dsv2/bx) for  details.
-     *
-     * @return self
-     */
-    public function setCpBx($cp_bx)
-    {
-        $this->container['cp_bx'] = $cp_bx;
-
-        return $this;
-    }
-
-    /**
-     * Gets downgrade1
+     * Gets cache
      *
      * @return bool|null
      */
-    public function getDowngrade1()
+    public function getCache()
     {
-        return $this->container['downgrade1'];
+        return $this->container['cache'];
     }
 
     /**
-     * Sets downgrade1
+     * Sets cache
      *
-     * @param bool|null $downgrade1 Where a merchant is configured for 3DSv2, setting this option will attempt to downgrade the transaction to  3DSv1.
+     * @param bool|null $cache Whether the ACL was returned via a cached instance.
      *
      * @return self
      */
-    public function setDowngrade1($downgrade1)
+    public function setCache($cache)
     {
-        $this->container['downgrade1'] = $downgrade1;
+        $this->container['cache'] = $cache;
 
         return $this;
     }
 
     /**
-     * Gets merchant_termurl
+     * Gets ip
      *
      * @return string|null
      */
-    public function getMerchantTermurl()
+    public function getIp()
     {
-        return $this->container['merchant_termurl'];
+        return $this->container['ip'];
     }
 
     /**
-     * Sets merchant_termurl
+     * Sets ip
      *
-     * @param string|null $merchant_termurl A controller URL for 3D-Secure processing that any response from an authentication request or challenge request should be sent to.  The controller should forward on the response from the URL back via this API for subsequent processing.
+     * @param string|null $ip The IP address used in the lookup.
      *
      * @return self
      */
-    public function setMerchantTermurl($merchant_termurl)
+    public function setIp($ip)
     {
-        $this->container['merchant_termurl'] = $merchant_termurl;
+        $this->container['ip'] = $ip;
 
         return $this;
     }
 
     /**
-     * Gets tds_policy
+     * Gets provider
      *
      * @return string|null
      */
-    public function getTdsPolicy()
+    public function getProvider()
     {
-        return $this->container['tds_policy'];
+        return $this->container['provider'];
     }
 
     /**
-     * Sets tds_policy
+     * Sets provider
      *
-     * @param string|null $tds_policy A policy value which determines whether ThreeDSecure is enforced or bypassed. Note that this will only work for e-commerce transactions and accounts that have 3DSecure enabled and fully registered with Visa, MasterCard or American Express. It is useful when transactions may be wanted to bypass processing rules.  Note that this may affect the liability shift of transactions and may occur a higher fee with the acquiring bank.  Values are   `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   `1` for an enforced policy. Transactions will be enabled for 3DS processing   `2` to bypass. Transactions that are bypassed will switch off 3DS processing.
+     * @param string|null $provider The source provider of the ACL.
      *
      * @return self
      */
-    public function setTdsPolicy($tds_policy)
+    public function setProvider($provider)
     {
-        $this->container['tds_policy'] = $tds_policy;
-
-        return $this;
-    }
-
-    /**
-     * Gets user_agent
-     *
-     * @return string|null
-     */
-    public function getUserAgent()
-    {
-        return $this->container['user_agent'];
-    }
-
-    /**
-     * Sets user_agent
-     *
-     * @param string|null $user_agent Required for 3DSv1.  Optional if the `cp_bx` value is provided otherwise required 3Dv2 processing operating in browser authentication mode.  The `cp_bx` value will override any value supplied to this field.  The content of the HTTP user-agent header as sent to the merchant from the cardholder's user agent.  This value will be validated by the ACS when the card holder authenticates themselves to verify that no intermediary is performing this action. Required for 3DSv1.
-     *
-     * @return self
-     */
-    public function setUserAgent($user_agent)
-    {
-        $this->container['user_agent'] = $user_agent;
+        $this->container['provider'] = $provider;
 
         return $this;
     }

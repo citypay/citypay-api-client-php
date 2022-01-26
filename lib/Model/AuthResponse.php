@@ -346,38 +346,18 @@ class AuthResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['avs_result']) && (mb_strlen($this->container['avs_result']) > 1)) {
-            $invalidProperties[] = "invalid value for 'avs_result', the character length must be smaller than or equal to 1.";
+        if ($this->container['merchantid'] === null) {
+            $invalidProperties[] = "'merchantid' can't be null";
         }
-
-        if (!is_null($this->container['avs_result']) && (mb_strlen($this->container['avs_result']) < 1)) {
-            $invalidProperties[] = "invalid value for 'avs_result', the character length must be bigger than or equal to 1.";
+        if ($this->container['result'] === null) {
+            $invalidProperties[] = "'result' can't be null";
         }
-
-        if (!is_null($this->container['csc_result']) && (mb_strlen($this->container['csc_result']) > 1)) {
-            $invalidProperties[] = "invalid value for 'csc_result', the character length must be smaller than or equal to 1.";
+        if ($this->container['result_code'] === null) {
+            $invalidProperties[] = "'result_code' can't be null";
         }
-
-        if (!is_null($this->container['csc_result']) && (mb_strlen($this->container['csc_result']) < 1)) {
-            $invalidProperties[] = "invalid value for 'csc_result', the character length must be bigger than or equal to 1.";
+        if ($this->container['result_message'] === null) {
+            $invalidProperties[] = "'result_message' can't be null";
         }
-
-        if (!is_null($this->container['currency']) && (mb_strlen($this->container['currency']) > 3)) {
-            $invalidProperties[] = "invalid value for 'currency', the character length must be smaller than or equal to 3.";
-        }
-
-        if (!is_null($this->container['currency']) && (mb_strlen($this->container['currency']) < 3)) {
-            $invalidProperties[] = "invalid value for 'currency', the character length must be bigger than or equal to 3.";
-        }
-
-        if (!is_null($this->container['identifier']) && (mb_strlen($this->container['identifier']) > 50)) {
-            $invalidProperties[] = "invalid value for 'identifier', the character length must be smaller than or equal to 50.";
-        }
-
-        if (!is_null($this->container['identifier']) && (mb_strlen($this->container['identifier']) < 4)) {
-            $invalidProperties[] = "invalid value for 'identifier', the character length must be bigger than or equal to 4.";
-        }
-
         return $invalidProperties;
     }
 
@@ -412,8 +392,6 @@ class AuthResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAmount($amount)
     {
-
-
         $this->container['amount'] = $amount;
 
         return $this;
@@ -558,13 +536,6 @@ class AuthResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAvsResult($avs_result)
     {
-        if (!is_null($avs_result) && (mb_strlen($avs_result) > 1)) {
-            throw new \InvalidArgumentException('invalid length for $avs_result when calling AuthResponse., must be smaller than or equal to 1.');
-        }
-        if (!is_null($avs_result) && (mb_strlen($avs_result) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $avs_result when calling AuthResponse., must be bigger than or equal to 1.');
-        }
-
         $this->container['avs_result'] = $avs_result;
 
         return $this;
@@ -709,13 +680,6 @@ class AuthResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCscResult($csc_result)
     {
-        if (!is_null($csc_result) && (mb_strlen($csc_result) > 1)) {
-            throw new \InvalidArgumentException('invalid length for $csc_result when calling AuthResponse., must be smaller than or equal to 1.');
-        }
-        if (!is_null($csc_result) && (mb_strlen($csc_result) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $csc_result when calling AuthResponse., must be bigger than or equal to 1.');
-        }
-
         $this->container['csc_result'] = $csc_result;
 
         return $this;
@@ -740,13 +704,6 @@ class AuthResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCurrency($currency)
     {
-        if (!is_null($currency) && (mb_strlen($currency) > 3)) {
-            throw new \InvalidArgumentException('invalid length for $currency when calling AuthResponse., must be smaller than or equal to 3.');
-        }
-        if (!is_null($currency) && (mb_strlen($currency) < 3)) {
-            throw new \InvalidArgumentException('invalid length for $currency when calling AuthResponse., must be bigger than or equal to 3.');
-        }
-
         $this->container['currency'] = $currency;
 
         return $this;
@@ -819,13 +776,6 @@ class AuthResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setIdentifier($identifier)
     {
-        if (!is_null($identifier) && (mb_strlen($identifier) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $identifier when calling AuthResponse., must be smaller than or equal to 50.');
-        }
-        if (!is_null($identifier) && (mb_strlen($identifier) < 4)) {
-            throw new \InvalidArgumentException('invalid length for $identifier when calling AuthResponse., must be bigger than or equal to 4.');
-        }
-
         $this->container['identifier'] = $identifier;
 
         return $this;
@@ -882,7 +832,7 @@ class AuthResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets merchantid
      *
-     * @return int|null
+     * @return int
      */
     public function getMerchantid()
     {
@@ -892,7 +842,7 @@ class AuthResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets merchantid
      *
-     * @param int|null $merchantid The merchant id that processed this transaction.
+     * @param int $merchantid The merchant id that processed this transaction.
      *
      * @return self
      */
@@ -906,7 +856,7 @@ class AuthResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets result
      *
-     * @return int|null
+     * @return int
      */
     public function getResult()
     {
@@ -916,7 +866,7 @@ class AuthResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets result
      *
-     * @param int|null $result An integer result that indicates the outcome of the transaction. The Code value below maps to the result value  <table> <tr> <th>Code</th> <th>Abbrev</th> <th>Description</th> </tr> <tr><td>0</td><td>Declined</td><td>Declined</td></tr> <tr><td>1</td><td>Accepted</td><td>Accepted</td></tr> <tr><td>2</td><td>Rejected</td><td>Rejected</td></tr> <tr><td>3</td><td>Not Attempted</td><td>Not Attempted</td></tr> <tr><td>4</td><td>Referred</td><td>Referred</td></tr> <tr><td>5</td><td>PinRetry</td><td>Perform PIN Retry</td></tr> <tr><td>6</td><td>ForSigVer</td><td>Force Signature Verification</td></tr> <tr><td>7</td><td>Hold</td><td>Hold</td></tr> <tr><td>8</td><td>SecErr</td><td>Security Error</td></tr> <tr><td>9</td><td>CallAcq</td><td>Call Acquirer</td></tr> <tr><td>10</td><td>DNH</td><td>Do Not Honour</td></tr> <tr><td>11</td><td>RtnCrd</td><td>Retain Card</td></tr> <tr><td>12</td><td>ExprdCrd</td><td>Expired Card</td></tr> <tr><td>13</td><td>InvldCrd</td><td>Invalid Card No</td></tr> <tr><td>14</td><td>PinExcd</td><td>Pin Tries Exceeded</td></tr> <tr><td>15</td><td>PinInvld</td><td>Pin Invalid</td></tr> <tr><td>16</td><td>AuthReq</td><td>Authentication Required</td></tr> <tr><td>17</td><td>AuthenFail</td><td>Authentication Failed</td></tr> <tr><td>18</td><td>Verified</td><td>Card Verified</td></tr> <tr><td>19</td><td>Cancelled</td><td>Cancelled</td></tr> <tr><td>20</td><td>Un</td><td>Unknown</td></tr> </table>
+     * @param int $result An integer result that indicates the outcome of the transaction. The Code value below maps to the result value  <table> <tr> <th>Code</th> <th>Abbrev</th> <th>Description</th> </tr> <tr><td>0</td><td>Declined</td><td>Declined</td></tr> <tr><td>1</td><td>Accepted</td><td>Accepted</td></tr> <tr><td>2</td><td>Rejected</td><td>Rejected</td></tr> <tr><td>3</td><td>Not Attempted</td><td>Not Attempted</td></tr> <tr><td>4</td><td>Referred</td><td>Referred</td></tr> <tr><td>5</td><td>PinRetry</td><td>Perform PIN Retry</td></tr> <tr><td>6</td><td>ForSigVer</td><td>Force Signature Verification</td></tr> <tr><td>7</td><td>Hold</td><td>Hold</td></tr> <tr><td>8</td><td>SecErr</td><td>Security Error</td></tr> <tr><td>9</td><td>CallAcq</td><td>Call Acquirer</td></tr> <tr><td>10</td><td>DNH</td><td>Do Not Honour</td></tr> <tr><td>11</td><td>RtnCrd</td><td>Retain Card</td></tr> <tr><td>12</td><td>ExprdCrd</td><td>Expired Card</td></tr> <tr><td>13</td><td>InvldCrd</td><td>Invalid Card No</td></tr> <tr><td>14</td><td>PinExcd</td><td>Pin Tries Exceeded</td></tr> <tr><td>15</td><td>PinInvld</td><td>Pin Invalid</td></tr> <tr><td>16</td><td>AuthReq</td><td>Authentication Required</td></tr> <tr><td>17</td><td>AuthenFail</td><td>Authentication Failed</td></tr> <tr><td>18</td><td>Verified</td><td>Card Verified</td></tr> <tr><td>19</td><td>Cancelled</td><td>Cancelled</td></tr> <tr><td>20</td><td>Un</td><td>Unknown</td></tr> </table>
      *
      * @return self
      */
@@ -930,7 +880,7 @@ class AuthResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets result_code
      *
-     * @return string|null
+     * @return string
      */
     public function getResultCode()
     {
@@ -940,7 +890,7 @@ class AuthResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets result_code
      *
-     * @param string|null $result_code The result code as defined in the Response Codes Reference for example 000 is an accepted live transaction whilst 001 is an accepted test transaction. Result codes identify the source of success and failure.  Codes may start with an alpha character i.e. C001 indicating a type of error such as a card validation error.
+     * @param string $result_code The result code as defined in the Response Codes Reference for example 000 is an accepted live transaction whilst 001 is an accepted test transaction. Result codes identify the source of success and failure.  Codes may start with an alpha character i.e. C001 indicating a type of error such as a card validation error.
      *
      * @return self
      */
@@ -954,7 +904,7 @@ class AuthResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets result_message
      *
-     * @return string|null
+     * @return string
      */
     public function getResultMessage()
     {
@@ -964,7 +914,7 @@ class AuthResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets result_message
      *
-     * @param string|null $result_message The message regarding the result which provides further narrative to the result code.
+     * @param string $result_message The message regarding the result which provides further narrative to the result code.
      *
      * @return self
      */

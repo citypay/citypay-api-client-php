@@ -63,7 +63,6 @@ class AuthRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'amount' => 'int',
         'avs_postcode_policy' => 'string',
         'bill_to' => '\CityPay\Model\ContactDetails',
-        'card_holder_name' => 'string',
         'cardnumber' => 'string',
         'csc' => 'string',
         'csc_policy' => 'string',
@@ -76,6 +75,7 @@ class AuthRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'match_avsa' => 'string',
         'mcc6012' => '\CityPay\Model\MCC6012',
         'merchantid' => 'int',
+        'name_on_card' => 'string',
         'ship_to' => '\CityPay\Model\ContactDetails',
         'threedsecure' => '\CityPay\Model\ThreeDSecure',
         'trans_info' => 'string',
@@ -94,7 +94,6 @@ class AuthRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'amount' => 'int32',
         'avs_postcode_policy' => null,
         'bill_to' => null,
-        'card_holder_name' => null,
         'cardnumber' => null,
         'csc' => null,
         'csc_policy' => null,
@@ -107,6 +106,7 @@ class AuthRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'match_avsa' => null,
         'mcc6012' => null,
         'merchantid' => 'int32',
+        'name_on_card' => null,
         'ship_to' => null,
         'threedsecure' => null,
         'trans_info' => null,
@@ -144,7 +144,6 @@ class AuthRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'amount' => 'amount',
         'avs_postcode_policy' => 'avs_postcode_policy',
         'bill_to' => 'bill_to',
-        'card_holder_name' => 'card_holder_name',
         'cardnumber' => 'cardnumber',
         'csc' => 'csc',
         'csc_policy' => 'csc_policy',
@@ -157,6 +156,7 @@ class AuthRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'match_avsa' => 'match_avsa',
         'mcc6012' => 'mcc6012',
         'merchantid' => 'merchantid',
+        'name_on_card' => 'name_on_card',
         'ship_to' => 'ship_to',
         'threedsecure' => 'threedsecure',
         'trans_info' => 'trans_info',
@@ -173,7 +173,6 @@ class AuthRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'amount' => 'setAmount',
         'avs_postcode_policy' => 'setAvsPostcodePolicy',
         'bill_to' => 'setBillTo',
-        'card_holder_name' => 'setCardHolderName',
         'cardnumber' => 'setCardnumber',
         'csc' => 'setCsc',
         'csc_policy' => 'setCscPolicy',
@@ -186,6 +185,7 @@ class AuthRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'match_avsa' => 'setMatchAvsa',
         'mcc6012' => 'setMcc6012',
         'merchantid' => 'setMerchantid',
+        'name_on_card' => 'setNameOnCard',
         'ship_to' => 'setShipTo',
         'threedsecure' => 'setThreedsecure',
         'trans_info' => 'setTransInfo',
@@ -202,7 +202,6 @@ class AuthRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'amount' => 'getAmount',
         'avs_postcode_policy' => 'getAvsPostcodePolicy',
         'bill_to' => 'getBillTo',
-        'card_holder_name' => 'getCardHolderName',
         'cardnumber' => 'getCardnumber',
         'csc' => 'getCsc',
         'csc_policy' => 'getCscPolicy',
@@ -215,6 +214,7 @@ class AuthRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         'match_avsa' => 'getMatchAvsa',
         'mcc6012' => 'getMcc6012',
         'merchantid' => 'getMerchantid',
+        'name_on_card' => 'getNameOnCard',
         'ship_to' => 'getShipTo',
         'threedsecure' => 'getThreedsecure',
         'trans_info' => 'getTransInfo',
@@ -282,7 +282,6 @@ class AuthRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['amount'] = $data['amount'] ?? null;
         $this->container['avs_postcode_policy'] = $data['avs_postcode_policy'] ?? null;
         $this->container['bill_to'] = $data['bill_to'] ?? null;
-        $this->container['card_holder_name'] = $data['card_holder_name'] ?? null;
         $this->container['cardnumber'] = $data['cardnumber'] ?? null;
         $this->container['csc'] = $data['csc'] ?? null;
         $this->container['csc_policy'] = $data['csc_policy'] ?? null;
@@ -295,6 +294,7 @@ class AuthRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['match_avsa'] = $data['match_avsa'] ?? null;
         $this->container['mcc6012'] = $data['mcc6012'] ?? null;
         $this->container['merchantid'] = $data['merchantid'] ?? null;
+        $this->container['name_on_card'] = $data['name_on_card'] ?? null;
         $this->container['ship_to'] = $data['ship_to'] ?? null;
         $this->container['threedsecure'] = $data['threedsecure'] ?? null;
         $this->container['trans_info'] = $data['trans_info'] ?? null;
@@ -376,6 +376,14 @@ class AuthRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['merchantid'] === null) {
             $invalidProperties[] = "'merchantid' can't be null";
         }
+        if (!is_null($this->container['name_on_card']) && (mb_strlen($this->container['name_on_card']) > 45)) {
+            $invalidProperties[] = "invalid value for 'name_on_card', the character length must be smaller than or equal to 45.";
+        }
+
+        if (!is_null($this->container['name_on_card']) && (mb_strlen($this->container['name_on_card']) < 2)) {
+            $invalidProperties[] = "invalid value for 'name_on_card', the character length must be bigger than or equal to 2.";
+        }
+
         if (!is_null($this->container['trans_info']) && (mb_strlen($this->container['trans_info']) > 50)) {
             $invalidProperties[] = "invalid value for 'trans_info', the character length must be smaller than or equal to 50.";
         }
@@ -493,30 +501,6 @@ class AuthRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setBillTo($bill_to)
     {
         $this->container['bill_to'] = $bill_to;
-
-        return $this;
-    }
-
-    /**
-     * Gets card_holder_name
-     *
-     * @return string|null
-     */
-    public function getCardHolderName()
-    {
-        return $this->container['card_holder_name'];
-    }
-
-    /**
-     * Sets card_holder_name
-     *
-     * @param string|null $card_holder_name The card holder name as appears on the card such as MR N E BODY. Required for some acquirers.
-     *
-     * @return self
-     */
-    public function setCardHolderName($card_holder_name)
-    {
-        $this->container['card_holder_name'] = $card_holder_name;
 
         return $this;
     }
@@ -849,6 +833,37 @@ class AuthRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setMerchantid($merchantid)
     {
         $this->container['merchantid'] = $merchantid;
+
+        return $this;
+    }
+
+    /**
+     * Gets name_on_card
+     *
+     * @return string|null
+     */
+    public function getNameOnCard()
+    {
+        return $this->container['name_on_card'];
+    }
+
+    /**
+     * Sets name_on_card
+     *
+     * @param string|null $name_on_card The card holder name as appears on the card such as MR N E BODY. Required for some acquirers.
+     *
+     * @return self
+     */
+    public function setNameOnCard($name_on_card)
+    {
+        if (!is_null($name_on_card) && (mb_strlen($name_on_card) > 45)) {
+            throw new \InvalidArgumentException('invalid length for $name_on_card when calling AuthRequest., must be smaller than or equal to 45.');
+        }
+        if (!is_null($name_on_card) && (mb_strlen($name_on_card) < 2)) {
+            throw new \InvalidArgumentException('invalid length for $name_on_card when calling AuthRequest., must be bigger than or equal to 2.');
+        }
+
+        $this->container['name_on_card'] = $name_on_card;
 
         return $this;
     }

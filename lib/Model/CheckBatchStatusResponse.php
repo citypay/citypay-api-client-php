@@ -59,9 +59,7 @@ class CheckBatchStatusResponse implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'batch_date' => '\DateTime',
-        'batch_id' => 'int',
-        'batch_status' => 'string'
+        'batches' => '\CityPay\Model\Batch[]'
     ];
 
     /**
@@ -72,9 +70,7 @@ class CheckBatchStatusResponse implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'batch_date' => 'date-time',
-        'batch_id' => 'int32',
-        'batch_status' => null
+        'batches' => null
     ];
 
     /**
@@ -104,9 +100,7 @@ class CheckBatchStatusResponse implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'batch_date' => 'batch_date',
-        'batch_id' => 'batch_id',
-        'batch_status' => 'batch_status'
+        'batches' => 'batches'
     ];
 
     /**
@@ -115,9 +109,7 @@ class CheckBatchStatusResponse implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'batch_date' => 'setBatchDate',
-        'batch_id' => 'setBatchId',
-        'batch_status' => 'setBatchStatus'
+        'batches' => 'setBatches'
     ];
 
     /**
@@ -126,9 +118,7 @@ class CheckBatchStatusResponse implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'batch_date' => 'getBatchDate',
-        'batch_id' => 'getBatchId',
-        'batch_status' => 'getBatchStatus'
+        'batches' => 'getBatches'
     ];
 
     /**
@@ -188,9 +178,7 @@ class CheckBatchStatusResponse implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->container['batch_date'] = $data['batch_date'] ?? null;
-        $this->container['batch_id'] = $data['batch_id'] ?? null;
-        $this->container['batch_status'] = $data['batch_status'] ?? null;
+        $this->container['batches'] = $data['batches'] ?? null;
     }
 
     /**
@@ -202,16 +190,6 @@ class CheckBatchStatusResponse implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
-        if ($this->container['batch_date'] === null) {
-            $invalidProperties[] = "'batch_date' can't be null";
-        }
-        if (!is_null($this->container['batch_id']) && ($this->container['batch_id'] < 1)) {
-            $invalidProperties[] = "invalid value for 'batch_id', must be bigger than or equal to 1.";
-        }
-
-        if ($this->container['batch_status'] === null) {
-            $invalidProperties[] = "'batch_status' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -228,78 +206,25 @@ class CheckBatchStatusResponse implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
-     * Gets batch_date
+     * Gets batches
      *
-     * @return \DateTime
+     * @return \CityPay\Model\Batch[]|null
      */
-    public function getBatchDate()
+    public function getBatches()
     {
-        return $this->container['batch_date'];
+        return $this->container['batches'];
     }
 
     /**
-     * Sets batch_date
+     * Sets batches
      *
-     * @param \DateTime $batch_date The date and time that the file was created in ISO-8601 format.
+     * @param \CityPay\Model\Batch[]|null $batches batches
      *
      * @return self
      */
-    public function setBatchDate($batch_date)
+    public function setBatches($batches)
     {
-        $this->container['batch_date'] = $batch_date;
-
-        return $this;
-    }
-
-    /**
-     * Gets batch_id
-     *
-     * @return int|null
-     */
-    public function getBatchId()
-    {
-        return $this->container['batch_id'];
-    }
-
-    /**
-     * Sets batch_id
-     *
-     * @param int|null $batch_id The batch id requested.
-     *
-     * @return self
-     */
-    public function setBatchId($batch_id)
-    {
-
-        if (!is_null($batch_id) && ($batch_id < 1)) {
-            throw new \InvalidArgumentException('invalid value for $batch_id when calling CheckBatchStatusResponse., must be bigger than or equal to 1.');
-        }
-
-        $this->container['batch_id'] = $batch_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets batch_status
-     *
-     * @return string
-     */
-    public function getBatchStatus()
-    {
-        return $this->container['batch_status'];
-    }
-
-    /**
-     * Sets batch_status
-     *
-     * @param string $batch_status The status of the batch. Possible values are.
-     *
-     * @return self
-     */
-    public function setBatchStatus($batch_status)
-    {
-        $this->container['batch_status'] = $batch_status;
+        $this->container['batches'] = $batches;
 
         return $this;
     }

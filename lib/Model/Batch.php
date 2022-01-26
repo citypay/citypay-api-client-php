@@ -1,6 +1,6 @@
 <?php
 /**
- * ThreeDSecure
+ * Batch
  *
  * PHP version 7.3
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \CityPay\ObjectSerializer;
 
 /**
- * ThreeDSecure Class Doc Comment
+ * Batch Class Doc Comment
  *
  * @category Class
  * @package  CityPay
@@ -42,7 +42,7 @@ use \CityPay\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class ThreeDSecure implements ModelInterface, ArrayAccess, \JsonSerializable
+class Batch implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class ThreeDSecure implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ThreeDSecure';
+    protected static $openAPIModelName = 'Batch';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,12 +59,9 @@ class ThreeDSecure implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'accept_headers' => 'string',
-        'cp_bx' => 'string',
-        'downgrade1' => 'bool',
-        'merchant_termurl' => 'string',
-        'tds_policy' => 'string',
-        'user_agent' => 'string'
+        'batch_date' => '\DateTime',
+        'batch_id' => 'int[]',
+        'batch_status' => 'string'
     ];
 
     /**
@@ -75,12 +72,9 @@ class ThreeDSecure implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'accept_headers' => null,
-        'cp_bx' => null,
-        'downgrade1' => null,
-        'merchant_termurl' => null,
-        'tds_policy' => null,
-        'user_agent' => null
+        'batch_date' => 'date',
+        'batch_id' => 'int32',
+        'batch_status' => null
     ];
 
     /**
@@ -110,12 +104,9 @@ class ThreeDSecure implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'accept_headers' => 'accept_headers',
-        'cp_bx' => 'cp_bx',
-        'downgrade1' => 'downgrade1',
-        'merchant_termurl' => 'merchant_termurl',
-        'tds_policy' => 'tds_policy',
-        'user_agent' => 'user_agent'
+        'batch_date' => 'batch_date',
+        'batch_id' => 'batch_id',
+        'batch_status' => 'batch_status'
     ];
 
     /**
@@ -124,12 +115,9 @@ class ThreeDSecure implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'accept_headers' => 'setAcceptHeaders',
-        'cp_bx' => 'setCpBx',
-        'downgrade1' => 'setDowngrade1',
-        'merchant_termurl' => 'setMerchantTermurl',
-        'tds_policy' => 'setTdsPolicy',
-        'user_agent' => 'setUserAgent'
+        'batch_date' => 'setBatchDate',
+        'batch_id' => 'setBatchId',
+        'batch_status' => 'setBatchStatus'
     ];
 
     /**
@@ -138,12 +126,9 @@ class ThreeDSecure implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'accept_headers' => 'getAcceptHeaders',
-        'cp_bx' => 'getCpBx',
-        'downgrade1' => 'getDowngrade1',
-        'merchant_termurl' => 'getMerchantTermurl',
-        'tds_policy' => 'getTdsPolicy',
-        'user_agent' => 'getUserAgent'
+        'batch_date' => 'getBatchDate',
+        'batch_id' => 'getBatchId',
+        'batch_status' => 'getBatchStatus'
     ];
 
     /**
@@ -203,12 +188,9 @@ class ThreeDSecure implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['accept_headers'] = $data['accept_headers'] ?? null;
-        $this->container['cp_bx'] = $data['cp_bx'] ?? null;
-        $this->container['downgrade1'] = $data['downgrade1'] ?? null;
-        $this->container['merchant_termurl'] = $data['merchant_termurl'] ?? null;
-        $this->container['tds_policy'] = $data['tds_policy'] ?? null;
-        $this->container['user_agent'] = $data['user_agent'] ?? null;
+        $this->container['batch_date'] = $data['batch_date'] ?? null;
+        $this->container['batch_id'] = $data['batch_id'] ?? null;
+        $this->container['batch_status'] = $data['batch_status'] ?? null;
     }
 
     /**
@@ -220,6 +202,12 @@ class ThreeDSecure implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['batch_date'] === null) {
+            $invalidProperties[] = "'batch_date' can't be null";
+        }
+        if ($this->container['batch_status'] === null) {
+            $invalidProperties[] = "'batch_status' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -236,145 +224,73 @@ class ThreeDSecure implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets accept_headers
+     * Gets batch_date
      *
-     * @return string|null
+     * @return \DateTime
      */
-    public function getAcceptHeaders()
+    public function getBatchDate()
     {
-        return $this->container['accept_headers'];
+        return $this->container['batch_date'];
     }
 
     /**
-     * Sets accept_headers
+     * Sets batch_date
      *
-     * @param string|null $accept_headers Required for 3DSv1. Optional if the `cp_bx` value is provided otherwise required for 3Dv2 processing operating in browser authentication mode.  The `cp_bx` value will override any value supplied to this field.  The content of the HTTP accept header as sent to the merchant from the cardholder's user agent.  This value will be validated by the ACS when the card holder authenticates themselves to verify that no intermediary is performing this action. Required for 3DSv1.
+     * @param \DateTime $batch_date The date that the file was created in ISO-8601 format.
      *
      * @return self
      */
-    public function setAcceptHeaders($accept_headers)
+    public function setBatchDate($batch_date)
     {
-        $this->container['accept_headers'] = $accept_headers;
+        $this->container['batch_date'] = $batch_date;
 
         return $this;
     }
 
     /**
-     * Gets cp_bx
+     * Gets batch_id
      *
-     * @return string|null
+     * @return int[]|null
      */
-    public function getCpBx()
+    public function getBatchId()
     {
-        return $this->container['cp_bx'];
+        return $this->container['batch_id'];
     }
 
     /**
-     * Sets cp_bx
+     * Sets batch_id
      *
-     * @param string|null $cp_bx Required for 3DSv2.  Browser extension value produced by the citypay.js `bx` function. See [https://sandbox.citypay.com/3dsv2/bx](https://sandbox.citypay.com/3dsv2/bx) for  details.
+     * @param int[]|null $batch_id batch_id
      *
      * @return self
      */
-    public function setCpBx($cp_bx)
+    public function setBatchId($batch_id)
     {
-        $this->container['cp_bx'] = $cp_bx;
+        $this->container['batch_id'] = $batch_id;
 
         return $this;
     }
 
     /**
-     * Gets downgrade1
+     * Gets batch_status
      *
-     * @return bool|null
+     * @return string
      */
-    public function getDowngrade1()
+    public function getBatchStatus()
     {
-        return $this->container['downgrade1'];
+        return $this->container['batch_status'];
     }
 
     /**
-     * Sets downgrade1
+     * Sets batch_status
      *
-     * @param bool|null $downgrade1 Where a merchant is configured for 3DSv2, setting this option will attempt to downgrade the transaction to  3DSv1.
+     * @param string $batch_status The status of the batch. Possible values are - CANCELLED. The file has been cancelled by an administrator or server process.  - COMPLETE. The file has passed through the processing cycle and is determined as being complete further information should be obtained on the results of the processing - ERROR_IN_PROCESSING. Errors have occurred in the processing that has deemed that processing can not continue. - INITIALISED. The file has been initialised and no action has yet been performed - LOCKED. The file has been locked for processing - QUEUED. The file has been queued for processing yet no processing has yet been performed - UNKNOWN. The file is of an unknown status, that is the file can either not be determined by the information requested of the file has not yet been received.
      *
      * @return self
      */
-    public function setDowngrade1($downgrade1)
+    public function setBatchStatus($batch_status)
     {
-        $this->container['downgrade1'] = $downgrade1;
-
-        return $this;
-    }
-
-    /**
-     * Gets merchant_termurl
-     *
-     * @return string|null
-     */
-    public function getMerchantTermurl()
-    {
-        return $this->container['merchant_termurl'];
-    }
-
-    /**
-     * Sets merchant_termurl
-     *
-     * @param string|null $merchant_termurl A controller URL for 3D-Secure processing that any response from an authentication request or challenge request should be sent to.  The controller should forward on the response from the URL back via this API for subsequent processing.
-     *
-     * @return self
-     */
-    public function setMerchantTermurl($merchant_termurl)
-    {
-        $this->container['merchant_termurl'] = $merchant_termurl;
-
-        return $this;
-    }
-
-    /**
-     * Gets tds_policy
-     *
-     * @return string|null
-     */
-    public function getTdsPolicy()
-    {
-        return $this->container['tds_policy'];
-    }
-
-    /**
-     * Sets tds_policy
-     *
-     * @param string|null $tds_policy A policy value which determines whether ThreeDSecure is enforced or bypassed. Note that this will only work for e-commerce transactions and accounts that have 3DSecure enabled and fully registered with Visa, MasterCard or American Express. It is useful when transactions may be wanted to bypass processing rules.  Note that this may affect the liability shift of transactions and may occur a higher fee with the acquiring bank.  Values are   `0` for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   `1` for an enforced policy. Transactions will be enabled for 3DS processing   `2` to bypass. Transactions that are bypassed will switch off 3DS processing.
-     *
-     * @return self
-     */
-    public function setTdsPolicy($tds_policy)
-    {
-        $this->container['tds_policy'] = $tds_policy;
-
-        return $this;
-    }
-
-    /**
-     * Gets user_agent
-     *
-     * @return string|null
-     */
-    public function getUserAgent()
-    {
-        return $this->container['user_agent'];
-    }
-
-    /**
-     * Sets user_agent
-     *
-     * @param string|null $user_agent Required for 3DSv1.  Optional if the `cp_bx` value is provided otherwise required 3Dv2 processing operating in browser authentication mode.  The `cp_bx` value will override any value supplied to this field.  The content of the HTTP user-agent header as sent to the merchant from the cardholder's user agent.  This value will be validated by the ACS when the card holder authenticates themselves to verify that no intermediary is performing this action. Required for 3DSv1.
-     *
-     * @return self
-     */
-    public function setUserAgent($user_agent)
-    {
-        $this->container['user_agent'] = $user_agent;
+        $this->container['batch_status'] = $batch_status;
 
         return $this;
     }

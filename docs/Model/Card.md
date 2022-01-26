@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **label** | **string** | A label which identifies this card. | [optional]
 **label2** | **string** | A label which also provides the expiry date of the card. | [optional]
 **last4digits** | **string** | The last 4 digits of the card to aid in identification. | [optional]
+**name_on_card** | **string** | The name on the card. | [optional]
 **scheme** | **string** | The scheme that issued the card. | [optional]
 **token** | **string** | A token that can be used to process against the card. | [optional]
 
