@@ -115,6 +115,293 @@ class OperationalApi
     }
 
     /**
+     * Operation aclCheckRequest
+     *
+     * ACL Check Request
+     *
+     * @param  \CityPay\Model\AclCheckRequest $acl_check_request acl_check_request (required)
+     *
+     * @throws \CityPay\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \CityPay\Model\AclCheckResponseModel|\CityPay\Model\Error
+     */
+    public function aclCheckRequest($acl_check_request)
+    {
+        list($response) = $this->aclCheckRequestWithHttpInfo($acl_check_request);
+        return $response;
+    }
+
+    /**
+     * Operation aclCheckRequestWithHttpInfo
+     *
+     * ACL Check Request
+     *
+     * @param  \CityPay\Model\AclCheckRequest $acl_check_request (required)
+     *
+     * @throws \CityPay\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \CityPay\Model\AclCheckResponseModel|\CityPay\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function aclCheckRequestWithHttpInfo($acl_check_request)
+    {
+        $request = $this->aclCheckRequestRequest($acl_check_request);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\CityPay\Model\AclCheckResponseModel' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\CityPay\Model\AclCheckResponseModel', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\CityPay\Model\Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\CityPay\Model\AclCheckResponseModel';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\CityPay\Model\AclCheckResponseModel',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\CityPay\Model\Error',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation aclCheckRequestAsync
+     *
+     * ACL Check Request
+     *
+     * @param  \CityPay\Model\AclCheckRequest $acl_check_request (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function aclCheckRequestAsync($acl_check_request)
+    {
+        return $this->aclCheckRequestAsyncWithHttpInfo($acl_check_request)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation aclCheckRequestAsyncWithHttpInfo
+     *
+     * ACL Check Request
+     *
+     * @param  \CityPay\Model\AclCheckRequest $acl_check_request (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function aclCheckRequestAsyncWithHttpInfo($acl_check_request)
+    {
+        $returnType = '\CityPay\Model\AclCheckResponseModel';
+        $request = $this->aclCheckRequestRequest($acl_check_request);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'aclCheckRequest'
+     *
+     * @param  \CityPay\Model\AclCheckRequest $acl_check_request (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function aclCheckRequestRequest($acl_check_request)
+    {
+        // verify the required parameter 'acl_check_request' is set
+        if ($acl_check_request === null || (is_array($acl_check_request) && count($acl_check_request) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $acl_check_request when calling aclCheckRequest'
+            );
+        }
+
+        $resourcePath = '/acl/check';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json', 'text/xml']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json', 'text/xml'],
+                ['application/json', 'text/xml']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($acl_check_request)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($acl_check_request));
+            } else {
+                $httpBody = $acl_check_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('cp-api-key');
+        if ($apiKey !== null) {
+            $headers['cp-api-key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation listMerchantsRequest
      *
      * List Merchants Request
@@ -123,7 +410,7 @@ class OperationalApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return |\CityPay\Model\Error|\CityPay\Model\ListMerchantsResponse
+     * @return \CityPay\Model\ListMerchantsResponse|\CityPay\Model\Error
      */
     public function listMerchantsRequest($clientid)
     {
@@ -140,7 +427,7 @@ class OperationalApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of |\CityPay\Model\Error|\CityPay\Model\ListMerchantsResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \CityPay\Model\ListMerchantsResponse|\CityPay\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
     public function listMerchantsRequestWithHttpInfo($clientid)
     {
@@ -175,18 +462,6 @@ class OperationalApi
             }
 
             switch($statusCode) {
-                case 422:
-                    if ('\CityPay\Model\Error' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
                 case 200:
                     if ('\CityPay\Model\ListMerchantsResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -196,6 +471,18 @@ class OperationalApi
 
                     return [
                         ObjectSerializer::deserialize($content, '\CityPay\Model\ListMerchantsResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\CityPay\Model\Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -216,18 +503,18 @@ class OperationalApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CityPay\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\CityPay\Model\ListMerchantsResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\CityPay\Model\Error',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -412,7 +699,7 @@ class OperationalApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return |\CityPay\Model\Error|\CityPay\Model\Acknowledgement
+     * @return \CityPay\Model\Acknowledgement|\CityPay\Model\Error
      */
     public function pingRequest($ping)
     {
@@ -429,7 +716,7 @@ class OperationalApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of |\CityPay\Model\Error|\CityPay\Model\Acknowledgement, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \CityPay\Model\Acknowledgement|\CityPay\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
     public function pingRequestWithHttpInfo($ping)
     {
@@ -464,18 +751,6 @@ class OperationalApi
             }
 
             switch($statusCode) {
-                case 422:
-                    if ('\CityPay\Model\Error' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
                 case 200:
                     if ('\CityPay\Model\Acknowledgement' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -485,6 +760,18 @@ class OperationalApi
 
                     return [
                         ObjectSerializer::deserialize($content, '\CityPay\Model\Acknowledgement', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\CityPay\Model\Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -505,18 +792,18 @@ class OperationalApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CityPay\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\CityPay\Model\Acknowledgement',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\CityPay\Model\Error',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);

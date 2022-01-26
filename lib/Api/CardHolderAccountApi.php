@@ -124,7 +124,7 @@ class CardHolderAccountApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return |\CityPay\Model\Error|\CityPay\Model\Acknowledgement
+     * @return \CityPay\Model\Acknowledgement|\CityPay\Model\Error
      */
     public function accountCardDeleteRequest($accountid, $card_id)
     {
@@ -142,7 +142,7 @@ class CardHolderAccountApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of |\CityPay\Model\Error|\CityPay\Model\Acknowledgement, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \CityPay\Model\Acknowledgement|\CityPay\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
     public function accountCardDeleteRequestWithHttpInfo($accountid, $card_id)
     {
@@ -177,18 +177,6 @@ class CardHolderAccountApi
             }
 
             switch($statusCode) {
-                case 422:
-                    if ('\CityPay\Model\Error' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
                 case 200:
                     if ('\CityPay\Model\Acknowledgement' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -198,6 +186,18 @@ class CardHolderAccountApi
 
                     return [
                         ObjectSerializer::deserialize($content, '\CityPay\Model\Acknowledgement', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\CityPay\Model\Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -218,18 +218,18 @@ class CardHolderAccountApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CityPay\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\CityPay\Model\Acknowledgement',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\CityPay\Model\Error',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -432,7 +432,7 @@ class CardHolderAccountApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return |\CityPay\Model\Error|\CityPay\Model\CardHolderAccount
+     * @return \CityPay\Model\CardHolderAccount|\CityPay\Model\Error
      */
     public function accountCardRegisterRequest($accountid, $register_card)
     {
@@ -450,7 +450,7 @@ class CardHolderAccountApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of |\CityPay\Model\Error|\CityPay\Model\CardHolderAccount, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \CityPay\Model\CardHolderAccount|\CityPay\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
     public function accountCardRegisterRequestWithHttpInfo($accountid, $register_card)
     {
@@ -485,18 +485,6 @@ class CardHolderAccountApi
             }
 
             switch($statusCode) {
-                case 422:
-                    if ('\CityPay\Model\Error' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
                 case 200:
                     if ('\CityPay\Model\CardHolderAccount' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -506,6 +494,18 @@ class CardHolderAccountApi
 
                     return [
                         ObjectSerializer::deserialize($content, '\CityPay\Model\CardHolderAccount', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\CityPay\Model\Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -526,18 +526,18 @@ class CardHolderAccountApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CityPay\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\CityPay\Model\CardHolderAccount',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\CityPay\Model\Error',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -739,7 +739,7 @@ class CardHolderAccountApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return |\CityPay\Model\Error|\CityPay\Model\Acknowledgement
+     * @return \CityPay\Model\Acknowledgement|\CityPay\Model\Error
      */
     public function accountCardStatusRequest($accountid, $card_id, $card_status)
     {
@@ -758,7 +758,7 @@ class CardHolderAccountApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of |\CityPay\Model\Error|\CityPay\Model\Acknowledgement, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \CityPay\Model\Acknowledgement|\CityPay\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
     public function accountCardStatusRequestWithHttpInfo($accountid, $card_id, $card_status)
     {
@@ -793,18 +793,6 @@ class CardHolderAccountApi
             }
 
             switch($statusCode) {
-                case 422:
-                    if ('\CityPay\Model\Error' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
                 case 200:
                     if ('\CityPay\Model\Acknowledgement' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -814,6 +802,18 @@ class CardHolderAccountApi
 
                     return [
                         ObjectSerializer::deserialize($content, '\CityPay\Model\Acknowledgement', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\CityPay\Model\Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -834,18 +834,18 @@ class CardHolderAccountApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CityPay\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\CityPay\Model\Acknowledgement',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\CityPay\Model\Error',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1063,7 +1063,7 @@ class CardHolderAccountApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return |\CityPay\Model\Error|\CityPay\Model\CardHolderAccount
+     * @return \CityPay\Model\CardHolderAccount|\CityPay\Model\Error
      */
     public function accountChangeContactRequest($accountid, $contact_details)
     {
@@ -1081,7 +1081,7 @@ class CardHolderAccountApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of |\CityPay\Model\Error|\CityPay\Model\CardHolderAccount, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \CityPay\Model\CardHolderAccount|\CityPay\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
     public function accountChangeContactRequestWithHttpInfo($accountid, $contact_details)
     {
@@ -1116,18 +1116,6 @@ class CardHolderAccountApi
             }
 
             switch($statusCode) {
-                case 422:
-                    if ('\CityPay\Model\Error' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
                 case 200:
                     if ('\CityPay\Model\CardHolderAccount' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1137,6 +1125,18 @@ class CardHolderAccountApi
 
                     return [
                         ObjectSerializer::deserialize($content, '\CityPay\Model\CardHolderAccount', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\CityPay\Model\Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1157,18 +1157,18 @@ class CardHolderAccountApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CityPay\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\CityPay\Model\CardHolderAccount',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\CityPay\Model\Error',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1368,7 +1368,7 @@ class CardHolderAccountApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return |\CityPay\Model\Error|\CityPay\Model\CardHolderAccount
+     * @return \CityPay\Model\CardHolderAccount|\CityPay\Model\Error
      */
     public function accountCreate($account_create)
     {
@@ -1385,7 +1385,7 @@ class CardHolderAccountApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of |\CityPay\Model\Error|\CityPay\Model\CardHolderAccount, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \CityPay\Model\CardHolderAccount|\CityPay\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
     public function accountCreateWithHttpInfo($account_create)
     {
@@ -1420,18 +1420,6 @@ class CardHolderAccountApi
             }
 
             switch($statusCode) {
-                case 422:
-                    if ('\CityPay\Model\Error' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
                 case 200:
                     if ('\CityPay\Model\CardHolderAccount' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1441,6 +1429,18 @@ class CardHolderAccountApi
 
                     return [
                         ObjectSerializer::deserialize($content, '\CityPay\Model\CardHolderAccount', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\CityPay\Model\Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1461,18 +1461,18 @@ class CardHolderAccountApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CityPay\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\CityPay\Model\CardHolderAccount',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\CityPay\Model\Error',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1655,7 +1655,7 @@ class CardHolderAccountApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return |\CityPay\Model\Error|\CityPay\Model\Acknowledgement
+     * @return \CityPay\Model\Acknowledgement|\CityPay\Model\Error
      */
     public function accountDeleteRequest($accountid)
     {
@@ -1672,7 +1672,7 @@ class CardHolderAccountApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of |\CityPay\Model\Error|\CityPay\Model\Acknowledgement, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \CityPay\Model\Acknowledgement|\CityPay\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
     public function accountDeleteRequestWithHttpInfo($accountid)
     {
@@ -1707,18 +1707,6 @@ class CardHolderAccountApi
             }
 
             switch($statusCode) {
-                case 422:
-                    if ('\CityPay\Model\Error' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
                 case 200:
                     if ('\CityPay\Model\Acknowledgement' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1728,6 +1716,18 @@ class CardHolderAccountApi
 
                     return [
                         ObjectSerializer::deserialize($content, '\CityPay\Model\Acknowledgement', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\CityPay\Model\Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1748,18 +1748,18 @@ class CardHolderAccountApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CityPay\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\CityPay\Model\Acknowledgement',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\CityPay\Model\Error',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1944,7 +1944,7 @@ class CardHolderAccountApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return |\CityPay\Model\Error|\CityPay\Model\Exists
+     * @return \CityPay\Model\Exists|\CityPay\Model\Error
      */
     public function accountExistsRequest($accountid)
     {
@@ -1961,7 +1961,7 @@ class CardHolderAccountApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of |\CityPay\Model\Error|\CityPay\Model\Exists, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \CityPay\Model\Exists|\CityPay\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
     public function accountExistsRequestWithHttpInfo($accountid)
     {
@@ -1996,18 +1996,6 @@ class CardHolderAccountApi
             }
 
             switch($statusCode) {
-                case 422:
-                    if ('\CityPay\Model\Error' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
                 case 200:
                     if ('\CityPay\Model\Exists' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -2017,6 +2005,18 @@ class CardHolderAccountApi
 
                     return [
                         ObjectSerializer::deserialize($content, '\CityPay\Model\Exists', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\CityPay\Model\Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2037,18 +2037,18 @@ class CardHolderAccountApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CityPay\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\CityPay\Model\Exists',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\CityPay\Model\Error',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2233,7 +2233,7 @@ class CardHolderAccountApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return |\CityPay\Model\Error|\CityPay\Model\CardHolderAccount
+     * @return \CityPay\Model\CardHolderAccount|\CityPay\Model\Error
      */
     public function accountRetrieveRequest($accountid)
     {
@@ -2250,7 +2250,7 @@ class CardHolderAccountApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of |\CityPay\Model\Error|\CityPay\Model\CardHolderAccount, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \CityPay\Model\CardHolderAccount|\CityPay\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
     public function accountRetrieveRequestWithHttpInfo($accountid)
     {
@@ -2285,18 +2285,6 @@ class CardHolderAccountApi
             }
 
             switch($statusCode) {
-                case 422:
-                    if ('\CityPay\Model\Error' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
                 case 200:
                     if ('\CityPay\Model\CardHolderAccount' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -2306,6 +2294,18 @@ class CardHolderAccountApi
 
                     return [
                         ObjectSerializer::deserialize($content, '\CityPay\Model\CardHolderAccount', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\CityPay\Model\Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2326,18 +2326,18 @@ class CardHolderAccountApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CityPay\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\CityPay\Model\CardHolderAccount',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\CityPay\Model\Error',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2523,7 +2523,7 @@ class CardHolderAccountApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return |\CityPay\Model\Error|\CityPay\Model\Acknowledgement
+     * @return \CityPay\Model\Acknowledgement|\CityPay\Model\Error
      */
     public function accountStatusRequest($accountid, $account_status)
     {
@@ -2541,7 +2541,7 @@ class CardHolderAccountApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of |\CityPay\Model\Error|\CityPay\Model\Acknowledgement, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \CityPay\Model\Acknowledgement|\CityPay\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
     public function accountStatusRequestWithHttpInfo($accountid, $account_status)
     {
@@ -2576,18 +2576,6 @@ class CardHolderAccountApi
             }
 
             switch($statusCode) {
-                case 422:
-                    if ('\CityPay\Model\Error' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
                 case 200:
                     if ('\CityPay\Model\Acknowledgement' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -2597,6 +2585,18 @@ class CardHolderAccountApi
 
                     return [
                         ObjectSerializer::deserialize($content, '\CityPay\Model\Acknowledgement', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\CityPay\Model\Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2617,18 +2617,18 @@ class CardHolderAccountApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CityPay\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\CityPay\Model\Acknowledgement',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\CityPay\Model\Error',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2828,7 +2828,7 @@ class CardHolderAccountApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return |\CityPay\Model\Error|\CityPay\Model\Decision
+     * @return \CityPay\Model\Decision|\CityPay\Model\Error
      */
     public function chargeRequest($charge_request)
     {
@@ -2845,7 +2845,7 @@ class CardHolderAccountApi
      *
      * @throws \CityPay\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of |\CityPay\Model\Error|\CityPay\Model\Decision, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \CityPay\Model\Decision|\CityPay\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
     public function chargeRequestWithHttpInfo($charge_request)
     {
@@ -2880,18 +2880,6 @@ class CardHolderAccountApi
             }
 
             switch($statusCode) {
-                case 422:
-                    if ('\CityPay\Model\Error' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
                 case 200:
                     if ('\CityPay\Model\Decision' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -2901,6 +2889,18 @@ class CardHolderAccountApi
 
                     return [
                         ObjectSerializer::deserialize($content, '\CityPay\Model\Decision', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\CityPay\Model\Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\CityPay\Model\Error', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2921,18 +2921,18 @@ class CardHolderAccountApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CityPay\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\CityPay\Model\Decision',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\CityPay\Model\Error',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);

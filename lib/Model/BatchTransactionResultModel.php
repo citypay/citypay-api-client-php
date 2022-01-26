@@ -62,7 +62,6 @@ class BatchTransactionResultModel implements ModelInterface, ArrayAccess, \JsonS
         'account_id' => 'string',
         'amount' => 'int',
         'authcode' => 'string',
-        'authorised' => 'bool',
         'identifier' => 'string',
         'maskedpan' => 'string',
         'merchantid' => 'int',
@@ -82,7 +81,6 @@ class BatchTransactionResultModel implements ModelInterface, ArrayAccess, \JsonS
         'account_id' => null,
         'amount' => 'int32',
         'authcode' => null,
-        'authorised' => null,
         'identifier' => null,
         'maskedpan' => null,
         'merchantid' => 'int32',
@@ -121,7 +119,6 @@ class BatchTransactionResultModel implements ModelInterface, ArrayAccess, \JsonS
         'account_id' => 'account_id',
         'amount' => 'amount',
         'authcode' => 'authcode',
-        'authorised' => 'authorised',
         'identifier' => 'identifier',
         'maskedpan' => 'maskedpan',
         'merchantid' => 'merchantid',
@@ -139,7 +136,6 @@ class BatchTransactionResultModel implements ModelInterface, ArrayAccess, \JsonS
         'account_id' => 'setAccountId',
         'amount' => 'setAmount',
         'authcode' => 'setAuthcode',
-        'authorised' => 'setAuthorised',
         'identifier' => 'setIdentifier',
         'maskedpan' => 'setMaskedpan',
         'merchantid' => 'setMerchantid',
@@ -157,7 +153,6 @@ class BatchTransactionResultModel implements ModelInterface, ArrayAccess, \JsonS
         'account_id' => 'getAccountId',
         'amount' => 'getAmount',
         'authcode' => 'getAuthcode',
-        'authorised' => 'getAuthorised',
         'identifier' => 'getIdentifier',
         'maskedpan' => 'getMaskedpan',
         'merchantid' => 'getMerchantid',
@@ -226,7 +221,6 @@ class BatchTransactionResultModel implements ModelInterface, ArrayAccess, \JsonS
         $this->container['account_id'] = $data['account_id'] ?? null;
         $this->container['amount'] = $data['amount'] ?? null;
         $this->container['authcode'] = $data['authcode'] ?? null;
-        $this->container['authorised'] = $data['authorised'] ?? null;
         $this->container['identifier'] = $data['identifier'] ?? null;
         $this->container['maskedpan'] = $data['maskedpan'] ?? null;
         $this->container['merchantid'] = $data['merchantid'] ?? null;
@@ -271,6 +265,9 @@ class BatchTransactionResultModel implements ModelInterface, ArrayAccess, \JsonS
         }
         if ($this->container['message'] === null) {
             $invalidProperties[] = "'message' can't be null";
+        }
+        if ($this->container['result'] === null) {
+            $invalidProperties[] = "'result' can't be null";
         }
         return $invalidProperties;
     }
@@ -364,30 +361,6 @@ class BatchTransactionResultModel implements ModelInterface, ArrayAccess, \JsonS
     public function setAuthcode($authcode)
     {
         $this->container['authcode'] = $authcode;
-
-        return $this;
-    }
-
-    /**
-     * Gets authorised
-     *
-     * @return bool|null
-     */
-    public function getAuthorised()
-    {
-        return $this->container['authorised'];
-    }
-
-    /**
-     * Sets authorised
-     *
-     * @param bool|null $authorised A boolean definition that indicates that the transaction was authorised. It will return false if the transaction  was declined, rejected or cancelled due to CSC matching failures.  Attention should be referenced to the AuthResult and Response code for accurate determination of the result.
-     *
-     * @return self
-     */
-    public function setAuthorised($authorised)
-    {
-        $this->container['authorised'] = $authorised;
 
         return $this;
     }
@@ -498,7 +471,7 @@ class BatchTransactionResultModel implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets result
      *
-     * @return int|null
+     * @return int
      */
     public function getResult()
     {
@@ -508,7 +481,7 @@ class BatchTransactionResultModel implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets result
      *
-     * @param int|null $result An integer result that indicates the outcome of the transaction. The Code value below maps to the result value  <table> <tr> <th>Code</th> <th>Abbrev</th> <th>Description</th> </tr> <tr><td>0</td><td>Declined</td><td>Declined</td></tr> <tr><td>1</td><td>Accepted</td><td>Accepted</td></tr> <tr><td>2</td><td>Rejected</td><td>Rejected</td></tr> <tr><td>3</td><td>Not Attempted</td><td>Not Attempted</td></tr> <tr><td>4</td><td>Referred</td><td>Referred</td></tr> <tr><td>5</td><td>PinRetry</td><td>Perform PIN Retry</td></tr> <tr><td>6</td><td>ForSigVer</td><td>Force Signature Verification</td></tr> <tr><td>7</td><td>Hold</td><td>Hold</td></tr> <tr><td>8</td><td>SecErr</td><td>Security Error</td></tr> <tr><td>9</td><td>CallAcq</td><td>Call Acquirer</td></tr> <tr><td>10</td><td>DNH</td><td>Do Not Honour</td></tr> <tr><td>11</td><td>RtnCrd</td><td>Retain Card</td></tr> <tr><td>12</td><td>ExprdCrd</td><td>Expired Card</td></tr> <tr><td>13</td><td>InvldCrd</td><td>Invalid Card No</td></tr> <tr><td>14</td><td>PinExcd</td><td>Pin Tries Exceeded</td></tr> <tr><td>15</td><td>PinInvld</td><td>Pin Invalid</td></tr> <tr><td>16</td><td>AuthReq</td><td>Authentication Required</td></tr> <tr><td>17</td><td>AuthenFail</td><td>Authentication Failed</td></tr> <tr><td>18</td><td>Verified</td><td>Card Verified</td></tr> <tr><td>19</td><td>Cancelled</td><td>Cancelled</td></tr> <tr><td>20</td><td>Un</td><td>Unknown</td></tr> </table>
+     * @param int $result An integer result that indicates the outcome of the transaction. The Code value below maps to the result value  <table> <tr> <th>Code</th> <th>Abbrev</th> <th>Description</th> </tr> <tr><td>0</td><td>Declined</td><td>Declined</td></tr> <tr><td>1</td><td>Accepted</td><td>Accepted</td></tr> <tr><td>2</td><td>Rejected</td><td>Rejected</td></tr> <tr><td>3</td><td>Not Attempted</td><td>Not Attempted</td></tr> <tr><td>4</td><td>Referred</td><td>Referred</td></tr> <tr><td>5</td><td>PinRetry</td><td>Perform PIN Retry</td></tr> <tr><td>6</td><td>ForSigVer</td><td>Force Signature Verification</td></tr> <tr><td>7</td><td>Hold</td><td>Hold</td></tr> <tr><td>8</td><td>SecErr</td><td>Security Error</td></tr> <tr><td>9</td><td>CallAcq</td><td>Call Acquirer</td></tr> <tr><td>10</td><td>DNH</td><td>Do Not Honour</td></tr> <tr><td>11</td><td>RtnCrd</td><td>Retain Card</td></tr> <tr><td>12</td><td>ExprdCrd</td><td>Expired Card</td></tr> <tr><td>13</td><td>InvldCrd</td><td>Invalid Card No</td></tr> <tr><td>14</td><td>PinExcd</td><td>Pin Tries Exceeded</td></tr> <tr><td>15</td><td>PinInvld</td><td>Pin Invalid</td></tr> <tr><td>16</td><td>AuthReq</td><td>Authentication Required</td></tr> <tr><td>17</td><td>AuthenFail</td><td>Authentication Failed</td></tr> <tr><td>18</td><td>Verified</td><td>Card Verified</td></tr> <tr><td>19</td><td>Cancelled</td><td>Cancelled</td></tr> <tr><td>20</td><td>Un</td><td>Unknown</td></tr> </table>
      *
      * @return self
      */

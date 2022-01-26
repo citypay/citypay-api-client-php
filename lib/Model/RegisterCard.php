@@ -62,7 +62,8 @@ class RegisterCard implements ModelInterface, ArrayAccess, \JsonSerializable
         'cardnumber' => 'string',
         'default' => 'bool',
         'expmonth' => 'int',
-        'expyear' => 'int'
+        'expyear' => 'int',
+        'name_on_card' => 'string'
     ];
 
     /**
@@ -76,7 +77,8 @@ class RegisterCard implements ModelInterface, ArrayAccess, \JsonSerializable
         'cardnumber' => null,
         'default' => null,
         'expmonth' => 'int32',
-        'expyear' => 'int32'
+        'expyear' => 'int32',
+        'name_on_card' => null
     ];
 
     /**
@@ -109,7 +111,8 @@ class RegisterCard implements ModelInterface, ArrayAccess, \JsonSerializable
         'cardnumber' => 'cardnumber',
         'default' => 'default',
         'expmonth' => 'expmonth',
-        'expyear' => 'expyear'
+        'expyear' => 'expyear',
+        'name_on_card' => 'name_on_card'
     ];
 
     /**
@@ -121,7 +124,8 @@ class RegisterCard implements ModelInterface, ArrayAccess, \JsonSerializable
         'cardnumber' => 'setCardnumber',
         'default' => 'setDefault',
         'expmonth' => 'setExpmonth',
-        'expyear' => 'setExpyear'
+        'expyear' => 'setExpyear',
+        'name_on_card' => 'setNameOnCard'
     ];
 
     /**
@@ -133,7 +137,8 @@ class RegisterCard implements ModelInterface, ArrayAccess, \JsonSerializable
         'cardnumber' => 'getCardnumber',
         'default' => 'getDefault',
         'expmonth' => 'getExpmonth',
-        'expyear' => 'getExpyear'
+        'expyear' => 'getExpyear',
+        'name_on_card' => 'getNameOnCard'
     ];
 
     /**
@@ -197,6 +202,7 @@ class RegisterCard implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['default'] = $data['default'] ?? null;
         $this->container['expmonth'] = $data['expmonth'] ?? null;
         $this->container['expyear'] = $data['expyear'] ?? null;
+        $this->container['name_on_card'] = $data['name_on_card'] ?? null;
     }
 
     /**
@@ -239,6 +245,14 @@ class RegisterCard implements ModelInterface, ArrayAccess, \JsonSerializable
 
         if (($this->container['expyear'] < 2000)) {
             $invalidProperties[] = "invalid value for 'expyear', must be bigger than or equal to 2000.";
+        }
+
+        if (!is_null($this->container['name_on_card']) && (mb_strlen($this->container['name_on_card']) > 45)) {
+            $invalidProperties[] = "invalid value for 'name_on_card', the character length must be smaller than or equal to 45.";
+        }
+
+        if (!is_null($this->container['name_on_card']) && (mb_strlen($this->container['name_on_card']) < 2)) {
+            $invalidProperties[] = "invalid value for 'name_on_card', the character length must be bigger than or equal to 2.";
         }
 
         return $invalidProperties;
@@ -371,6 +385,37 @@ class RegisterCard implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['expyear'] = $expyear;
+
+        return $this;
+    }
+
+    /**
+     * Gets name_on_card
+     *
+     * @return string|null
+     */
+    public function getNameOnCard()
+    {
+        return $this->container['name_on_card'];
+    }
+
+    /**
+     * Sets name_on_card
+     *
+     * @param string|null $name_on_card The card holder name as it appears on the card. The value is required if the account is to be used for 3dsv2 processing, otherwise it is optional.
+     *
+     * @return self
+     */
+    public function setNameOnCard($name_on_card)
+    {
+        if (!is_null($name_on_card) && (mb_strlen($name_on_card) > 45)) {
+            throw new \InvalidArgumentException('invalid length for $name_on_card when calling RegisterCard., must be smaller than or equal to 45.');
+        }
+        if (!is_null($name_on_card) && (mb_strlen($name_on_card) < 2)) {
+            throw new \InvalidArgumentException('invalid length for $name_on_card when calling RegisterCard., must be bigger than or equal to 2.');
+        }
+
+        $this->container['name_on_card'] = $name_on_card;
 
         return $this;
     }
