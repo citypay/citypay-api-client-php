@@ -59,7 +59,7 @@ class BatchReportRequest implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'batch_id' => 'int[]',
+        'batch_id' => 'int',
         'client_account_id' => 'string'
     ];
 
@@ -199,6 +199,10 @@ class BatchReportRequest implements ModelInterface, ArrayAccess, \JsonSerializab
         if ($this->container['batch_id'] === null) {
             $invalidProperties[] = "'batch_id' can't be null";
         }
+        if (($this->container['batch_id'] < 1)) {
+            $invalidProperties[] = "invalid value for 'batch_id', must be bigger than or equal to 1.";
+        }
+
         if (!is_null($this->container['client_account_id']) && (mb_strlen($this->container['client_account_id']) > 20)) {
             $invalidProperties[] = "invalid value for 'client_account_id', the character length must be smaller than or equal to 20.";
         }
@@ -225,7 +229,7 @@ class BatchReportRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets batch_id
      *
-     * @return int[]
+     * @return int
      */
     public function getBatchId()
     {
@@ -235,12 +239,17 @@ class BatchReportRequest implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets batch_id
      *
-     * @param int[] $batch_id batch_id
+     * @param int $batch_id The batch id specified in the batch processing request.
      *
      * @return self
      */
     public function setBatchId($batch_id)
     {
+
+        if (($batch_id < 1)) {
+            throw new \InvalidArgumentException('invalid value for $batch_id when calling BatchReportRequest., must be bigger than or equal to 1.');
+        }
+
         $this->container['batch_id'] = $batch_id;
 
         return $this;

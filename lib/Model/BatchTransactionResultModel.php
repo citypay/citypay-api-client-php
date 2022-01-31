@@ -67,7 +67,8 @@ class BatchTransactionResultModel implements ModelInterface, ArrayAccess, \JsonS
         'merchantid' => 'int',
         'message' => 'string',
         'result' => 'int',
-        'scheme' => 'string'
+        'scheme' => 'string',
+        'transno' => 'int'
     ];
 
     /**
@@ -86,7 +87,8 @@ class BatchTransactionResultModel implements ModelInterface, ArrayAccess, \JsonS
         'merchantid' => 'int32',
         'message' => null,
         'result' => 'int32',
-        'scheme' => null
+        'scheme' => null,
+        'transno' => 'int32'
     ];
 
     /**
@@ -124,7 +126,8 @@ class BatchTransactionResultModel implements ModelInterface, ArrayAccess, \JsonS
         'merchantid' => 'merchantid',
         'message' => 'message',
         'result' => 'result',
-        'scheme' => 'scheme'
+        'scheme' => 'scheme',
+        'transno' => 'transno'
     ];
 
     /**
@@ -141,7 +144,8 @@ class BatchTransactionResultModel implements ModelInterface, ArrayAccess, \JsonS
         'merchantid' => 'setMerchantid',
         'message' => 'setMessage',
         'result' => 'setResult',
-        'scheme' => 'setScheme'
+        'scheme' => 'setScheme',
+        'transno' => 'setTransno'
     ];
 
     /**
@@ -158,7 +162,8 @@ class BatchTransactionResultModel implements ModelInterface, ArrayAccess, \JsonS
         'merchantid' => 'getMerchantid',
         'message' => 'getMessage',
         'result' => 'getResult',
-        'scheme' => 'getScheme'
+        'scheme' => 'getScheme',
+        'transno' => 'getTransno'
     ];
 
     /**
@@ -227,6 +232,7 @@ class BatchTransactionResultModel implements ModelInterface, ArrayAccess, \JsonS
         $this->container['message'] = $data['message'] ?? null;
         $this->container['result'] = $data['result'] ?? null;
         $this->container['scheme'] = $data['scheme'] ?? null;
+        $this->container['transno'] = $data['transno'] ?? null;
     }
 
     /**
@@ -512,6 +518,30 @@ class BatchTransactionResultModel implements ModelInterface, ArrayAccess, \JsonS
     public function setScheme($scheme)
     {
         $this->container['scheme'] = $scheme;
+
+        return $this;
+    }
+
+    /**
+     * Gets transno
+     *
+     * @return int|null
+     */
+    public function getTransno()
+    {
+        return $this->container['transno'];
+    }
+
+    /**
+     * Sets transno
+     *
+     * @param int|null $transno The resulting transaction number, ordered incrementally from 1 for every merchant_id. The value will default to less than 1 for transactions that do not have a transaction number issued.
+     *
+     * @return self
+     */
+    public function setTransno($transno)
+    {
+        $this->container['transno'] = $transno;
 
         return $this;
     }
