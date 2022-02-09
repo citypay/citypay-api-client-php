@@ -29,12 +29,14 @@ use CityPay\Model\ApiKey;
 use CityPay\Model\AuthRequest;
 use CityPay\Model\CardHolderAccount;
 use CityPay\Model\ChargeRequest;
+use CityPay\Model\CResAuthRequest;
 use CityPay\Model\Ping;
 use CityPay\Model\RegisterCard;
 use PHPUnit\Framework\TestCase;
 use GuzzleHttp;
 use DateTime;
-
+use \GuzzleHttp\Psr7\Request;
+use \GuzzleHttp\Client;
 
 class ApiSandboxIntegrationTest extends TestCase
 {
@@ -154,12 +156,76 @@ class ApiSandboxIntegrationTest extends TestCase
             'merchantid' => self::$merchant_id,
             'threedsecure' => array("tds_policy" => "2")
         );
+
         $authRequest = new AuthRequest($data);
         $decision = $apiInstance->authorisationRequest($authRequest);
         self::assertEquals("001", $decision['auth_response']['result_code']);
         self::assertEquals($id, $decision['auth_response']['identifier']);
         self::assertEquals("A12345", $decision['auth_response']['authcode']);
         self::assertEquals(1395, $decision['auth_response']['amount']);
+    }
+
+    /**
+     * Test Payment Processing "Authorise" 3DSv2
+     */
+    public function testAuthorise3DSv2(): void
+    {
+        $apiInstance = new PaymentProcessingApi(new GuzzleHttp\Client(), self::$config);
+        $id = uniqid();
+        $data = array(
+            'amount' => 1396,
+            'cardnumber' => '4000 0000 0000 0002',
+            'expmonth' => 12,
+            'expyear' => 2030,
+            'csc' => '123',
+            'identifier' => $id,
+            'merchantid' => self::$merchant_id,
+            'threedsecure' => array(
+                "cp_bx" => "eyJhIjoiRkFwSCIsImMiOjI0LCJpIjoid3dIOTExTlBKSkdBRVhVZCIsImoiOmZhbHNlLCJsIjoiZW4tVVMiLCJoIjoxNDQwLCJ3IjoyNTYwLCJ0IjowLCJ1IjoiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTFfMl8zKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODkuMC40Mzg5LjgyIFNhZmFyaS81MzcuMzYiLCJ2IjoiMS4wLjAifQ",
+                "merchant_termurl" => "https://citypay.com/acs/return")
+        );
+
+        $authRequest = new AuthRequest($data);
+        $decision = $apiInstance->authorisationRequest($authRequest);
+
+        self::assertEmpty($decision['auth_response']);
+        self::assertNotEmpty($decision['request_challenged']);
+        self::assertEmpty($decision['authen_required']);
+
+        $response = $decision['request_challenged'];
+        self::assertNotEmpty($response['creq']);
+        self::assertNotEmpty($response['acs_url']);
+        self::assertNotEmpty($response['threedserver_trans_id']);
+
+        $client = new Client();
+        $headers['Content-Type'] = "application/json";
+        $httpBodyString = (object) array("threeDSSessionData" => $response['three_d_server_trans_id'], "creq"=> $response['creq']);
+        $httpBodyJson = json_encode($httpBodyString);
+
+        $request = new Request(
+            'POST',
+            "https://sandbox.citypay.com/3dsv2/acs",
+            $headers,
+            $httpBodyJson
+        );
+
+        $res = $client->send($request);
+
+
+        $content = json_decode((string) $res->getBody(), true);
+
+        self::assertNotEmpty($content['acsTransID']);
+        self::assertNotEmpty($content['messageType']);
+        self::assertNotEmpty($content['messageVersion']);
+        self::assertNotEmpty($content['threeDSServerTransID']);
+        self::assertNotEmpty($content['transStatus']);
+
+        $cResAuthRequest = new CResAuthRequest(array("cres" => base64_encode($res->getBody())));
+        $cResRequestResponse = $apiInstance->cResRequestWithHttpInfo($cResAuthRequest);
+        self::assertEquals(1396, $cResRequestResponse[0]['amount']);
+        self::assertEquals("A12345", $cResRequestResponse[0]['authcode']);
+        self::assertEquals("Y", $cResRequestResponse[0]['authen_result']);
+        self::assertEquals(1, $cResRequestResponse[0]['authorised']);
     }
 
     /**
