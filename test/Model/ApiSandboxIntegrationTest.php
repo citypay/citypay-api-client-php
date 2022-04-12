@@ -32,6 +32,7 @@ use CityPay\Model\ChargeRequest;
 use CityPay\Model\CResAuthRequest;
 use CityPay\Model\Ping;
 use CityPay\Model\RegisterCard;
+use CityPay\Utils\Digest;
 use PHPUnit\Framework\TestCase;
 use GuzzleHttp;
 use DateTime;
@@ -43,7 +44,7 @@ class ApiSandboxIntegrationTest extends TestCase
     private static $config;
     private static $client_id;
     private static $merchant_id;
-
+    private static $licence_key;
 
     /**
      * Setup before running any test case
@@ -56,6 +57,7 @@ class ApiSandboxIntegrationTest extends TestCase
             $clientId = getenv("CP_CLIENT_ID");
             self::$client_id = $clientId;
             self::$merchant_id = $merchantId;
+            self::$licence_key = $licenceKey;
 
             // long method
             // $apiKeyCredentials = new ApiKey($clientId, $licenceKey);
@@ -66,7 +68,6 @@ class ApiSandboxIntegrationTest extends TestCase
 
             self::$config = Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', $apiKey);
             self::$config = Configuration::getDefaultConfiguration()->setHost('https://sandbox.citypay.com/v6');
-
 
         } else {
             echo('Unable to obtain ENV variables to generate API Key!!');
@@ -163,6 +164,7 @@ class ApiSandboxIntegrationTest extends TestCase
         self::assertEquals($id, $decision['auth_response']['identifier']);
         self::assertEquals("A12345", $decision['auth_response']['authcode']);
         self::assertEquals(1395, $decision['auth_response']['amount']);
+        self::assertEquals(True,  Digest::validateDigest($decision['auth_response'], self::$licence_key));
     }
 
     /**
