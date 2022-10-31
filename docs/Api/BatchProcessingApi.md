@@ -1,12 +1,12 @@
 # CityPay\BatchProcessingApi
 
-All URIs are relative to https://api.citypay.com/v6.
+All URIs are relative to https://api.citypay.com.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**batchProcessRequest()**](BatchProcessingApi.md#batchProcessRequest) | **POST** /batch/process | Batch Process Request
-[**checkBatchStatusRequest()**](BatchProcessingApi.md#checkBatchStatusRequest) | **POST** /batch/status | CheckBatchStatus
-[**getBatchReportRequest()**](BatchProcessingApi.md#getBatchReportRequest) | **POST** /batch/retrieve | BatchReportRequest
+[**batchProcessRequest()**](BatchProcessingApi.md#batchProcessRequest) | **POST** /v6/batch/process | Batch Process Request
+[**batchReportRequest()**](BatchProcessingApi.md#batchReportRequest) | **POST** /v6/batch/retrieve | BatchReportRequest
+[**checkBatchStatusRequest()**](BatchProcessingApi.md#checkBatchStatusRequest) | **POST** /v6/batch/status | CheckBatchStatus
 
 
 ## `batchProcessRequest()`
@@ -71,6 +71,68 @@ Name | Type | Description  | Notes
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `batchReportRequest()`
+
+```php
+batchReportRequest($batch_report_request): \CityPay\Model\BatchReportResponseModel
+```
+
+BatchReportRequest
+
+The operation is used to retrieve a report of the result of a batch process.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: cp-api-key
+$config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
+
+
+$apiInstance = new CityPay\Api\BatchProcessingApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$batch_report_request = new \CityPay\Model\BatchReportRequest(); // \CityPay\Model\BatchReportRequest
+
+try {
+    $result = $apiInstance->batchReportRequest($batch_report_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling BatchProcessingApi->batchReportRequest: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **batch_report_request** | [**\CityPay\Model\BatchReportRequest**](../Model/BatchReportRequest.md)|  |
+
+### Return type
+
+[**\CityPay\Model\BatchReportResponseModel**](../Model/BatchReportResponseModel.md)
+
+### Authorization
+
+[cp-api-key](../../README.md#cp-api-key)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`, `text/xml`
+- **Accept**: `application/json`, `text/xml`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `checkBatchStatusRequest()`
 
 ```php
@@ -119,68 +181,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\CityPay\Model\CheckBatchStatusResponse**](../Model/CheckBatchStatusResponse.md)
-
-### Authorization
-
-[cp-api-key](../../README.md#cp-api-key)
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`, `text/xml`
-- **Accept**: `application/json`, `text/xml`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `getBatchReportRequest()`
-
-```php
-getBatchReportRequest($batch_report_request): \CityPay\Model\BatchReportResponseModel
-```
-
-BatchReportRequest
-
-The operation is used to retrieve a report of the result of a batch process.
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure API key authorization: cp-api-key
-$config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
-
-
-$apiInstance = new CityPay\Api\BatchProcessingApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$batch_report_request = new \CityPay\Model\BatchReportRequest(); // \CityPay\Model\BatchReportRequest
-
-try {
-    $result = $apiInstance->getBatchReportRequest($batch_report_request);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling BatchProcessingApi->getBatchReportRequest: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **batch_report_request** | [**\CityPay\Model\BatchReportRequest**](../Model/BatchReportRequest.md)|  |
-
-### Return type
-
-[**\CityPay\Model\BatchReportResponseModel**](../Model/BatchReportResponseModel.md)
 
 ### Authorization
 

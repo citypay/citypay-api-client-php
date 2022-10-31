@@ -8,10 +8,8 @@ provides a number of payment mechanisms including: Internet, MOTO, Continuous Au
 Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.
 
 ## Compliance and Security
-<aside class=\"notice\">
-  Before we begin a reminder that your application will need to adhere to PCI-DSS standards to operate safely
-  and to meet requirements set out by Visa and MasterCard and the PCI Security Standards Council including:
-</aside>
+Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by 
+Visa and MasterCard and the PCI Security Standards Council. These include
 
 * Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at
   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments
@@ -83,53 +81,68 @@ $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey(cp-api-key
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey(cp-api-key, $apiKey = ApiKey::newKey($clientId, $licenceKey);
 
 
-$apiInstance = new CityPay\Api\BatchProcessingApi(
+$apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$process_batch_request = new \CityPay\Model\ProcessBatchRequest(); // \CityPay\Model\ProcessBatchRequest
+$auth_request = new \CityPay\Model\AuthRequest(); // \CityPay\Model\AuthRequest
 
 try {
-    $result = $apiInstance->batchProcessRequest($process_batch_request);
+    $result = $apiInstance->authorisationRequest($auth_request);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling BatchProcessingApi->batchProcessRequest: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling AuthorisationAndPaymentApi->authorisationRequest: ', $e->getMessage(), PHP_EOL;
 }
 
 ```
 
 ## API Endpoints
 
-All URIs are relative to *https://api.citypay.com/v6*
+All URIs are relative to *https://api.citypay.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BatchProcessingApi* | [**batchProcessRequest**](docs/Api/BatchProcessingApi.md#batchprocessrequest) | **POST** /batch/process | Batch Process Request
-*BatchProcessingApi* | [**checkBatchStatusRequest**](docs/Api/BatchProcessingApi.md#checkbatchstatusrequest) | **POST** /batch/status | CheckBatchStatus
-*BatchProcessingApi* | [**getBatchReportRequest**](docs/Api/BatchProcessingApi.md#getbatchreportrequest) | **POST** /batch/retrieve | BatchReportRequest
-*CardHolderAccountApi* | [**accountCardDeleteRequest**](docs/Api/CardHolderAccountApi.md#accountcarddeleterequest) | **DELETE** /account/{accountid}/card/{cardId} | Card Deletion
-*CardHolderAccountApi* | [**accountCardRegisterRequest**](docs/Api/CardHolderAccountApi.md#accountcardregisterrequest) | **POST** /account/{accountid}/register | Card Registration
-*CardHolderAccountApi* | [**accountCardStatusRequest**](docs/Api/CardHolderAccountApi.md#accountcardstatusrequest) | **POST** /account/{accountid}/card/{cardId}/status | Card Status
-*CardHolderAccountApi* | [**accountChangeContactRequest**](docs/Api/CardHolderAccountApi.md#accountchangecontactrequest) | **POST** /account/{accountid}/contact | Contact Details Update
-*CardHolderAccountApi* | [**accountCreate**](docs/Api/CardHolderAccountApi.md#accountcreate) | **POST** /account/create | Account Create
-*CardHolderAccountApi* | [**accountDeleteRequest**](docs/Api/CardHolderAccountApi.md#accountdeleterequest) | **DELETE** /account/{accountid} | Account Deletion
-*CardHolderAccountApi* | [**accountExistsRequest**](docs/Api/CardHolderAccountApi.md#accountexistsrequest) | **GET** /account-exists/{accountid} | Account Exists
-*CardHolderAccountApi* | [**accountRetrieveRequest**](docs/Api/CardHolderAccountApi.md#accountretrieverequest) | **GET** /account/{accountid} | Account Retrieval
-*CardHolderAccountApi* | [**accountStatusRequest**](docs/Api/CardHolderAccountApi.md#accountstatusrequest) | **POST** /account/{accountid}/status | Account Status
-*CardHolderAccountApi* | [**chargeRequest**](docs/Api/CardHolderAccountApi.md#chargerequest) | **POST** /charge | Charge
-*OperationalApi* | [**aclCheckRequest**](docs/Api/OperationalApi.md#aclcheckrequest) | **POST** /acl/check | ACL Check Request
-*OperationalApi* | [**listMerchantsRequest**](docs/Api/OperationalApi.md#listmerchantsrequest) | **GET** /merchants/{clientid} | List Merchants Request
-*OperationalApi* | [**pingRequest**](docs/Api/OperationalApi.md#pingrequest) | **POST** /ping | Ping Request
-*PaymentProcessingApi* | [**authorisationRequest**](docs/Api/PaymentProcessingApi.md#authorisationrequest) | **POST** /authorise | Authorisation
-*PaymentProcessingApi* | [**binRangeLookupRequest**](docs/Api/PaymentProcessingApi.md#binrangelookuprequest) | **POST** /bin | Bin Lookup
-*PaymentProcessingApi* | [**cResRequest**](docs/Api/PaymentProcessingApi.md#cresrequest) | **POST** /cres | CRes
-*PaymentProcessingApi* | [**captureRequest**](docs/Api/PaymentProcessingApi.md#capturerequest) | **POST** /capture | Capture
-*PaymentProcessingApi* | [**paResRequest**](docs/Api/PaymentProcessingApi.md#paresrequest) | **POST** /pares | PaRes
-*PaymentProcessingApi* | [**refundRequest**](docs/Api/PaymentProcessingApi.md#refundrequest) | **POST** /refund | Refund
-*PaymentProcessingApi* | [**retrievalRequest**](docs/Api/PaymentProcessingApi.md#retrievalrequest) | **POST** /retrieve | Retrieval
-*PaymentProcessingApi* | [**voidRequest**](docs/Api/PaymentProcessingApi.md#voidrequest) | **POST** /void | Void
+*AuthorisationAndPaymentApi* | [**authorisationRequest**](docs/Api/AuthorisationAndPaymentApi.md#authorisationrequest) | **POST** /v6/authorise | Authorisation
+*AuthorisationAndPaymentApi* | [**binRangeLookupRequest**](docs/Api/AuthorisationAndPaymentApi.md#binrangelookuprequest) | **POST** /v6/bin | Bin Lookup
+*AuthorisationAndPaymentApi* | [**cResRequest**](docs/Api/AuthorisationAndPaymentApi.md#cresrequest) | **POST** /v6/cres | CRes
+*AuthorisationAndPaymentApi* | [**captureRequest**](docs/Api/AuthorisationAndPaymentApi.md#capturerequest) | **POST** /v6/capture | Capture
+*AuthorisationAndPaymentApi* | [**paResRequest**](docs/Api/AuthorisationAndPaymentApi.md#paresrequest) | **POST** /v6/pares | PaRes
+*AuthorisationAndPaymentApi* | [**refundRequest**](docs/Api/AuthorisationAndPaymentApi.md#refundrequest) | **POST** /v6/refund | Refund
+*AuthorisationAndPaymentApi* | [**retrievalRequest**](docs/Api/AuthorisationAndPaymentApi.md#retrievalrequest) | **POST** /v6/retrieve | Retrieval
+*AuthorisationAndPaymentApi* | [**voidRequest**](docs/Api/AuthorisationAndPaymentApi.md#voidrequest) | **POST** /v6/void | Void
+*BatchProcessingApi* | [**batchProcessRequest**](docs/Api/BatchProcessingApi.md#batchprocessrequest) | **POST** /v6/batch/process | Batch Process Request
+*BatchProcessingApi* | [**batchReportRequest**](docs/Api/BatchProcessingApi.md#batchreportrequest) | **POST** /v6/batch/retrieve | BatchReportRequest
+*BatchProcessingApi* | [**checkBatchStatusRequest**](docs/Api/BatchProcessingApi.md#checkbatchstatusrequest) | **POST** /v6/batch/status | CheckBatchStatus
+*CardHolderAccountApi* | [**accountCardDeleteRequest**](docs/Api/CardHolderAccountApi.md#accountcarddeleterequest) | **DELETE** /v6/account/{accountid}/card/{cardId} | Card Deletion
+*CardHolderAccountApi* | [**accountCardRegisterRequest**](docs/Api/CardHolderAccountApi.md#accountcardregisterrequest) | **POST** /v6/account/{accountid}/register | Card Registration
+*CardHolderAccountApi* | [**accountCardStatusRequest**](docs/Api/CardHolderAccountApi.md#accountcardstatusrequest) | **POST** /v6/account/{accountid}/card/{cardId}/status | Card Status
+*CardHolderAccountApi* | [**accountChangeContactRequest**](docs/Api/CardHolderAccountApi.md#accountchangecontactrequest) | **POST** /v6/account/{accountid}/contact | Contact Details Update
+*CardHolderAccountApi* | [**accountCreate**](docs/Api/CardHolderAccountApi.md#accountcreate) | **POST** /v6/account/create | Account Create
+*CardHolderAccountApi* | [**accountDeleteRequest**](docs/Api/CardHolderAccountApi.md#accountdeleterequest) | **DELETE** /v6/account/{accountid} | Account Deletion
+*CardHolderAccountApi* | [**accountExistsRequest**](docs/Api/CardHolderAccountApi.md#accountexistsrequest) | **GET** /v6/account-exists/{accountid} | Account Exists
+*CardHolderAccountApi* | [**accountRetrieveRequest**](docs/Api/CardHolderAccountApi.md#accountretrieverequest) | **GET** /v6/account/{accountid} | Account Retrieval
+*CardHolderAccountApi* | [**accountStatusRequest**](docs/Api/CardHolderAccountApi.md#accountstatusrequest) | **POST** /v6/account/{accountid}/status | Account Status
+*CardHolderAccountApi* | [**chargeRequest**](docs/Api/CardHolderAccountApi.md#chargerequest) | **POST** /v6/charge | Charge
+*DirectPostApi* | [**directCResAuthRequest**](docs/Api/DirectPostApi.md#directcresauthrequest) | **POST** /direct/cres/auth/{uuid} | Handles a CRes response from ACS, returning back the result of authorisation
+*DirectPostApi* | [**directCResTokeniseRequest**](docs/Api/DirectPostApi.md#directcrestokeniserequest) | **POST** /direct/cres/tokenise/{uuid} | Handles a CRes response from ACS, returning back a token for future authorisation
+*DirectPostApi* | [**directPostAuthRequest**](docs/Api/DirectPostApi.md#directpostauthrequest) | **POST** /direct/auth | Direct Post Auth Request
+*DirectPostApi* | [**directPostTokeniseRequest**](docs/Api/DirectPostApi.md#directposttokeniserequest) | **POST** /direct/tokenise | Direct Post Tokenise Request
+*DirectPostApi* | [**tokenRequest**](docs/Api/DirectPostApi.md#tokenrequest) | **POST** /direct/token | Direct Post Token Request
+*OperationalFunctionsApi* | [**aclCheckRequest**](docs/Api/OperationalFunctionsApi.md#aclcheckrequest) | **POST** /v6/acl/check | ACL Check Request
+*OperationalFunctionsApi* | [**domainKeyCheckRequest**](docs/Api/OperationalFunctionsApi.md#domainkeycheckrequest) | **POST** /dk/check | Domain Key Check Request
+*OperationalFunctionsApi* | [**domainKeyGenRequest**](docs/Api/OperationalFunctionsApi.md#domainkeygenrequest) | **POST** /dk/gen | Domain Key Generation Request
+*OperationalFunctionsApi* | [**listMerchantsRequest**](docs/Api/OperationalFunctionsApi.md#listmerchantsrequest) | **GET** /v6/merchants/{clientid} | List Merchants Request
+*OperationalFunctionsApi* | [**pingRequest**](docs/Api/OperationalFunctionsApi.md#pingrequest) | **POST** /v6/ping | Ping Request
+*PaylinkApi* | [**tokenAdjustmentRequest**](docs/Api/PaylinkApi.md#tokenadjustmentrequest) | **POST** /paylink/{token}/adjustment | Paylink Token Adjustment
+*PaylinkApi* | [**tokenCloseRequest**](docs/Api/PaylinkApi.md#tokencloserequest) | **PUT** /paylink/{token}/close | Close Paylink Token
+*PaylinkApi* | [**tokenCreateBillPaymentRequest**](docs/Api/PaylinkApi.md#tokencreatebillpaymentrequest) | **POST** /paylink/bill-payment | Create Bill Payment Paylink Token
+*PaylinkApi* | [**tokenCreateRequest**](docs/Api/PaylinkApi.md#tokencreaterequest) | **POST** /paylink/create | Create Paylink Token
+*PaylinkApi* | [**tokenReconciledRequest**](docs/Api/PaylinkApi.md#tokenreconciledrequest) | **PUT** /paylink/{token}/reconciled | Reconcile Paylink Token
+*PaylinkApi* | [**tokenReopenRequest**](docs/Api/PaylinkApi.md#tokenreopenrequest) | **PUT** /paylink/{token}/reopen | Reopen Paylink Token
+*PaylinkApi* | [**tokenStatusChangesRequest**](docs/Api/PaylinkApi.md#tokenstatuschangesrequest) | **POST** /paylink/token/changes | Paylink Token Audit
+*PaylinkApi* | [**tokenStatusRequest**](docs/Api/PaylinkApi.md#tokenstatusrequest) | **GET** /paylink/{token}/status | Paylink Token Status
 
 ## Models
 
@@ -162,13 +175,41 @@ Class | Method | HTTP request | Description
 - [CheckBatchStatusResponse](docs/Model/CheckBatchStatusResponse.md)
 - [ContactDetails](docs/Model/ContactDetails.md)
 - [Decision](docs/Model/Decision.md)
+- [DirectPostRequest](docs/Model/DirectPostRequest.md)
+- [DirectTokenAuthRequest](docs/Model/DirectTokenAuthRequest.md)
+- [DomainKeyCheckRequest](docs/Model/DomainKeyCheckRequest.md)
+- [DomainKeyRequest](docs/Model/DomainKeyRequest.md)
+- [DomainKeyResponse](docs/Model/DomainKeyResponse.md)
 - [Error](docs/Model/Error.md)
+- [EventDataModel](docs/Model/EventDataModel.md)
 - [Exists](docs/Model/Exists.md)
 - [ExternalMPI](docs/Model/ExternalMPI.md)
 - [ListMerchantsResponse](docs/Model/ListMerchantsResponse.md)
 - [MCC6012](docs/Model/MCC6012.md)
 - [Merchant](docs/Model/Merchant.md)
 - [PaResAuthRequest](docs/Model/PaResAuthRequest.md)
+- [PaylinkAddress](docs/Model/PaylinkAddress.md)
+- [PaylinkAdjustmentRequest](docs/Model/PaylinkAdjustmentRequest.md)
+- [PaylinkAttachmentRequest](docs/Model/PaylinkAttachmentRequest.md)
+- [PaylinkAttachmentResult](docs/Model/PaylinkAttachmentResult.md)
+- [PaylinkBillPaymentTokenRequest](docs/Model/PaylinkBillPaymentTokenRequest.md)
+- [PaylinkCardHolder](docs/Model/PaylinkCardHolder.md)
+- [PaylinkCart](docs/Model/PaylinkCart.md)
+- [PaylinkCartItemModel](docs/Model/PaylinkCartItemModel.md)
+- [PaylinkConfig](docs/Model/PaylinkConfig.md)
+- [PaylinkCustomParam](docs/Model/PaylinkCustomParam.md)
+- [PaylinkEmailNotificationPath](docs/Model/PaylinkEmailNotificationPath.md)
+- [PaylinkErrorCode](docs/Model/PaylinkErrorCode.md)
+- [PaylinkFieldGuardModel](docs/Model/PaylinkFieldGuardModel.md)
+- [PaylinkPartPayments](docs/Model/PaylinkPartPayments.md)
+- [PaylinkSMSNotificationPath](docs/Model/PaylinkSMSNotificationPath.md)
+- [PaylinkStateEvent](docs/Model/PaylinkStateEvent.md)
+- [PaylinkTokenCreated](docs/Model/PaylinkTokenCreated.md)
+- [PaylinkTokenRequestModel](docs/Model/PaylinkTokenRequestModel.md)
+- [PaylinkTokenStatus](docs/Model/PaylinkTokenStatus.md)
+- [PaylinkTokenStatusChangeRequest](docs/Model/PaylinkTokenStatusChangeRequest.md)
+- [PaylinkTokenStatusChangeResponse](docs/Model/PaylinkTokenStatusChangeResponse.md)
+- [PaylinkUI](docs/Model/PaylinkUI.md)
 - [Ping](docs/Model/Ping.md)
 - [ProcessBatchRequest](docs/Model/ProcessBatchRequest.md)
 - [ProcessBatchResponse](docs/Model/ProcessBatchResponse.md)
@@ -177,6 +218,7 @@ Class | Method | HTTP request | Description
 - [RequestChallenged](docs/Model/RequestChallenged.md)
 - [RetrieveRequest](docs/Model/RetrieveRequest.md)
 - [ThreeDSecure](docs/Model/ThreeDSecure.md)
+- [TokenisationResponseModel](docs/Model/TokenisationResponseModel.md)
 - [VoidRequest](docs/Model/VoidRequest.md)
 
 ## Authorization
@@ -186,6 +228,14 @@ Class | Method | HTTP request | Description
 - **Type**: API key
 - **API key parameter name**: cp-api-key
 - **Location**: HTTP header
+
+
+
+### cp-domain-key
+
+- **Type**: API key
+- **API key parameter name**: cp-domain-key
+- **Location**: URL query string
 
 
 ## Tests
@@ -205,6 +255,6 @@ support@citypay.com
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `6.2.11`
-    - Package version: `1.0.8`
+- API version: `6.4.7`
+    - Package version: `1.0.9`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`
