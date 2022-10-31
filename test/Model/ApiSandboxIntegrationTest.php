@@ -21,8 +21,10 @@
 
 namespace CityPay;
 
+use CityPay\Api\AuthorisationAndPaymentApi;
 use CityPay\Api\CardHolderAccountApi;
 use CityPay\Api\OperationalApi;
+use CityPay\Api\OperationalFunctionsApi;
 use CityPay\Api\PaymentProcessingApi;
 use CityPay\Model\AccountCreate;
 use CityPay\Model\ApiKey;
@@ -101,7 +103,7 @@ class ApiSandboxIntegrationTest extends TestCase
      */
     public function testPing(): void
     {
-        $apiInstance = new OperationalApi(new GuzzleHttp\Client(), self::$config);
+        $apiInstance = new OperationalFunctionsApi(new GuzzleHttp\Client(), self::$config);
 
         $pingWithIdentifier = new Ping(array('identifier' => 'it_test'));
         $resultWithIdentifier = $apiInstance->pingRequest($pingWithIdentifier);
@@ -124,7 +126,7 @@ class ApiSandboxIntegrationTest extends TestCase
      */
     public function testListMerchants(): void
     {
-        $apiInstance = new OperationalApi(new GuzzleHttp\Client(), self::$config);
+        $apiInstance = new OperationalFunctionsApi(new GuzzleHttp\Client(), self::$config);
         $result = $apiInstance->listMerchantsRequest(self::$client_id);
         self::assertEquals('CityPay Test', $result['client_name']);
         self::assertEquals(self::$client_id, $result['clientid']);
@@ -145,7 +147,7 @@ class ApiSandboxIntegrationTest extends TestCase
      */
     public function testAuthorise(): void
     {
-        $apiInstance = new PaymentProcessingApi(new GuzzleHttp\Client(), self::$config);
+        $apiInstance = new AuthorisationAndPaymentApi(new GuzzleHttp\Client(), self::$config);
         $id = uniqid();
         $data = array(
             'amount' => 1395,
