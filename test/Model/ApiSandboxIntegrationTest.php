@@ -67,7 +67,7 @@ class ApiSandboxIntegrationTest extends TestCase
             $apiKey = ApiKey::newKey($clientId, $licenceKey);
 
             self::$config = Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', $apiKey);
-            self::$config = Configuration::getDefaultConfiguration()->setHost('https://sandbox.citypay.com/v6');
+            self::$config = Configuration::getDefaultConfiguration()->setHost('https://sandbox.citypay.com');
 
         } else {
             echo('Unable to obtain ENV variables to generate API Key!!');
