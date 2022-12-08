@@ -23,9 +23,7 @@ namespace CityPay;
 
 use CityPay\Api\AuthorisationAndPaymentApi;
 use CityPay\Api\CardHolderAccountApi;
-use CityPay\Api\OperationalApi;
 use CityPay\Api\OperationalFunctionsApi;
-use CityPay\Api\PaymentProcessingApi;
 use CityPay\Model\AccountCreate;
 use CityPay\Model\ApiKey;
 use CityPay\Model\AuthRequest;
@@ -174,7 +172,7 @@ class ApiSandboxIntegrationTest extends TestCase
      */
     public function testAuthorise3DSv2(): void
     {
-        $apiInstance = new PaymentProcessingApi(new GuzzleHttp\Client(), self::$config);
+        $apiInstance = new AuthorisationAndPaymentApi(new GuzzleHttp\Client(), self::$config);
         $id = uniqid();
         $data = array(
             'amount' => 1396,

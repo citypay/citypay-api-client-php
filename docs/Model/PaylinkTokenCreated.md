@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **attachments** | [**\CityPay\Model\PaylinkAttachmentResult**](PaylinkAttachmentResult.md) |  | [optional]
 **bps** | **string** | true if BPS has been enabled on this token. | [optional]
-**date_created** | [**\DateTime**](\DateTime.md) | Date and time the token was generated. | [optional]
+**date_created** | **\DateTime** | Date and time the token was generated. | [optional]
 **errors** | [**\CityPay\Model\PaylinkErrorCode[]**](PaylinkErrorCode.md) |  | [optional]
 **id** | **string** | A unique id of the request. |
 **identifier** | **string** | The identifier as presented in the TokenRequest. | [optional]

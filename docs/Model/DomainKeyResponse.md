@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**date_created** | [**\DateTime**](\DateTime.md) | The date the domain key was generated. | [optional]
+**date_created** | **\DateTime** | The date the domain key was generated. | [optional]
 **domain** | **string[]** |  |
 **domain_key** | **string** | The domain key generated. | [optional]
 **live** | **bool** | true if this key is a production key. | [optional]
