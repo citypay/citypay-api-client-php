@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **account_id** | **string** | The card holder account id used for the transaction. |
 **amount** | **int** | The amount of the transaction processed. | [optional]
 **authcode** | **string** | The authorisation code of a successful transaction. | [optional]
-**datetime** | [**\DateTime**](\DateTime.md) | The datetime that the transaction was processed. | [optional]
+**datetime** | **\DateTime** | The datetime that the transaction was processed. | [optional]
 **identifier** | **string** | The identifier of the transaction. |
 **maskedpan** | **string** | A masked value of the card number used for processing displaying limited values that can be used on a receipt. | [optional]
 **merchantid** | **int** | The merchant id of the transaction. |
