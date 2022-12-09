@@ -201,7 +201,7 @@ class ApiSandboxIntegrationTest extends TestCase
 
         $client = new Client();
         $headers['Content-Type'] = "application/json";
-        $httpBodyString = (object) array("threeDSSessionData" => $response['three_d_server_trans_id'], "creq"=> $response['creq']);
+        $httpBodyString = (object) array("threeDSSessionData" => $response['threedserver_trans_id'], "creq"=> $response['creq']);
         $httpBodyJson = json_encode($httpBodyString);
 
         $request = new Request(
