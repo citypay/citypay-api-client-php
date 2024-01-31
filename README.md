@@ -1,6 +1,6 @@
 # CityPay
 
-[![Build Status](https://api.travis-ci.com/citypay/citypay-api-client-php.svg?branch=master)](https://app.travis-ci.com/github/citypay/citypay-api-client-php)
+[![PHP PHPUnit Tests](https://github.com/citypay/citypay-api-client-php/actions/workflows/build.yml/badge.svg)](https://github.com/citypay/citypay-api-client-php/actions/workflows/build.yml)
 
 This CityPay API is an HTTP RESTful payment API used for direct server to server transactional processing. It
 provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing,
