@@ -1,19 +1,19 @@
 # CityPay\CardHolderAccountApi
 
-All URIs are relative to https://api.citypay.com.
+All URIs are relative to https://api.citypay.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**accountCardDeleteRequest()**](CardHolderAccountApi.md#accountCardDeleteRequest) | **DELETE** /v6/account/{accountid}/card/{cardId} | Card Deletion
-[**accountCardRegisterRequest()**](CardHolderAccountApi.md#accountCardRegisterRequest) | **POST** /v6/account/{accountid}/register | Card Registration
-[**accountCardStatusRequest()**](CardHolderAccountApi.md#accountCardStatusRequest) | **POST** /v6/account/{accountid}/card/{cardId}/status | Card Status
-[**accountChangeContactRequest()**](CardHolderAccountApi.md#accountChangeContactRequest) | **POST** /v6/account/{accountid}/contact | Contact Details Update
-[**accountCreate()**](CardHolderAccountApi.md#accountCreate) | **POST** /v6/account/create | Account Create
-[**accountDeleteRequest()**](CardHolderAccountApi.md#accountDeleteRequest) | **DELETE** /v6/account/{accountid} | Account Deletion
-[**accountExistsRequest()**](CardHolderAccountApi.md#accountExistsRequest) | **GET** /v6/account-exists/{accountid} | Account Exists
-[**accountRetrieveRequest()**](CardHolderAccountApi.md#accountRetrieveRequest) | **GET** /v6/account/{accountid} | Account Retrieval
-[**accountStatusRequest()**](CardHolderAccountApi.md#accountStatusRequest) | **POST** /v6/account/{accountid}/status | Account Status
-[**chargeRequest()**](CardHolderAccountApi.md#chargeRequest) | **POST** /v6/charge | Charge
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**accountCardDeleteRequest()**](CardHolderAccountApi.md#accountCardDeleteRequest) | **DELETE** /v6/account/{accountid}/card/{cardId} | Card Deletion |
+| [**accountCardRegisterRequest()**](CardHolderAccountApi.md#accountCardRegisterRequest) | **POST** /v6/account/{accountid}/register | Card Registration |
+| [**accountCardStatusRequest()**](CardHolderAccountApi.md#accountCardStatusRequest) | **POST** /v6/account/{accountid}/card/{cardId}/status | Card Status |
+| [**accountChangeContactRequest()**](CardHolderAccountApi.md#accountChangeContactRequest) | **POST** /v6/account/{accountid}/contact | Contact Details Update |
+| [**accountCreate()**](CardHolderAccountApi.md#accountCreate) | **POST** /v6/account/create | Account Create |
+| [**accountDeleteRequest()**](CardHolderAccountApi.md#accountDeleteRequest) | **DELETE** /v6/account/{accountid} | Account Deletion |
+| [**accountExistsRequest()**](CardHolderAccountApi.md#accountExistsRequest) | **GET** /v6/account-exists/{accountid} | Account Exists |
+| [**accountRetrieveRequest()**](CardHolderAccountApi.md#accountRetrieveRequest) | **GET** /v6/account/{accountid} | Account Retrieval |
+| [**accountStatusRequest()**](CardHolderAccountApi.md#accountStatusRequest) | **POST** /v6/account/{accountid}/status | Account Status |
+| [**chargeRequest()**](CardHolderAccountApi.md#chargeRequest) | **POST** /v6/charge | Charge |
 
 
 ## `accountCardDeleteRequest()`
@@ -24,7 +24,9 @@ accountCardDeleteRequest($accountid, $card_id): \CityPay\Model\Acknowledgement
 
 Card Deletion
 
-Deletes a card from the account. The card will be marked for deletion before a subsequent purge will clear the card permanently.
+Deletes a card from the account. The card will be marked for deletion before a subsequent
+purge will clear the card permanently.
+
 
 ### Example
 
@@ -58,10 +60,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **accountid** | **string**| The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. |
- **card_id** | **string**| The id of the card that is presented by a call to retrieve a card holder account. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **accountid** | **string**| The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. | |
+| **card_id** | **string**| The id of the card that is presented by a call to retrieve a card holder account. | |
 
 ### Return type
 
@@ -88,7 +90,15 @@ accountCardRegisterRequest($accountid, $register_card): \CityPay\Model\CardHolde
 
 Card Registration
 
-Allows for a card to be registered for the account. The card will be added for future  processing and will be available as a tokenised value for future processing.  The card will be validated for  0. Being a valid card number (luhn check) 0. Having a valid expiry date 0. Being a valid bin value.
+Allows for a card to be registered for the account. The card will be added for future 
+processing and will be available as a tokenised value for future processing.
+
+The card will be validated for
+
+0. Being a valid card number (luhn check)
+0. Having a valid expiry date
+0. Being a valid bin value.
+
 
 ### Example
 
@@ -122,10 +132,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **accountid** | **string**| The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. |
- **register_card** | [**\CityPay\Model\RegisterCard**](../Model/RegisterCard.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **accountid** | **string**| The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. | |
+| **register_card** | [**\CityPay\Model\RegisterCard**](../Model/RegisterCard.md)|  | |
 
 ### Return type
 
@@ -152,7 +162,14 @@ accountCardStatusRequest($accountid, $card_id, $card_status): \CityPay\Model\Ack
 
 Card Status
 
-Updates the status of a card for processing. The following values are available  | Status | Description |  |--------|-------------| | Active | The card is active for processing and can be used for charging against with a valid token | | Inactive | The card is inactive for processing and cannot be used for processing, it will require reactivation before being used to charge | | Expired | The card has expired either due to the expiry date no longer being valid or due to a replacement card being issued |
+Updates the status of a card for processing. The following values are available
+
+| Status | Description | 
+|--------|-------------|
+| Active | The card is active for processing and can be used for charging against with a valid token |
+| Inactive | The card is inactive for processing and cannot be used for processing, it will require reactivation before being used to charge |
+| Expired | The card has expired either due to the expiry date no longer being valid or due to a replacement card being issued |
+
 
 ### Example
 
@@ -187,11 +204,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **accountid** | **string**| The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. |
- **card_id** | **string**| The id of the card that is presented by a call to retrieve a card holder account. |
- **card_status** | [**\CityPay\Model\CardStatus**](../Model/CardStatus.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **accountid** | **string**| The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. | |
+| **card_id** | **string**| The id of the card that is presented by a call to retrieve a card holder account. | |
+| **card_status** | [**\CityPay\Model\CardStatus**](../Model/CardStatus.md)|  | |
 
 ### Return type
 
@@ -252,10 +269,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **accountid** | **string**| The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. |
- **contact_details** | [**\CityPay\Model\ContactDetails**](../Model/ContactDetails.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **accountid** | **string**| The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. | |
+| **contact_details** | [**\CityPay\Model\ContactDetails**](../Model/ContactDetails.md)|  | |
 
 ### Return type
 
@@ -315,9 +332,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **account_create** | [**\CityPay\Model\AccountCreate**](../Model/AccountCreate.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **account_create** | [**\CityPay\Model\AccountCreate**](../Model/AccountCreate.md)|  | |
 
 ### Return type
 
@@ -344,7 +361,9 @@ accountDeleteRequest($accountid): \CityPay\Model\Acknowledgement
 
 Account Deletion
 
-Allows for the deletion of an account. The account will marked for deletion and subsequent purging. No further transactions will be alowed to be processed or actioned against this account.
+Allows for the deletion of an account. The account will marked for deletion and subsequent purging. No further
+transactions will be alowed to be processed or actioned against this account.
+
 
 ### Example
 
@@ -377,9 +396,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **accountid** | **string**| The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **accountid** | **string**| The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. | |
 
 ### Return type
 
@@ -407,6 +426,7 @@ accountExistsRequest($accountid): \CityPay\Model\Exists
 Account Exists
 
 Checks that an account exists and is active by providing the account id as a url parameter.
+
 
 ### Example
 
@@ -439,9 +459,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **accountid** | **string**| The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **accountid** | **string**| The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. | |
 
 ### Return type
 
@@ -468,7 +488,13 @@ accountRetrieveRequest($accountid): \CityPay\Model\CardHolderAccount
 
 Account Retrieval
 
-Allows for the retrieval of a card holder account for the given `id`. Should duplicate accounts exist for the same `id`, the first account created with that `id` will be returned.  The account can be used for tokenisation processing by listing all cards assigned to the account. The returned cards will include all `active`, `inactive` and `expired` cards. This can be used to  enable a card holder to view their wallet and make constructive choices on which card to use.
+Allows for the retrieval of a card holder account for the given `id`. Should duplicate accounts exist
+for the same `id`, the first account created with that `id` will be returned.
+
+The account can be used for tokenisation processing by listing all cards assigned to the account.
+The returned cards will include all `active`, `inactive` and `expired` cards. This can be used to 
+enable a card holder to view their wallet and make constructive choices on which card to use.
+
 
 ### Example
 
@@ -501,9 +527,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **accountid** | **string**| The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **accountid** | **string**| The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. | |
 
 ### Return type
 
@@ -530,7 +556,13 @@ accountStatusRequest($accountid, $account_status): \CityPay\Model\Acknowledgemen
 
 Account Status
 
-Updates the status of an account. An account can have the following statuses applied  | Status | Description | |--------|-------------| | Active | The account is active for processing | | Disabled | The account has been disabled and cannot be used for processing. The account will require reactivation to continue procesing |
+Updates the status of an account. An account can have the following statuses applied
+
+| Status | Description |
+|--------|-------------|
+| Active | The account is active for processing |
+| Disabled | The account has been disabled and cannot be used for processing. The account will require reactivation to continue procesing |
+
 
 ### Example
 
@@ -564,10 +596,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **accountid** | **string**| The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. |
- **account_status** | [**\CityPay\Model\AccountStatus**](../Model/AccountStatus.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **accountid** | **string**| The account id that refers to the customer&#39;s account no. This value will have been provided when setting up the card holder account. | |
+| **account_status** | [**\CityPay\Model\AccountStatus**](../Model/AccountStatus.md)|  | |
 
 ### Return type
 
@@ -594,7 +626,30 @@ chargeRequest($charge_request): \CityPay\Model\Decision
 
 Charge
 
-A charge process obtains an authorisation using a tokenised value which represents a stored card  on a card holder account.  A card must previously be registered by calling `/account-register-card` with the card details  or retrieved using `/account-retrieve`  Tokens are generated whenever a previously registered list of cards are retrieved. Each token has, by design a  relatively short time to live of 30 minutes. This is both to safe guard the merchant and card holder from  replay attacks. Tokens are also restricted to your account, preventing malicious actors from stealing details for use elsewhere.    If a token is reused after it has expired it will be rejected and a new token will be required.   Tokenisation can be used for   - repeat authorisations on a previously stored card - easy authorisations just requiring CSC values to be entered - can be used for credential on file style payments - can require full 3-D Secure authentication to retain the liability shift - wallet style usage    _Should an account be used with 3DSv2, the card holder name should also be stored alongside the card as this is a required field with both Visa and MasterCard for risk analysis._.
+A charge process obtains an authorisation using a tokenised value which represents a stored card 
+on a card holder account. 
+A card must previously be registered by calling `/account-register-card` with the card details 
+or retrieved using `/account-retrieve`
+
+Tokens are generated whenever a previously registered list of cards are retrieved. Each token has, by design a 
+relatively short time to live of 30 minutes. This is both to safe guard the merchant and card holder from 
+replay attacks. Tokens are also restricted to your account, preventing malicious actors from stealing details
+for use elsewhere.  
+
+If a token is reused after it has expired it will be rejected and a new token will be required.
+ 
+Tokenisation can be used for
+ 
+- repeat authorisations on a previously stored card
+- easy authorisations just requiring CSC values to be entered
+- can be used for credential on file style payments
+- can require full 3-D Secure authentication to retain the liability shift
+- wallet style usage
+ 
+
+_Should an account be used with 3DSv2, the card holder name should also be stored alongside the card as this is a
+required field with both Visa and MasterCard for risk analysis._.
+
 
 ### Example
 
@@ -627,9 +682,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **charge_request** | [**\CityPay\Model\ChargeRequest**](../Model/ChargeRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **charge_request** | [**\CityPay\Model\ChargeRequest**](../Model/ChargeRequest.md)|  | |
 
 ### Return type
 

@@ -216,13 +216,7 @@ class ApiSandboxIntegrationTest extends TestCase
 
         $content = json_decode((string) $res->getBody(), true);
 
-        self::assertNotEmpty($content['acsTransID']);
-        self::assertNotEmpty($content['messageType']);
-        self::assertNotEmpty($content['messageVersion']);
-        self::assertNotEmpty($content['threeDSServerTransID']);
-        self::assertNotEmpty($content['transStatus']);
-
-        $cResAuthRequest = new CResAuthRequest(array("cres" => base64_encode($res->getBody())));
+        $cResAuthRequest = new CResAuthRequest(array("cres" => $content['cres']));
         $cResRequestResponse = $apiInstance->cResRequestWithHttpInfo($cResAuthRequest);
         self::assertEquals(1396, $cResRequestResponse[0]['amount']);
         self::assertEquals("A12345", $cResRequestResponse[0]['authcode']);

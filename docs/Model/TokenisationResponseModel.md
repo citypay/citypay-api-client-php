@@ -11,8 +11,8 @@ Name | Type | Description | Notes
 **eci** | **string** | An Electronic Commerce Indicator (ECI) used to identify the result of authentication using 3DSecure. | [optional]
 **identifier** | **string** | The identifier provided within the request. | [optional]
 **maskedpan** | **string** | A masked value of the card number used for processing displaying limited values that can be used on a receipt. | [optional]
-**scheme** | **string** | A name of the card scheme of the transaction that processed the transaction such as Visa or MasterCard. | [optional]
+**scheme** | **string** | The name of the card scheme of the transaction that processed the transaction such as Visa or MasterCard. | [optional]
 **sig_id** | **string** | A Base58 encoded SHA-256 digest generated from the token value Base58 decoded and appended with the nonce value UTF-8 decoded. | [optional]
-**token** | **string** | The token used for presentment to authorisation later in the procsesing flow. | [optional]
+**token** | **string** | The token used for presentment to authorisation later in the processing flow. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

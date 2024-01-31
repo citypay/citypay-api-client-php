@@ -1,14 +1,14 @@
 # CityPay\OperationalFunctionsApi
 
-All URIs are relative to https://api.citypay.com.
+All URIs are relative to https://api.citypay.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**aclCheckRequest()**](OperationalFunctionsApi.md#aclCheckRequest) | **POST** /v6/acl/check | ACL Check Request
-[**domainKeyCheckRequest()**](OperationalFunctionsApi.md#domainKeyCheckRequest) | **POST** /dk/check | Domain Key Check Request
-[**domainKeyGenRequest()**](OperationalFunctionsApi.md#domainKeyGenRequest) | **POST** /dk/gen | Domain Key Generation Request
-[**listMerchantsRequest()**](OperationalFunctionsApi.md#listMerchantsRequest) | **GET** /v6/merchants/{clientid} | List Merchants Request
-[**pingRequest()**](OperationalFunctionsApi.md#pingRequest) | **POST** /v6/ping | Ping Request
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**aclCheckRequest()**](OperationalFunctionsApi.md#aclCheckRequest) | **POST** /v6/acl/check | ACL Check Request |
+| [**domainKeyCheckRequest()**](OperationalFunctionsApi.md#domainKeyCheckRequest) | **POST** /dk/check | Domain Key Check Request |
+| [**domainKeyGenRequest()**](OperationalFunctionsApi.md#domainKeyGenRequest) | **POST** /dk/gen | Domain Key Generation Request |
+| [**listMerchantsRequest()**](OperationalFunctionsApi.md#listMerchantsRequest) | **GET** /v6/merchants/{clientid} | List Merchants Request |
+| [**pingRequest()**](OperationalFunctionsApi.md#pingRequest) | **POST** /v6/ping | Ping Request |
 
 
 ## `aclCheckRequest()`
@@ -19,7 +19,9 @@ aclCheckRequest($acl_check_request): \CityPay\Model\AclCheckResponseModel
 
 ACL Check Request
 
-Allows the checking of IP addresses against configured ACLs. Requests can perform a lookup of addresses in subnets and services such as AWS or Azure to check that those addresses are listed in the ACLs.
+Allows the checking of IP addresses against configured ACLs. Requests can perform a lookup of addresses in subnets and
+services such as AWS or Azure to check that those addresses are listed in the ACLs.
+
 
 ### Example
 
@@ -52,9 +54,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **acl_check_request** | [**\CityPay\Model\AclCheckRequest**](../Model/AclCheckRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **acl_check_request** | [**\CityPay\Model\AclCheckRequest**](../Model/AclCheckRequest.md)|  | |
 
 ### Return type
 
@@ -81,7 +83,9 @@ domainKeyCheckRequest($domain_key_check_request): \CityPay\Model\DomainKeyRespon
 
 Domain Key Check Request
 
-Checks the contents of a `domain key`. Can be used for operational processes to ensure that the properties of a  domain key meet their expectations.
+Checks the contents of a `domain key`. Can be used for operational processes to ensure that the properties of a 
+domain key meet their expectations.
+
 
 ### Example
 
@@ -114,9 +118,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **domain_key_check_request** | [**\CityPay\Model\DomainKeyCheckRequest**](../Model/DomainKeyCheckRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **domain_key_check_request** | [**\CityPay\Model\DomainKeyCheckRequest**](../Model/DomainKeyCheckRequest.md)|  | |
 
 ### Return type
 
@@ -143,7 +147,9 @@ domainKeyGenRequest($domain_key_request): \CityPay\Model\DomainKeyResponse
 
 Domain Key Generation Request
 
-Generates a domain key based on the permissions of the calling `api-key`. Domain keys can be used in _Direct Post_ and `XHR` calls to the API services.
+Generates a domain key based on the permissions of the calling `api-key`. Domain keys can be used in _Direct Post_ and
+`XHR` calls to the API services.
+
 
 ### Example
 
@@ -176,9 +182,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **domain_key_request** | [**\CityPay\Model\DomainKeyRequest**](../Model/DomainKeyRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **domain_key_request** | [**\CityPay\Model\DomainKeyRequest**](../Model/DomainKeyRequest.md)|  | |
 
 ### Return type
 
@@ -205,7 +211,14 @@ listMerchantsRequest($clientid): \CityPay\Model\ListMerchantsResponse
 
 List Merchants Request
 
-An operational request to list current merchants for a client.  ### Sorting  Sorting can be performed by include a query parameter i.e. `/merchants/?sort=merchantid`  Fields that can be sorted are `merchantid` or `name`.
+An operational request to list current merchants for a client.
+
+### Sorting
+
+Sorting can be performed by include a query parameter i.e. `/merchants/?sort=merchantid`
+
+Fields that can be sorted are `merchantid` or `name`.
+
 
 ### Example
 
@@ -238,9 +251,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **clientid** | **string**| The client id to return merchants for, specifying \&quot;default\&quot; will use the value in your api key. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **clientid** | **string**| The client id to return merchants for, specifying \&quot;default\&quot; will use the value in your api key. | |
 
 ### Return type
 
@@ -267,7 +280,14 @@ pingRequest($ping): \CityPay\Model\Acknowledgement
 
 Ping Request
 
-A ping request which performs a connection and authentication test to the CityPay API server. The request will return a standard Acknowledgement with a response code `044` to signify a successful ping.  The ping call is useful to confirm that you will be able to access  the API from behind any firewalls and that the permission model is granting access from your source.
+A ping request which performs a connection and authentication test to the CityPay API server. The request
+will return a standard Acknowledgement with a response code `044` to signify a successful
+ping.
+
+The ping call is useful to confirm that you will be able to access 
+the API from behind any firewalls and that the permission
+model is granting access from your source.
+
 
 ### Example
 
@@ -276,15 +296,15 @@ A ping request which performs a connection and authentication test to the CityPa
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure API key authorization: cp-api-key
-$config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
-
 // Configure API key authorization: cp-domain-key
 $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-domain-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-domain-key', 'Bearer');
+
+// Configure API key authorization: cp-api-key
+$config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
 
 
 $apiInstance = new CityPay\Api\OperationalFunctionsApi(
@@ -305,9 +325,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ping** | [**\CityPay\Model\Ping**](../Model/Ping.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **ping** | [**\CityPay\Model\Ping**](../Model/Ping.md)|  | |
 
 ### Return type
 
@@ -315,7 +335,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cp-api-key](../../README.md#cp-api-key), [cp-domain-key](../../README.md#cp-domain-key)
+[cp-domain-key](../../README.md#cp-domain-key), [cp-api-key](../../README.md#cp-api-key)
 
 ### HTTP request headers
 
