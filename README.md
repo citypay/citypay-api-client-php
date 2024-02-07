@@ -1,20 +1,20 @@
 # CityPay
 
-[![Build Status](https://api.travis-ci.com/citypay/citypay-api-client-php.svg?branch=master)](https://app.travis-ci.com/github/citypay/citypay-api-client-php)
+[![PHP PHPUnit Tests](https://github.com/citypay/citypay-api-client-php/actions/workflows/build.yml/badge.svg)](https://github.com/citypay/citypay-api-client-php/actions/workflows/build.yml)
 
-This CityPay API is a HTTP RESTful payment API used for direct server to server transactional processing. It
+This CityPay API is an HTTP RESTful payment API used for direct server to server transactional processing. It
 provides a number of payment mechanisms including: Internet, MOTO, Continuous Authority transaction processing,
 3-D Secure decision handling using RFA Secure, Authorisation, Refunding, Pre-Authorisation, Cancellation/Voids and
-Completion processing. The API is also capable of tokinsed payments using Card Holder Accounts.
+Completion processing. The API is also capable of tokenized payments using cardholder Accounts.
 
 ## Compliance and Security
 Your application will need to adhere to PCI-DSS standards to operate safely and to meet requirements set out by 
 Visa and MasterCard and the PCI Security Standards Council. These include
 
-* Data must be collected using TLS version 1.2 using [strong cryptography](#enabled-tls-ciphers). We will not accept calls to our API at
+* Data must be collected using TLS version 1.2 using [strong cryptography](https://citypay.github.io/api-docs/payment-api/#enabled-tls-ciphers). We will not accept calls to our API at
   lower grade encryption levels. We regularly scan our TLS endpoints for vulnerabilities and perform TLS assessments
   as part of our compliance program.
-* The application must not store sensitive card holder data (CHD) such as the card security code (CSC) or
+* The application must not store sensitive cardholder data (CHD) such as the card security code (CSC) or
   primary access number (PAN)
 * The application must not display the full card number on receipts, it is recommended to mask the PAN
   and show the last 4 digits. The API will return this for you for ease of receipt creation
@@ -27,7 +27,7 @@ Visa and MasterCard and the PCI Security Standards Council. These include
   security vulnerabilities.
 
 
-For more information, please visit [https://citypay.com/customer-centre/technical-support.html](https://citypay.com/customer-centre/technical-support.html).
+For more information, please visit [https://www.citypay.com/contacts/](https://www.citypay.com/contacts/).
 
 ## Installation & Usage
 
@@ -113,7 +113,7 @@ Class | Method | HTTP request | Description
 *AuthorisationAndPaymentApi* | [**retrievalRequest**](docs/Api/AuthorisationAndPaymentApi.md#retrievalrequest) | **POST** /v6/retrieve | Retrieval
 *AuthorisationAndPaymentApi* | [**voidRequest**](docs/Api/AuthorisationAndPaymentApi.md#voidrequest) | **POST** /v6/void | Void
 *BatchProcessingApi* | [**batchProcessRequest**](docs/Api/BatchProcessingApi.md#batchprocessrequest) | **POST** /v6/batch/process | Batch Process Request
-*BatchProcessingApi* | [**batchReportRequest**](docs/Api/BatchProcessingApi.md#batchreportrequest) | **POST** /v6/batch/retrieve | BatchReportRequest
+*BatchProcessingApi* | [**batchRetrieveRequest**](docs/Api/BatchProcessingApi.md#batchretrieverequest) | **POST** /v6/batch/retrieve | BatchReportRequest
 *BatchProcessingApi* | [**checkBatchStatusRequest**](docs/Api/BatchProcessingApi.md#checkbatchstatusrequest) | **POST** /v6/batch/status | CheckBatchStatus
 *CardHolderAccountApi* | [**accountCardDeleteRequest**](docs/Api/CardHolderAccountApi.md#accountcarddeleterequest) | **DELETE** /v6/account/{accountid}/card/{cardId} | Card Deletion
 *CardHolderAccountApi* | [**accountCardRegisterRequest**](docs/Api/CardHolderAccountApi.md#accountcardregisterrequest) | **POST** /v6/account/{accountid}/register | Card Registration
@@ -136,13 +136,13 @@ Class | Method | HTTP request | Description
 *OperationalFunctionsApi* | [**listMerchantsRequest**](docs/Api/OperationalFunctionsApi.md#listmerchantsrequest) | **GET** /v6/merchants/{clientid} | List Merchants Request
 *OperationalFunctionsApi* | [**pingRequest**](docs/Api/OperationalFunctionsApi.md#pingrequest) | **POST** /v6/ping | Ping Request
 *PaylinkApi* | [**tokenAdjustmentRequest**](docs/Api/PaylinkApi.md#tokenadjustmentrequest) | **POST** /paylink/{token}/adjustment | Paylink Token Adjustment
+*PaylinkApi* | [**tokenChangesRequest**](docs/Api/PaylinkApi.md#tokenchangesrequest) | **POST** /paylink/token/changes | Paylink Token Audit
 *PaylinkApi* | [**tokenCloseRequest**](docs/Api/PaylinkApi.md#tokencloserequest) | **PUT** /paylink/{token}/close | Close Paylink Token
 *PaylinkApi* | [**tokenCreateBillPaymentRequest**](docs/Api/PaylinkApi.md#tokencreatebillpaymentrequest) | **POST** /paylink/bill-payment | Create Bill Payment Paylink Token
 *PaylinkApi* | [**tokenCreateRequest**](docs/Api/PaylinkApi.md#tokencreaterequest) | **POST** /paylink/create | Create Paylink Token
 *PaylinkApi* | [**tokenPurgeAttachmentsRequest**](docs/Api/PaylinkApi.md#tokenpurgeattachmentsrequest) | **PUT** /paylink/{token}/purge-attachments | Purges any attachments for a Paylink Token
 *PaylinkApi* | [**tokenReconciledRequest**](docs/Api/PaylinkApi.md#tokenreconciledrequest) | **PUT** /paylink/{token}/reconciled | Reconcile Paylink Token
 *PaylinkApi* | [**tokenReopenRequest**](docs/Api/PaylinkApi.md#tokenreopenrequest) | **PUT** /paylink/{token}/reopen | Reopen Paylink Token
-*PaylinkApi* | [**tokenStatusChangesRequest**](docs/Api/PaylinkApi.md#tokenstatuschangesrequest) | **POST** /paylink/token/changes | Paylink Token Audit
 *PaylinkApi* | [**tokenStatusRequest**](docs/Api/PaylinkApi.md#tokenstatusrequest) | **GET** /paylink/{token}/status | Paylink Token Status
 
 ## Models
@@ -224,12 +224,12 @@ Class | Method | HTTP request | Description
 
 ## Authorization
 
+Authentication schemes defined for the API:
 ### cp-api-key
 
 - **Type**: API key
 - **API key parameter name**: cp-api-key
 - **Location**: HTTP header
-
 
 
 ### cp-domain-key
@@ -256,6 +256,6 @@ support@citypay.com
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `6.4.18`
-    - Package version: `1.1.0`
+- API version: `6.6.23`
+    - Package version: `1.1.1`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

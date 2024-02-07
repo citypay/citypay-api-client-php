@@ -77,7 +77,38 @@ class AuthResponseTest extends TestCase
             'transno' => 74875,
         );
 
+        $dataNoIdent = (object)array(
+            'amount' => 0,
+            'atrn' => '',
+            'atsd' => '',
+            'authcode' => '',
+            'authen_result' => ' ',
+            'authorised' => false,
+            'avs_result' => ' ',
+            'bin_commercial' => false,
+            'bin_debit' => false,
+            'bin_description' => '',
+            'cavv' => '',
+            'context' => 'PC.0.A5298ef695b',
+            'csc_result' => ' ',
+            'currency' => '__',
+            'datetime' => '2020-08-12T07:59:11Z',
+            'eci' => '0',
+            'identifier' => '',
+            'live' => true,
+            'maskedpan' => 'N/A',
+            'merchantid' => 0,
+            'result' => 3,
+            'result_code' => 'P030',
+            'result_message' => 'Request Error: Authorisation invalid (203: Data element not in the required format or value is invalid as defined in Table A.1. threeDSSessionData)',
+            'scheme' => '',
+            'sha256' => '',
+            'trans_status' => '_',
+            'transno' => -1,
+        );
+
         $this->instance = ObjectSerializer::deserialize($data, '\CityPay\Model\AuthResponse');
+        $this->instanceNoIdent = ObjectSerializer::deserialize($dataNoIdent, '\CityPay\Model\AuthResponse');
 
     }
 
@@ -122,5 +153,7 @@ class AuthResponseTest extends TestCase
         self::assertEquals('abcdefg', $this->instance['sha256']);
         self::assertEquals('P', $this->instance['trans_status']);
         self::assertEquals(74875, $this->instance['transno']);
+        self::assertEquals('P030', $this->instanceNoIdent['result_code']);
+        self::assertEquals(3, $this->instanceNoIdent['result']);
     }
 }

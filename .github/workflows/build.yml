@@ -1,0 +1,28 @@
+name: PHP PHPUnit Tests
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      CP_CLIENT_ID: ${{ secrets.CP_CLIENT_ID }}
+      CP_LICENCE_KEY: ${{ secrets.CP_LICENCE_KEY }}
+      CP_MERCHANT_ID: ${{ secrets.CP_MERCHANT_ID }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.4
+
+      - name: Install dependencies
+        run: composer install
+
+      - name: Run tests
+        run: vendor/bin/phpunit

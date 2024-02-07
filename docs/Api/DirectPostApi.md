@@ -1,14 +1,14 @@
 # CityPay\DirectPostApi
 
-All URIs are relative to https://api.citypay.com.
+All URIs are relative to https://api.citypay.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**directCResAuthRequest()**](DirectPostApi.md#directCResAuthRequest) | **POST** /direct/cres/auth/{uuid} | Handles a CRes response from ACS, returning back the result of authorisation
-[**directCResTokeniseRequest()**](DirectPostApi.md#directCResTokeniseRequest) | **POST** /direct/cres/tokenise/{uuid} | Handles a CRes response from ACS, returning back a token for future authorisation
-[**directPostAuthRequest()**](DirectPostApi.md#directPostAuthRequest) | **POST** /direct/auth | Direct Post Auth Request
-[**directPostTokeniseRequest()**](DirectPostApi.md#directPostTokeniseRequest) | **POST** /direct/tokenise | Direct Post Tokenise Request
-[**tokenRequest()**](DirectPostApi.md#tokenRequest) | **POST** /direct/token | Direct Post Token Request
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**directCResAuthRequest()**](DirectPostApi.md#directCResAuthRequest) | **POST** /direct/cres/auth/{uuid} | Handles a CRes response from ACS, returning back the result of authorisation |
+| [**directCResTokeniseRequest()**](DirectPostApi.md#directCResTokeniseRequest) | **POST** /direct/cres/tokenise/{uuid} | Handles a CRes response from ACS, returning back a token for future authorisation |
+| [**directPostAuthRequest()**](DirectPostApi.md#directPostAuthRequest) | **POST** /direct/auth | Direct Post Auth Request |
+| [**directPostTokeniseRequest()**](DirectPostApi.md#directPostTokeniseRequest) | **POST** /direct/tokenise | Direct Post Tokenise Request |
+| [**tokenRequest()**](DirectPostApi.md#tokenRequest) | **POST** /direct/token | Direct Post Token Request |
 
 
 ## `directCResAuthRequest()`
@@ -19,7 +19,10 @@ directCResAuthRequest($uuid, $cres, $three_ds_session_data): \CityPay\Model\Auth
 
 Handles a CRes response from ACS, returning back the result of authorisation
 
-Used to post from an ACS during a ThreeDSecure direct flow process. The endpoint requires a valid `threeDSSessionData` value which defines the unique transaction through its workflow. This endpoint may be used by merchants wishing to perform a `Direct Post` integration who wish to handle the challenge flow themselves.
+Used to post from an ACS during a ThreeDSecure direct flow process. The endpoint requires a valid `threeDSSessionData`
+value which defines the unique transaction through its workflow. This endpoint may be used by merchants wishing to
+perform a `Direct Post` integration who wish to handle the challenge flow themselves.
+
 
 ### Example
 
@@ -48,11 +51,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| An identifier used to track the CReq/CRes cycle. |
- **cres** | **string**| The CRES from the ACS. | [optional]
- **three_ds_session_data** | **string**| The session data from the ACS. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| An identifier used to track the CReq/CRes cycle. | |
+| **cres** | **string**| The CRES from the ACS. | [optional] |
+| **three_ds_session_data** | **string**| The session data from the ACS. | [optional] |
 
 ### Return type
 
@@ -79,7 +82,10 @@ directCResTokeniseRequest($uuid, $cres, $three_ds_session_data): \CityPay\Model\
 
 Handles a CRes response from ACS, returning back a token for future authorisation
 
-Used to post from an ACS during a ThreeDSecure direct flow process. The endpoint requires a valid `threeDSSessionData` value which defines the unique transaction through its workflow. This endpoint may be used by merchants wishing to perform a `Direct Post` integration who wish to handle the challenge flow themselves.
+Used to post from an ACS during a ThreeDSecure direct flow process. The endpoint requires a valid `threeDSSessionData`
+value which defines the unique transaction through its workflow. This endpoint may be used by merchants wishing to
+perform a `Direct Post` integration who wish to handle the challenge flow themselves.
+
 
 ### Example
 
@@ -108,11 +114,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| An identifier used to track the CReq/CRes cycle. |
- **cres** | **string**| The CRES from the ACS. | [optional]
- **three_ds_session_data** | **string**| The session data from the ACS. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| An identifier used to track the CReq/CRes cycle. | |
+| **cres** | **string**| The CRES from the ACS. | [optional] |
+| **three_ds_session_data** | **string**| The session data from the ACS. | [optional] |
 
 ### Return type
 
@@ -139,7 +145,15 @@ directPostAuthRequest($direct_post_request): \CityPay\Model\AuthResponse
 
 Direct Post Auth Request
 
-Used to initiate a direct post request transaction flow.  <pre class=\"inline-code language-bash\"> <code> curl https://api.citypay.com/direct/auth?cp-domain-key=n834ytqp84y... \\  -d \"amount=7500&identifier=example_trans&cardnumber=4000000000000002&expmonth=9&expyear=2028&bill_to_postcode=L1+7ZW </code> </pre>.
+Used to initiate a direct post request transaction flow.
+
+<pre class="inline-code language-bash">
+<code>
+curl https://api.citypay.com/direct/auth?cp-domain-key=n834ytqp84y... \
+ -d "amount=7500&identifier=example_trans&cardnumber=4000000000000002&expmonth=9&expyear=2028&bill_to_postcode=L1+7ZW
+</code>
+</pre>.
+
 
 ### Example
 
@@ -148,15 +162,15 @@ Used to initiate a direct post request transaction flow.  <pre class=\"inline-co
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure API key authorization: cp-api-key
-$config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
-
 // Configure API key authorization: cp-domain-key
 $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-domain-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-domain-key', 'Bearer');
+
+// Configure API key authorization: cp-api-key
+$config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
 
 
 $apiInstance = new CityPay\Api\DirectPostApi(
@@ -177,9 +191,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **direct_post_request** | [**\CityPay\Model\DirectPostRequest**](../Model/DirectPostRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **direct_post_request** | [**\CityPay\Model\DirectPostRequest**](../Model/DirectPostRequest.md)|  | |
 
 ### Return type
 
@@ -187,7 +201,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cp-api-key](../../README.md#cp-api-key), [cp-domain-key](../../README.md#cp-domain-key)
+[cp-domain-key](../../README.md#cp-domain-key), [cp-api-key](../../README.md#cp-api-key)
 
 ### HTTP request headers
 
@@ -206,7 +220,15 @@ directPostTokeniseRequest($direct_post_request): \CityPay\Model\AuthResponse
 
 Direct Post Tokenise Request
 
-Used to initiate a direct post request transaction flow.  <pre class=\"inline-code language-bash\"> <code> curl https://api.citypay.com/v6/direct?cp-domain-key=n834ytqp84y... \\  -d \"amount=7500&identifier=example_trans&cardnumber=4000000000000002&expmonth=9&expyear=2028&bill_to_postcode=L1+7ZW </code> </pre>.
+Used to initiate a direct post request transaction flow.
+
+<pre class="inline-code language-bash">
+<code>
+curl https://api.citypay.com/v6/direct?cp-domain-key=n834ytqp84y... \
+ -d "amount=7500&identifier=example_trans&cardnumber=4000000000000002&expmonth=9&expyear=2028&bill_to_postcode=L1+7ZW
+</code>
+</pre>.
+
 
 ### Example
 
@@ -215,15 +237,15 @@ Used to initiate a direct post request transaction flow.  <pre class=\"inline-co
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure API key authorization: cp-api-key
-$config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
-
 // Configure API key authorization: cp-domain-key
 $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-domain-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-domain-key', 'Bearer');
+
+// Configure API key authorization: cp-api-key
+$config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
 
 
 $apiInstance = new CityPay\Api\DirectPostApi(
@@ -244,9 +266,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **direct_post_request** | [**\CityPay\Model\DirectPostRequest**](../Model/DirectPostRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **direct_post_request** | [**\CityPay\Model\DirectPostRequest**](../Model/DirectPostRequest.md)|  | |
 
 ### Return type
 
@@ -254,7 +276,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cp-api-key](../../README.md#cp-api-key), [cp-domain-key](../../README.md#cp-domain-key)
+[cp-domain-key](../../README.md#cp-domain-key), [cp-api-key](../../README.md#cp-api-key)
 
 ### HTTP request headers
 
@@ -273,7 +295,9 @@ tokenRequest($direct_token_auth_request): \CityPay\Model\AuthResponse
 
 Direct Post Token Request
 
-Perform a request for authorisation for a previously generated token. This flow will return an authorisation response stating that the transaction was approved or declined.
+Perform a request for authorisation for a previously generated token. This flow will return an authorisation
+response stating that the transaction was approved or declined.
+
 
 ### Example
 
@@ -282,15 +306,15 @@ Perform a request for authorisation for a previously generated token. This flow 
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure API key authorization: cp-api-key
-$config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
-
 // Configure API key authorization: cp-domain-key
 $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-domain-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-domain-key', 'Bearer');
+
+// Configure API key authorization: cp-api-key
+$config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
 
 
 $apiInstance = new CityPay\Api\DirectPostApi(
@@ -311,9 +335,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **direct_token_auth_request** | [**\CityPay\Model\DirectTokenAuthRequest**](../Model/DirectTokenAuthRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **direct_token_auth_request** | [**\CityPay\Model\DirectTokenAuthRequest**](../Model/DirectTokenAuthRequest.md)|  | |
 
 ### Return type
 
@@ -321,7 +345,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[cp-api-key](../../README.md#cp-api-key), [cp-domain-key](../../README.md#cp-domain-key)
+[cp-domain-key](../../README.md#cp-domain-key), [cp-api-key](../../README.md#cp-api-key)
 
 ### HTTP request headers
 
