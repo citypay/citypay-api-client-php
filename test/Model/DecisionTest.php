@@ -47,7 +47,7 @@ class DecisionTest extends TestCase
      */
     public function setUp(): void
     {
-        $data1 = '{
+        $data = '{
         "AuthResponse": {
             "amount": 5500,
             "atrn": "atrn1",
@@ -78,16 +78,7 @@ class DecisionTest extends TestCase
             "transno": 74875}
         }';
 
-        $data2 = (object)array(
-            'AuthenRequired' => (object)array(
-                'acs_url' => 'https://www.acs.com/tdsecure/opt_in_dispatcher.jsp?partner=debit&VAA=B',
-                'md' => '0000000000000000000022',
-                'pareq' => 'eJxVUm1v2yAQ/itWv8dg/B5dmJyfw==',
-            ),
-        );
-
-        $this->instance1 = ObjectSerializer::deserialize($data1, '\CityPay\Model\Decision');
-        $this->instance2 = ObjectSerializer::deserialize($data2, '\CityPay\Model\Decision');
+        $this->instance = ObjectSerializer::deserialize($data, '\CityPay\Model\Decision');
 
     }
 
@@ -104,25 +95,8 @@ class DecisionTest extends TestCase
     public function testDecision(): void
     {
         //auth request decision
-        self::assertNotNull($this->instance1['auth_response']);
-        self::assertNull($this->instance1['authen_required']);
-        self::assertNull($this->instance1['request_challenged']);
-
-        //athen required decision
-        self::assertNull($this->instance2['auth_response']);
-        self::assertNotNull($this->instance2['authen_required']);
-        self::assertNull($this->instance2['request_challenged']);
-    }
-
-    /**
-     * Test attribute "authen_required"
-     */
-    public function testPropertyAuthenRequired(): void
-    {
-        self::assertEquals('https://www.acs.com/tdsecure/opt_in_dispatcher.jsp?partner=debit&VAA=B', $this->instance2['authen_required']['acs_url']);
-        self::assertEquals('0000000000000000000022', $this->instance2['authen_required']['md']);
-        self::assertEquals('eJxVUm1v2yAQ/itWv8dg/B5dmJyfw==', $this->instance2['authen_required']['pareq']);
-
+        self::assertNotNull($this->instance['auth_response']);
+        self::assertNull($this->instance['request_challenged']);
     }
 
     /**
@@ -132,33 +106,33 @@ class DecisionTest extends TestCase
     {
         $date = DateTime::createFromFormat('Y-m-d\TH:i:s\Z', '2020-08-12T07:59:11Z');
 
-        self::assertEquals(5500, $this->instance1['auth_response']['amount']);
-        self::assertEquals('atrn1', $this->instance1['auth_response']['atrn']);
-        self::assertEquals('a', $this->instance1['auth_response']['atsd']);
-        self::assertEquals('12345', $this->instance1['auth_response']['authcode']);
-        self::assertEquals('R', $this->instance1['auth_response']['authen_result']);
-        self::assertTrue($this->instance1['auth_response']['authorised']);
-        self::assertEquals('G', $this->instance1['auth_response']['avs_result']);
-        self::assertFalse($this->instance1['auth_response']['bin_commercial']);
-        self::assertFalse($this->instance1['auth_response']['bin_debit']);
-        self::assertEquals('bin_desc', $this->instance1['auth_response']['bin_description']);
-        self::assertEquals('cavvvvvvvvvvvvv', $this->instance1['auth_response']['cavv']);
-        self::assertEquals('20200812075906AAAGV4', $this->instance1['auth_response']['context']);
-        self::assertEquals('C', $this->instance1['auth_response']['csc_result']);
-        self::assertEquals('GBP', $this->instance1['auth_response']['currency']);
-        self::assertEquals($date, $this->instance1['auth_response']['datetime']);
-        self::assertEquals('0', $this->instance1['auth_response']['eci']);
-        self::assertEquals('ident1', $this->instance1['auth_response']['identifier']);
-        self::assertTrue($this->instance1['auth_response']['live']);
-        self::assertEquals('400000******0002', $this->instance1['auth_response']['maskedpan']);
-        self::assertEquals(12345, $this->instance1['auth_response']['merchantid']);
-        self::assertEquals(1, $this->instance1['auth_response']['result']);
-        self::assertEquals('000', $this->instance1['auth_response']['result_code']);
-        self::assertEquals('System: Accepted Transaction', $this->instance1['auth_response']['result_message']);
-        self::assertEquals('VISA_BUSINESS', $this->instance1['auth_response']['scheme']);
-        self::assertEquals('abcdefg', $this->instance1['auth_response']['sha256']);
-        self::assertEquals('P', $this->instance1['auth_response']['trans_status']);
-        self::assertEquals(74875, $this->instance1['auth_response']['transno']);
+        self::assertEquals(5500, $this->instance['auth_response']['amount']);
+        self::assertEquals('atrn1', $this->instance['auth_response']['atrn']);
+        self::assertEquals('a', $this->instance['auth_response']['atsd']);
+        self::assertEquals('12345', $this->instance['auth_response']['authcode']);
+        self::assertEquals('R', $this->instance['auth_response']['authen_result']);
+        self::assertTrue($this->instance['auth_response']['authorised']);
+        self::assertEquals('G', $this->instance['auth_response']['avs_result']);
+        self::assertFalse($this->instance['auth_response']['bin_commercial']);
+        self::assertFalse($this->instance['auth_response']['bin_debit']);
+        self::assertEquals('bin_desc', $this->instance['auth_response']['bin_description']);
+        self::assertEquals('cavvvvvvvvvvvvv', $this->instance['auth_response']['cavv']);
+        self::assertEquals('20200812075906AAAGV4', $this->instance['auth_response']['context']);
+        self::assertEquals('C', $this->instance['auth_response']['csc_result']);
+        self::assertEquals('GBP', $this->instance['auth_response']['currency']);
+        self::assertEquals($date, $this->instance['auth_response']['datetime']);
+        self::assertEquals('0', $this->instance['auth_response']['eci']);
+        self::assertEquals('ident1', $this->instance['auth_response']['identifier']);
+        self::assertTrue($this->instance['auth_response']['live']);
+        self::assertEquals('400000******0002', $this->instance['auth_response']['maskedpan']);
+        self::assertEquals(12345, $this->instance['auth_response']['merchantid']);
+        self::assertEquals(1, $this->instance['auth_response']['result']);
+        self::assertEquals('000', $this->instance['auth_response']['result_code']);
+        self::assertEquals('System: Accepted Transaction', $this->instance['auth_response']['result_message']);
+        self::assertEquals('VISA_BUSINESS', $this->instance['auth_response']['scheme']);
+        self::assertEquals('abcdefg', $this->instance['auth_response']['sha256']);
+        self::assertEquals('P', $this->instance['auth_response']['trans_status']);
+        self::assertEquals(74875, $this->instance['auth_response']['transno']);
     }
 
     /**
