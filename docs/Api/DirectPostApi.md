@@ -19,10 +19,7 @@ directCResAuthRequest($uuid, $cres, $three_ds_session_data): \CityPay\Model\Auth
 
 Handles a CRes response from ACS, returning back the result of authorisation
 
-Used to post from an ACS during a ThreeDSecure direct flow process. The endpoint requires a valid `threeDSSessionData`
-value which defines the unique transaction through its workflow. This endpoint may be used by merchants wishing to
-perform a `Direct Post` integration who wish to handle the challenge flow themselves.
-
+Used to post from an ACS during a ThreeDSecure direct flow process. The endpoint requires a valid `threeDSSessionData` value which defines the unique transaction through its workflow. This endpoint may be used by merchants wishing to perform a `Direct Post` integration who wish to handle the challenge flow themselves.
 
 ### Example
 
@@ -82,10 +79,7 @@ directCResTokeniseRequest($uuid, $cres, $three_ds_session_data): \CityPay\Model\
 
 Handles a CRes response from ACS, returning back a token for future authorisation
 
-Used to post from an ACS during a ThreeDSecure direct flow process. The endpoint requires a valid `threeDSSessionData`
-value which defines the unique transaction through its workflow. This endpoint may be used by merchants wishing to
-perform a `Direct Post` integration who wish to handle the challenge flow themselves.
-
+Used to post from an ACS during a ThreeDSecure direct flow process. The endpoint requires a valid `threeDSSessionData` value which defines the unique transaction through its workflow. This endpoint may be used by merchants wishing to perform a `Direct Post` integration who wish to handle the challenge flow themselves.
 
 ### Example
 
@@ -146,14 +140,6 @@ directPostAuthRequest($direct_post_request): \CityPay\Model\AuthResponse
 Direct Post Auth Request
 
 Used to initiate a direct post request transaction flow.
-
-<pre class="inline-code language-bash">
-<code>
-curl https://api.citypay.com/direct/auth?cp-domain-key=n834ytqp84y... \
- -d "amount=7500&identifier=example_trans&cardnumber=4000000000000002&expmonth=9&expyear=2028&bill_to_postcode=L1+7ZW
-</code>
-</pre>.
-
 
 ### Example
 
@@ -222,14 +208,6 @@ Direct Post Tokenise Request
 
 Used to initiate a direct post request transaction flow.
 
-<pre class="inline-code language-bash">
-<code>
-curl https://api.citypay.com/v6/direct?cp-domain-key=n834ytqp84y... \
- -d "amount=7500&identifier=example_trans&cardnumber=4000000000000002&expmonth=9&expyear=2028&bill_to_postcode=L1+7ZW
-</code>
-</pre>.
-
-
 ### Example
 
 ```php
@@ -295,9 +273,7 @@ tokenRequest($direct_token_auth_request): \CityPay\Model\AuthResponse
 
 Direct Post Token Request
 
-Perform a request for authorisation for a previously generated token. This flow will return an authorisation
-response stating that the transaction was approved or declined.
-
+Perform a request for authorisation for a previously generated token. This flow will return an authorisation response stating that the transaction was approved or declined.
 
 ### Example
 

@@ -5,8 +5,8 @@ All URIs are relative to https://api.citypay.com, except if the operation define
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**batchProcessRequest()**](BatchProcessingApi.md#batchProcessRequest) | **POST** /v6/batch/process | Batch Process Request |
-| [**batchRetrieveRequest()**](BatchProcessingApi.md#batchRetrieveRequest) | **POST** /v6/batch/retrieve | BatchReportRequest |
-| [**checkBatchStatusRequest()**](BatchProcessingApi.md#checkBatchStatusRequest) | **POST** /v6/batch/status | CheckBatchStatus |
+| [**batchRetrieveRequest()**](BatchProcessingApi.md#batchRetrieveRequest) | **POST** /v6/batch/retrieve | Batch Retrieve Request |
+| [**checkBatchStatusRequest()**](BatchProcessingApi.md#checkBatchStatusRequest) | **POST** /v6/batch/status | Check Batch Status |
 
 
 ## `batchProcessRequest()`
@@ -17,11 +17,7 @@ batchProcessRequest($process_batch_request): \CityPay\Model\ProcessBatchResponse
 
 Batch Process Request
 
-A batch process request is used to start the batch process workflow by uploading batch
-data and initialising a new batch for processing. Once validated the batch will be queued
-for processing and further updates can be received by a subsequent call to retrieve the batch
-status.
-
+A batch process request is used to start the batch process workflow by uploading batch data and initialising a new batch for processing. Once validated the batch will be queued for processing and further updates can be received by a subsequent call to retrieve the batch status.
 
 ### Example
 
@@ -81,9 +77,9 @@ try {
 batchRetrieveRequest($batch_report_request): \CityPay\Model\BatchReportResponseModel
 ```
 
-BatchReportRequest
+Batch Retrieve Request
 
-The report for a given batch.
+Obtains a batch and installment (BIS) report for a given batch id.
 
 ### Example
 
@@ -143,7 +139,7 @@ try {
 checkBatchStatusRequest($check_batch_status): \CityPay\Model\CheckBatchStatusResponse
 ```
 
-CheckBatchStatus
+Check Batch Status
 
 The operation is used to retrieve the status of a batch process.
 

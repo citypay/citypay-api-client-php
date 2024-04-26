@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**authen_required** | [**\CityPay\Model\AuthenRequired**](AuthenRequired.md) |  | [optional]
 **auth_response** | [**\CityPay\Model\AuthResponse**](AuthResponse.md) |  | [optional]
 **request_challenged** | [**\CityPay\Model\RequestChallenged**](RequestChallenged.md) |  | [optional]
 
