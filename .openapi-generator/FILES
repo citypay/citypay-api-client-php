@@ -196,17 +196,3 @@ lib/Model/TokenisationResponseModel.php
 lib/Model/VoidRequest.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
-test/Api/ReportingApiTest.php
-test/Model/BatchTransactionReportRequestTest.php
-test/Model/BatchTransactionReportResponseTest.php
-test/Model/MerchantBatchReportRequestTest.php
-test/Model/MerchantBatchReportResponseTest.php
-test/Model/MerchantBatchResponseTest.php
-test/Model/NetSummaryResponseTest.php
-test/Model/PaylinkResendNotificationRequestTest.php
-test/Model/PaymentIntentReferenceTest.php
-test/Model/PaymentIntentTest.php
-test/Model/RemittanceDataTest.php
-test/Model/RemittanceReportRequestTest.php
-test/Model/RemittanceReportResponseTest.php
-test/Model/RemittedClientDataTest.php
