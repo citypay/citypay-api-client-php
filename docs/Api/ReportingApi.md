@@ -9,6 +9,7 @@ All URIs are relative to https://api.citypay.com, except if the operation define
 | [**merchantBatchRequest()**](ReportingApi.md#merchantBatchRequest) | **GET** /v6/merchant-batch/{merchantid}/{batch_no} | Merchant Batch Request |
 | [**remittanceRangeReport()**](ReportingApi.md#remittanceRangeReport) | **POST** /v6/remittance/report/{clientid} | Remittance Report Request |
 | [**remittanceReportRequest()**](ReportingApi.md#remittanceReportRequest) | **GET** /v6/remittance/report/{clientid}/{date} | Remittance Date Report Request |
+| [**transactionReportRequest()**](ReportingApi.md#transactionReportRequest) | **POST** /v6/transactions | Transaction Report Request |
 
 
 ## `batchedTransactionReportRequest()`
@@ -85,7 +86,10 @@ merchantBatchReportRequest($merchant_batch_report_request): \CityPay\Model\Merch
 
 Merchant Batch Report Request
 
-Retrieves a report of merchant batches within a specified date range.  Batches, which aggregate daily processing activities, are typically generated at `00:00` each day.  These batches play a crucial role in the settlement of funds by summarising daily transactions.
+Retrieves a report of merchant batches within a specified date range. 
+Batches, which aggregate daily processing activities, are typically generated at `00:00` each day. 
+These batches play a crucial role in the settlement of funds by summarising daily transactions.
+
 
 ### Example
 
@@ -211,7 +215,12 @@ remittanceRangeReport($clientid, $remittance_report_request): \CityPay\Model\Rem
 
 Remittance Report Request
 
-Fetches remittance reports for financial transactions within a specified date range, covering all client-related activities. This report consolidates all batches disbursed to a client, with each remittance summarising the aggregation of batches leading up to settlement. Additionally, the net remittance amount presented in the final settlement will reflect any deductions made by the acquirer.
+Fetches remittance reports for financial transactions within a specified date range,
+covering all client-related activities. This report consolidates all batches disbursed to a
+client, with each remittance summarising the aggregation of batches leading up to settlement.
+Additionally, the net remittance amount presented in the final settlement will reflect any
+deductions made by the acquirer.
+
 
 ### Example
 
@@ -275,7 +284,15 @@ remittanceReportRequest($clientid, $date): \CityPay\Model\RemittedClientData
 
 Remittance Date Report Request
 
-Fetches remittance reports for financial transactions for a given date,  covering all client-related activities. This report consolidates all batches disbursed to a  client, with each remittance summarising the aggregation of batches leading up to settlement.  Additionally, the net remittance amount presented in the final settlement will reflect any  deductions made by the acquirer.  The process also supports the notion of *today* deferring the date to today's date or *latest* reflecting the latest remittance date available.
+Fetches remittance reports for financial transactions for a given date, 
+covering all client-related activities. This report consolidates all batches disbursed to a 
+client, with each remittance summarising the aggregation of batches leading up to settlement. 
+Additionally, the net remittance amount presented in the final settlement will reflect any 
+deductions made by the acquirer.
+
+The process also supports the notion of *today* deferring the date to today's date or *latest* reflecting the
+latest remittance date available.
+
 
 ### Example
 
@@ -325,6 +342,70 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`, `text/xml`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `transactionReportRequest()`
+
+```php
+transactionReportRequest($transaction_report_request): \CityPay\Model\BatchTransactionReportResponse
+```
+
+Transaction Report Request
+
+Retrieve a paginated report of transaction activity within a specified time range. Supports filters by transaction type, 
+result state, merchant ID, and allows field selection or predefined response modes for optimal data handling.
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: cp-api-key
+$config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
+
+
+$apiInstance = new CityPay\Api\ReportingApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$transaction_report_request = new \CityPay\Model\TransactionReportRequest(); // \CityPay\Model\TransactionReportRequest
+
+try {
+    $result = $apiInstance->transactionReportRequest($transaction_report_request);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ReportingApi->transactionReportRequest: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **transaction_report_request** | [**\CityPay\Model\TransactionReportRequest**](../Model/TransactionReportRequest.md)|  | |
+
+### Return type
+
+[**\CityPay\Model\BatchTransactionReportResponse**](../Model/BatchTransactionReportResponse.md)
+
+### Authorization
+
+[cp-api-key](../../README.md#cp-api-key)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`, `text/xml`
 - **Accept**: `application/json`, `text/xml`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

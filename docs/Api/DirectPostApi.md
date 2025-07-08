@@ -19,7 +19,10 @@ directCResAuthRequest($uuid, $cres, $three_ds_session_data): \CityPay\Model\Auth
 
 Handles a CRes response from ACS, returning back the result of authorisation
 
-Used to post from an ACS during a ThreeDSecure direct flow process. The endpoint requires a valid `threeDSSessionData` value which defines the unique transaction through its workflow. This endpoint may be used by merchants wishing to perform a `Direct Post` integration who wish to handle the challenge flow themselves.
+Used to post from an ACS during a ThreeDSecure direct flow process. The endpoint requires a valid `threeDSSessionData`
+value which defines the unique transaction through its workflow. This endpoint may be used by merchants wishing to
+perform a `Direct Post` integration who wish to handle the challenge flow themselves.
+
 
 ### Example
 
@@ -79,7 +82,10 @@ directCResTokeniseRequest($uuid, $cres, $three_ds_session_data): \CityPay\Model\
 
 Handles a CRes response from ACS, returning back a token for future authorisation
 
-Used to post from an ACS during a ThreeDSecure direct flow process. The endpoint requires a valid `threeDSSessionData` value which defines the unique transaction through its workflow. This endpoint may be used by merchants wishing to perform a `Direct Post` integration who wish to handle the challenge flow themselves.
+Used to post from an ACS during a ThreeDSecure direct flow process. The endpoint requires a valid `threeDSSessionData`
+value which defines the unique transaction through its workflow. This endpoint may be used by merchants wishing to
+perform a `Direct Post` integration who wish to handle the challenge flow themselves.
+
 
 ### Example
 
@@ -140,6 +146,7 @@ directPostAuthRequest($direct_post_request): \CityPay\Model\AuthResponse
 Direct Post Auth Request
 
 Used to initiate a direct post request transaction flow.
+
 
 ### Example
 
@@ -208,6 +215,7 @@ Direct Post Tokenise Request
 
 Used to initiate a direct post request transaction flow.
 
+
 ### Example
 
 ```php
@@ -273,7 +281,9 @@ tokenRequest($direct_token_auth_request): \CityPay\Model\AuthResponse
 
 Direct Post Token Request
 
-Perform a request for authorisation for a previously generated token. This flow will return an authorisation response stating that the transaction was approved or declined.
+Perform a request for authorisation for a previously generated token. This flow will return an authorisation
+response stating that the transaction was approved or declined.
+
 
 ### Example
 

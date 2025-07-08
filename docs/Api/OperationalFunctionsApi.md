@@ -9,6 +9,7 @@ All URIs are relative to https://api.citypay.com, except if the operation define
 | [**domainKeyGenRequest()**](OperationalFunctionsApi.md#domainKeyGenRequest) | **POST** /dk/gen | Domain Key Generation Request |
 | [**listMerchantsRequest()**](OperationalFunctionsApi.md#listMerchantsRequest) | **GET** /v6/merchants/{clientid} | List Merchants Request |
 | [**pingRequest()**](OperationalFunctionsApi.md#pingRequest) | **POST** /v6/ping | Ping Request |
+| [**registerTempKey()**](OperationalFunctionsApi.md#registerTempKey) | **POST** /v6/permissions/register-temp-ip | Register Temp Key |
 
 
 ## `aclCheckRequest()`
@@ -19,7 +20,9 @@ aclCheckRequest($acl_check_request): \CityPay\Model\AclCheckResponseModel
 
 ACL Check Request
 
-Allows the checking of IP addresses against configured ACLs. Requests can perform a lookup of addresses in subnets and services such as AWS or Azure to check that those addresses are listed in the ACLs.
+Allows the checking of IP addresses against configured ACLs. Requests can perform a lookup of addresses in subnets and
+services such as AWS or Azure to check that those addresses are listed in the ACLs.
+
 
 ### Example
 
@@ -81,7 +84,9 @@ domainKeyCheckRequest($domain_key_check_request): \CityPay\Model\DomainKeyRespon
 
 Domain Key Check Request
 
-Checks the contents of a `domain key`. Can be used for operational processes to ensure that the properties of a  domain key meet their expectations.
+Checks the contents of a `domain key`. Can be used for operational processes to ensure that the properties of a 
+domain key meet their expectations.
+
 
 ### Example
 
@@ -143,7 +148,9 @@ domainKeyGenRequest($domain_key_request): \CityPay\Model\DomainKeyResponse
 
 Domain Key Generation Request
 
-Generates a domain key based on the permissions of the calling `api-key`. Domain keys can be used in _Direct Post_ and `XHR` calls to the API services.
+Generates a domain key based on the permissions of the calling `api-key`. Domain keys can be used in _Direct Post_ and
+`XHR` calls to the API services.
+
 
 ### Example
 
@@ -205,7 +212,14 @@ listMerchantsRequest($clientid): \CityPay\Model\ListMerchantsResponse
 
 List Merchants Request
 
-An operational request to list current merchants for a client.  ### Sorting  Sorting can be performed by include a query parameter i.e. `/merchants/?sort=merchantid`  Fields that can be sorted are `merchantid` or `name`.
+An operational request to list current merchants for a client.
+
+### Sorting
+
+Sorting can be performed by include a query parameter i.e. `/merchants/?sort=merchantid`
+
+Fields that can be sorted are `merchantid` or `name`.
+
 
 ### Example
 
@@ -267,7 +281,14 @@ pingRequest($ping): \CityPay\Model\Acknowledgement
 
 Ping Request
 
-A ping request which performs a connection and authentication test to the CityPay API server. The request will return a standard Acknowledgement with a response code `044` to signify a successful ping.  The ping call is useful to confirm that you will be able to access  the API from behind any firewalls and that the permission model is granting access from your source.
+A ping request which performs a connection and authentication test to the CityPay API server. The request
+will return a standard Acknowledgement with a response code `044` to signify a successful
+ping.
+
+The ping call is useful to confirm that you will be able to access 
+the API from behind any firewalls and that the permission
+model is granting access from your source.
+
 
 ### Example
 
@@ -321,6 +342,68 @@ try {
 
 - **Content-Type**: `application/json`, `application/x-www-form-urlencoded`, `text/xml`
 - **Accept**: `application/x-www-form-urlencoded`, `application/json`, `text/xml`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `registerTempKey()`
+
+```php
+registerTempKey($register_ip_model): \CityPay\Model\Acknowledgement
+```
+
+Register Temp Key
+
+Registers a temporary licence key.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: cp-api-key
+$config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
+
+
+$apiInstance = new CityPay\Api\OperationalFunctionsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$register_ip_model = new \CityPay\Model\RegisterIpModel(); // \CityPay\Model\RegisterIpModel
+
+try {
+    $result = $apiInstance->registerTempKey($register_ip_model);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling OperationalFunctionsApi->registerTempKey: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **register_ip_model** | [**\CityPay\Model\RegisterIpModel**](../Model/RegisterIpModel.md)|  | |
+
+### Return type
+
+[**\CityPay\Model\Acknowledgement**](../Model/Acknowledgement.md)
+
+### Authorization
+
+[cp-api-key](../../README.md#cp-api-key)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`, `text/xml`
+- **Accept**: `application/json`, `text/xml`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

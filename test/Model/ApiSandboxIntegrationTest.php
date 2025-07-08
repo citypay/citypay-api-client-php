@@ -25,6 +25,7 @@ use CityPay\Api\AuthorisationAndPaymentApi;
 use CityPay\Api\CardHolderAccountApi;
 use CityPay\Api\OperationalFunctionsApi;
 use CityPay\Model\AccountCreate;
+use CityPay\Model\AccountStatus;
 use CityPay\Model\ApiKey;
 use CityPay\Model\AuthRequest;
 use CityPay\Model\CardHolderAccount;
@@ -38,6 +39,9 @@ use GuzzleHttp;
 use DateTime;
 use \GuzzleHttp\Psr7\Request;
 use \GuzzleHttp\Client;
+use function PHPUnit\Framework\assertEquals;
+use CityPay\Model\CardStatus;
+use CityPay\Model\ContactDetails;
 
 class ApiSandboxIntegrationTest extends TestCase
 {
@@ -49,6 +53,7 @@ class ApiSandboxIntegrationTest extends TestCase
     /**
      * Setup before running any test case
      */
+
     public static function setUpBeforeClass(): void
     {
         if (getenv("CP_MERCHANT_ID") && getenv("CP_LICENCE_KEY") && getenv("CP_CLIENT_ID")) {
@@ -99,7 +104,7 @@ class ApiSandboxIntegrationTest extends TestCase
     /**
      * Test Operational "Ping"
      */
-    public function testPing(): void
+    public function testPing(): void //moved
     {
         $apiInstance = new OperationalFunctionsApi(new GuzzleHttp\Client(), self::$config);
 
@@ -122,7 +127,7 @@ class ApiSandboxIntegrationTest extends TestCase
     /**
      * Test Operational "ListMerchants"
      */
-    public function testListMerchants(): void
+    public function testListMerchants(): void //moved
     {
         $apiInstance = new OperationalFunctionsApi(new GuzzleHttp\Client(), self::$config);
         $result = $apiInstance->listMerchantsRequest(self::$client_id);
@@ -143,7 +148,7 @@ class ApiSandboxIntegrationTest extends TestCase
     /**
      * Test Payment Processing "Authorise"
      */
-    public function testAuthorise(): void
+    public function testAuthorise(): void //moved
     {
         $apiInstance = new AuthorisationAndPaymentApi(new GuzzleHttp\Client(), self::$config);
         $id = uniqid();
@@ -170,7 +175,7 @@ class ApiSandboxIntegrationTest extends TestCase
     /**
      * Test Payment Processing "Authorise" 3DSv2
      */
-    public function testAuthorise3DSv2(): void
+    public function testAuthorise3DSv2(): void //moved
     {
         $apiInstance = new AuthorisationAndPaymentApi(new GuzzleHttp\Client(), self::$config);
         $id = uniqid();
@@ -200,15 +205,20 @@ class ApiSandboxIntegrationTest extends TestCase
         self::assertNotEmpty($response['threedserver_trans_id']);
 
         $client = new Client();
-        $headers['Content-Type'] = "application/json";
-        $httpBodyString = (object) array("threeDSSessionData" => $response['threedserver_trans_id'], "creq"=> $response['creq']);
-        $httpBodyJson = json_encode($httpBodyString);
+        $headers['Content-Type'] = "application/x-www-form-urlencoded";
+        $httpBodyString = [
+            "threeDSSessionData" => $response['threedserver_trans_id'],
+            "creq"=> $response['creq'],
+            "transStatus" => "Y",
+            "reason" => "01"
+        ];
+        $httpBody = http_build_query($httpBodyString);;
 
         $request = new Request(
             'POST',
-            "https://sandbox.citypay.com/3dsv2/acs",
+            "https://sandbox.citypay.com/3dsv2/gen-rreq",
             $headers,
-            $httpBodyJson
+            $httpBody
         );
 
         $res = $client->send($request);
@@ -231,6 +241,8 @@ class ApiSandboxIntegrationTest extends TestCase
     {
         $cha_id = uniqid();
         $apiInstance = new CardHolderAccountApi(new GuzzleHttp\Client(), self::$config);
+
+        //Create cardholder account //moved
         $account = array(
             'account_id' => $cha_id,
             'contact' => array(
@@ -249,6 +261,11 @@ class ApiSandboxIntegrationTest extends TestCase
         self::assertEquals($cha_id, $create_result['account_id']);
         self::assertEquals('7 Esplanade', $create_result['contact']['address1']);
 
+        //Account exist -> no model available //moved
+        $account_exist = $apiInstance->accountExistsRequest($cha_id);
+        self::assertTrue($account_exist->getExists());;
+
+        //Register card //moved
         $card = [
             'cardnumber' => "4000 0000 0000 0002",
             'expmonth' => 12,
@@ -261,6 +278,7 @@ class ApiSandboxIntegrationTest extends TestCase
         self::assertEquals(12, $register_card['cards'][0]['expmonth']);
         self::assertEquals(2030, $register_card['cards'][0]['expyear']);
 
+        //Retrieve account //moved
         $retrieve = $apiInstance->accountRetrieveRequest($cha_id);
         self::assertEquals($cha_id, $retrieve['account_id']);
         self::assertEquals("7 Esplanade", $retrieve['contact']['address1']);
@@ -268,6 +286,7 @@ class ApiSandboxIntegrationTest extends TestCase
         self::assertEquals(12, $retrieve['cards'][0]['expmonth']);
         self::assertEquals(2030, $retrieve['cards'][0]['expyear']);
 
+        //Charge card //move
         $identifier = uniqid();
         $req_data = [
             'amount' => 7801,
@@ -285,6 +304,36 @@ class ApiSandboxIntegrationTest extends TestCase
         self::assertEquals("A12345", $charge_cha['auth_response']['authcode']);
         self::assertEquals(7801, $charge_cha['auth_response']['amount']);
 
+        //Status Card -> Inactive //moved
+        $card_status = new CardStatus(['card_status' => 'INACTIVE']);
+        $update_card = $apiInstance->accountCardStatusRequest($cha_id, $register_card['cards'][0]['card_id'], $card_status);;
+        self::assertEquals('001', $update_card['code']);
+
+        //Card Delete Request //moved
+        $delete_card = $apiInstance->accountCardDeleteRequest($cha_id, $register_card['cards'][0]['card_id']);;
+        self::assertEquals('001', $delete_card['code']);
+
+        //Account change request contact //moved
+        $contact = [
+            'address1' => "Seven Esplanade",
+            'area' => "St Helier",
+            'company' => "CityPay Limited",
+            'country' => "JE",
+            'email' => "dev@citypay.com",
+            'firstname' => "Integration",
+            'lastname' => "Test",
+            'postcode' => "JE2 3QA",
+        ];
+
+        $account_update = new ContactDetails($contact);
+        $update_contact = $apiInstance->accountChangeContactRequest($cha_id, $account_update);
+        self::assertEquals('Seven Esplanade', $update_contact['contact']['address1']);
+
+        //Account Status -> Disabled //moved
+        $update_result = $apiInstance->accountStatusRequest($cha_id, new AccountStatus(['status' => 'DISABLED']));
+        self::assertEquals('001', $update_result['code']);;
+
+        //Delete Account //moved
         $deleteAccount = $apiInstance->accountDeleteRequest($cha_id);
         self::assertEquals("001", $deleteAccount['code']);
 

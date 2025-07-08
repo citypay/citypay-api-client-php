@@ -1,6 +1,5 @@
 # CityPay
 
-[![PHP PHPUnit Tests](https://github.com/citypay/citypay-api-client-php/actions/workflows/build.yml/badge.svg)](https://github.com/citypay/citypay-api-client-php/actions/workflows/build.yml)
 
 Welcome to the CityPay API, a robust HTTP API payment solution designed for seamless server-to-server 
 transactional processing. Our API facilitates a wide array of payment operations, catering to diverse business needs. 
@@ -40,8 +39,7 @@ For more information, please visit [https://www.citypay.com/contacts/](https://w
 
 ### Requirements
 
-PHP 7.4 and later.
-Should also work with PHP 8.0.
+PHP 8.1 and later.
 
 ### Composer
 
@@ -83,9 +81,9 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: cp-api-key
-$config = CityPay\Configuration::getDefaultConfiguration()->setApiKey(cp-api-key, $apiKey = ApiKey::newKey($clientId, $licenceKey);
+$config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey(cp-api-key, $apiKey = ApiKey::newKey($clientId, $licenceKey);
+// $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
 
 
 $apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
@@ -115,10 +113,10 @@ Class | Method | HTTP request | Description
 *AuthorisationAndPaymentApi* | [**binRangeLookupRequest**](docs/Api/AuthorisationAndPaymentApi.md#binrangelookuprequest) | **POST** /v6/bin | Bin Lookup
 *AuthorisationAndPaymentApi* | [**cResRequest**](docs/Api/AuthorisationAndPaymentApi.md#cresrequest) | **POST** /v6/cres | CRes
 *AuthorisationAndPaymentApi* | [**captureRequest**](docs/Api/AuthorisationAndPaymentApi.md#capturerequest) | **POST** /v6/capture | Capture
-*AuthorisationAndPaymentApi* | [**createPaymentIntent**](docs/Api/AuthorisationAndPaymentApi.md#createpaymentintent) | **POST** /v6/intent/create | Create a Payment Intent
-*AuthorisationAndPaymentApi* | [**paResRequest**](docs/Api/AuthorisationAndPaymentApi.md#paresrequest) | **POST** /v6/pares | PaRes
+*AuthorisationAndPaymentApi* | [**cardTokenisationRequest**](docs/Api/AuthorisationAndPaymentApi.md#cardtokenisationrequest) | **POST** /v6/tokenise | Card Tokenisation Request
 *AuthorisationAndPaymentApi* | [**refundRequest**](docs/Api/AuthorisationAndPaymentApi.md#refundrequest) | **POST** /v6/refund | Refund
-*AuthorisationAndPaymentApi* | [**retrievalRequest**](docs/Api/AuthorisationAndPaymentApi.md#retrievalrequest) | **POST** /v6/retrieve | Retrieval
+*AuthorisationAndPaymentApi* | [**retrievalRequest**](docs/Api/AuthorisationAndPaymentApi.md#retrievalrequest) | **POST** /v6/retrieve | Transaction Retrieval
+*AuthorisationAndPaymentApi* | [**verificationRequest**](docs/Api/AuthorisationAndPaymentApi.md#verificationrequest) | **POST** /v6/verify | Verification
 *AuthorisationAndPaymentApi* | [**voidRequest**](docs/Api/AuthorisationAndPaymentApi.md#voidrequest) | **POST** /v6/void | Void
 *BatchProcessingApi* | [**batchProcessRequest**](docs/Api/BatchProcessingApi.md#batchprocessrequest) | **POST** /v6/batch/process | Batch Process Request
 *BatchProcessingApi* | [**batchRetrieveRequest**](docs/Api/BatchProcessingApi.md#batchretrieverequest) | **POST** /v6/batch/retrieve | Batch Retrieve Request
@@ -143,10 +141,12 @@ Class | Method | HTTP request | Description
 *OperationalFunctionsApi* | [**domainKeyGenRequest**](docs/Api/OperationalFunctionsApi.md#domainkeygenrequest) | **POST** /dk/gen | Domain Key Generation Request
 *OperationalFunctionsApi* | [**listMerchantsRequest**](docs/Api/OperationalFunctionsApi.md#listmerchantsrequest) | **GET** /v6/merchants/{clientid} | List Merchants Request
 *OperationalFunctionsApi* | [**pingRequest**](docs/Api/OperationalFunctionsApi.md#pingrequest) | **POST** /v6/ping | Ping Request
+*OperationalFunctionsApi* | [**registerTempKey**](docs/Api/OperationalFunctionsApi.md#registertempkey) | **POST** /v6/permissions/register-temp-ip | Register Temp Key
+*PaylinkApi* | [**paylinkTokenCloseRequest**](docs/Api/PaylinkApi.md#paylinktokencloserequest) | **PUT** /paylink/{token}/close | Close Paylink Token
 *PaylinkApi* | [**tokenAdjustmentRequest**](docs/Api/PaylinkApi.md#tokenadjustmentrequest) | **POST** /paylink/{token}/adjustment | Paylink Token Adjustment
+*PaylinkApi* | [**tokenAttachmentStatus**](docs/Api/PaylinkApi.md#tokenattachmentstatus) | **GET** /paylink/{token}/attachment-status/{attachment} | Checks an attachment status
 *PaylinkApi* | [**tokenCancelRequest**](docs/Api/PaylinkApi.md#tokencancelrequest) | **PUT** /paylink/{token}/cancel | Cancel a Paylink Token
 *PaylinkApi* | [**tokenChangesRequest**](docs/Api/PaylinkApi.md#tokenchangesrequest) | **POST** /paylink/token/changes | Paylink Token Audit
-*PaylinkApi* | [**tokenCloseRequest**](docs/Api/PaylinkApi.md#tokencloserequest) | **PUT** /paylink/{token}/close | Close Paylink Token
 *PaylinkApi* | [**tokenCreateBillPaymentRequest**](docs/Api/PaylinkApi.md#tokencreatebillpaymentrequest) | **POST** /paylink/bill-payment | Create Bill Payment Paylink Token
 *PaylinkApi* | [**tokenCreateRequest**](docs/Api/PaylinkApi.md#tokencreaterequest) | **POST** /paylink/create | Create Paylink Token
 *PaylinkApi* | [**tokenPurgeAttachmentsRequest**](docs/Api/PaylinkApi.md#tokenpurgeattachmentsrequest) | **PUT** /paylink/{token}/purge-attachments | Purges any attachments for a Paylink Token
@@ -154,11 +154,18 @@ Class | Method | HTTP request | Description
 *PaylinkApi* | [**tokenReopenRequest**](docs/Api/PaylinkApi.md#tokenreopenrequest) | **PUT** /paylink/{token}/reopen | Reopen Paylink Token
 *PaylinkApi* | [**tokenResendNotificationRequest**](docs/Api/PaylinkApi.md#tokenresendnotificationrequest) | **POST** /paylink/{token}/resend-notification | Resend a notification for Paylink Token
 *PaylinkApi* | [**tokenStatusRequest**](docs/Api/PaylinkApi.md#tokenstatusrequest) | **GET** /paylink/{token}/status | Paylink Token Status
+*PaymentIntentApi* | [**createPaymentIntent**](docs/Api/PaymentIntentApi.md#createpaymentintent) | **POST** /v6/intent/create | Create a Payment Intent
+*PaymentIntentApi* | [**getPaymentIntent**](docs/Api/PaymentIntentApi.md#getpaymentintent) | **POST** /v6/intent/retrieve | Retrieves a Payment Intent
 *ReportingApi* | [**batchedTransactionReportRequest**](docs/Api/ReportingApi.md#batchedtransactionreportrequest) | **POST** /v6/merchant-batch/{merchantid}/{batch_no}/transactions | Batch Transaction Report Request
 *ReportingApi* | [**merchantBatchReportRequest**](docs/Api/ReportingApi.md#merchantbatchreportrequest) | **POST** /v6/merchant-batch/report | Merchant Batch Report Request
 *ReportingApi* | [**merchantBatchRequest**](docs/Api/ReportingApi.md#merchantbatchrequest) | **GET** /v6/merchant-batch/{merchantid}/{batch_no} | Merchant Batch Request
 *ReportingApi* | [**remittanceRangeReport**](docs/Api/ReportingApi.md#remittancerangereport) | **POST** /v6/remittance/report/{clientid} | Remittance Report Request
 *ReportingApi* | [**remittanceReportRequest**](docs/Api/ReportingApi.md#remittancereportrequest) | **GET** /v6/remittance/report/{clientid}/{date} | Remittance Date Report Request
+*ReportingApi* | [**transactionReportRequest**](docs/Api/ReportingApi.md#transactionreportrequest) | **POST** /v6/transactions | Transaction Report Request
+*WebHooks* | [**webHookChannelCreateRequest**](docs/Api/WebHooks.md#webhookchannelcreaterequest) | **POST** /hooks/channel/create | Web Hook Channel Create Request
+*WebHooks* | [**webHookChannelDeleteRequest**](docs/Api/WebHooks.md#webhookchanneldeleterequest) | **POST** /hooks/channel/delete | Web Hook Channel Delete Request
+*WebHooks* | [**webHookSubscriptionRequest**](docs/Api/WebHooks.md#webhooksubscriptionrequest) | **POST** /hooks/subscribe | Web Hook Subscription Request
+*WebHooks* | [**webHookUnsubscribeRequest**](docs/Api/WebHooks.md#webhookunsubscriberequest) | **POST** /hooks/unsubscribe | Web Hook Unsubscribe Request
 
 ## Models
 
@@ -167,6 +174,8 @@ Class | Method | HTTP request | Description
 - [Acknowledgement](docs/Model/Acknowledgement.md)
 - [AclCheckRequest](docs/Model/AclCheckRequest.md)
 - [AclCheckResponseModel](docs/Model/AclCheckResponseModel.md)
+- [AdjustmentCondition](docs/Model/AdjustmentCondition.md)
+- [Adjustments](docs/Model/Adjustments.md)
 - [AirlineAdvice](docs/Model/AirlineAdvice.md)
 - [AirlineSegment](docs/Model/AirlineSegment.md)
 - [AuthReference](docs/Model/AuthReference.md)
@@ -187,6 +196,8 @@ Class | Method | HTTP request | Description
 - [Card](docs/Model/Card.md)
 - [CardHolderAccount](docs/Model/CardHolderAccount.md)
 - [CardStatus](docs/Model/CardStatus.md)
+- [CardTokenisationRequest](docs/Model/CardTokenisationRequest.md)
+- [CardTokenisationResponse](docs/Model/CardTokenisationResponse.md)
 - [ChargeRequest](docs/Model/ChargeRequest.md)
 - [CheckBatchStatus](docs/Model/CheckBatchStatus.md)
 - [CheckBatchStatusResponse](docs/Model/CheckBatchStatusResponse.md)
@@ -201,6 +212,8 @@ Class | Method | HTTP request | Description
 - [EventDataModel](docs/Model/EventDataModel.md)
 - [Exists](docs/Model/Exists.md)
 - [ExternalMPI](docs/Model/ExternalMPI.md)
+- [FindPaymentIntentRequest](docs/Model/FindPaymentIntentRequest.md)
+- [HttpConfig](docs/Model/HttpConfig.md)
 - [ListMerchantsResponse](docs/Model/ListMerchantsResponse.md)
 - [MCC6012](docs/Model/MCC6012.md)
 - [Merchant](docs/Model/Merchant.md)
@@ -208,7 +221,6 @@ Class | Method | HTTP request | Description
 - [MerchantBatchReportResponse](docs/Model/MerchantBatchReportResponse.md)
 - [MerchantBatchResponse](docs/Model/MerchantBatchResponse.md)
 - [NetSummaryResponse](docs/Model/NetSummaryResponse.md)
-- [PaResAuthRequest](docs/Model/PaResAuthRequest.md)
 - [PaylinkAddress](docs/Model/PaylinkAddress.md)
 - [PaylinkAdjustmentRequest](docs/Model/PaylinkAdjustmentRequest.md)
 - [PaylinkAttachmentRequest](docs/Model/PaylinkAttachmentRequest.md)
@@ -232,13 +244,15 @@ Class | Method | HTTP request | Description
 - [PaylinkTokenStatusChangeRequest](docs/Model/PaylinkTokenStatusChangeRequest.md)
 - [PaylinkTokenStatusChangeResponse](docs/Model/PaylinkTokenStatusChangeResponse.md)
 - [PaylinkUI](docs/Model/PaylinkUI.md)
-- [PaymentIntent](docs/Model/PaymentIntent.md)
 - [PaymentIntentReference](docs/Model/PaymentIntentReference.md)
+- [PaymentIntentRequestModel](docs/Model/PaymentIntentRequestModel.md)
+- [PaymentIntentResponseModel](docs/Model/PaymentIntentResponseModel.md)
 - [Ping](docs/Model/Ping.md)
 - [ProcessBatchRequest](docs/Model/ProcessBatchRequest.md)
 - [ProcessBatchResponse](docs/Model/ProcessBatchResponse.md)
 - [RefundRequest](docs/Model/RefundRequest.md)
 - [RegisterCard](docs/Model/RegisterCard.md)
+- [RegisterIpModel](docs/Model/RegisterIpModel.md)
 - [RemittanceData](docs/Model/RemittanceData.md)
 - [RemittanceReportRequest](docs/Model/RemittanceReportRequest.md)
 - [RemittanceReportResponse](docs/Model/RemittanceReportResponse.md)
@@ -247,7 +261,15 @@ Class | Method | HTTP request | Description
 - [RetrieveRequest](docs/Model/RetrieveRequest.md)
 - [ThreeDSecure](docs/Model/ThreeDSecure.md)
 - [TokenisationResponseModel](docs/Model/TokenisationResponseModel.md)
+- [TransactionReportRequest](docs/Model/TransactionReportRequest.md)
+- [VerificationRequest](docs/Model/VerificationRequest.md)
 - [VoidRequest](docs/Model/VoidRequest.md)
+- [WebHookChannelCreateRequest](docs/Model/WebHookChannelCreateRequest.md)
+- [WebHookChannelCreateResponse](docs/Model/WebHookChannelCreateResponse.md)
+- [WebHookChannelDeleteRequest](docs/Model/WebHookChannelDeleteRequest.md)
+- [WebHookSubscriptionRequest](docs/Model/WebHookSubscriptionRequest.md)
+- [WebHookSubscriptionResponse](docs/Model/WebHookSubscriptionResponse.md)
+- [WebHookUnsubscribeRequest](docs/Model/WebHookUnsubscribeRequest.md)
 
 ## Authorization
 
@@ -283,7 +305,7 @@ support@citypay.com
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `6.6.40`
-    - Package version: `1.1.2`
-    - Generator version: `7.5.0`
+- API version: `6.9.3`
+    - Package version: `1.1.3`
+    - Generator version: `7.14.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`
