@@ -174,7 +174,7 @@ class OperationalFunctionsApiTest extends TestCase
         $resultWithIdentifier = $apiInstance->pingRequest($pingWithIdentifier);
         self::assertEquals('044', $resultWithIdentifier['code']);
         self::assertNotNull($resultWithIdentifier['context']);
-        self::assertEquals('test', $resultWithIdentifier['identifier']);
+        self::assertEquals('it_test', $resultWithIdentifier['identifier']);
         self::assertEquals('Ping OK', $resultWithIdentifier['message']);
     }
 }
