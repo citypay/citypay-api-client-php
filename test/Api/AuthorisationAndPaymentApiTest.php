@@ -27,10 +27,16 @@
 
 namespace CityPay\Test\Api;
 
+use CityPay\Api\AuthorisationAndPaymentApi;
 use \CityPay\Configuration;
-use \CityPay\ApiException;
-use \CityPay\ObjectSerializer;
+use CityPay\Model\ApiKey;
+use CityPay\Model\AuthRequest;
+use CityPay\Model\CResAuthRequest;
+use CityPay\Utils\Digest;
+use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Request;
 use PHPUnit\Framework\TestCase;
+use GuzzleHttp;
 
 /**
  * AuthorisationAndPaymentApiTest Class Doc Comment
@@ -42,12 +48,36 @@ use PHPUnit\Framework\TestCase;
  */
 class AuthorisationAndPaymentApiTest extends TestCase
 {
-
+    private static $config;
+    private static $client_id;
+    private static $merchant_id;
+    private static $licence_key;
     /**
      * Setup before running any test cases
      */
     public static function setUpBeforeClass(): void
     {
+        if (getenv("CP_MERCHANT_ID") && getenv("CP_LICENCE_KEY") && getenv("CP_CLIENT_ID")) {
+            $merchantId = getenv("CP_MERCHANT_ID");
+            $licenceKey = getenv("CP_LICENCE_KEY");
+            $clientId = getenv("CP_CLIENT_ID");
+            self::$client_id = $clientId;
+            self::$merchant_id = $merchantId;
+            self::$licence_key = $licenceKey;
+
+            // long method
+            // $apiKeyCredentials = new ApiKey($clientId, $licenceKey);
+            // $apiKey = $apiKeyCredentials->generate();
+
+            // static method
+            $apiKey = ApiKey::newKey($clientId, $licenceKey);
+
+            self::$config = Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', $apiKey);
+            self::$config = Configuration::getDefaultConfiguration()->setHost('https://sandbox.citypay.com');
+
+        } else {
+            echo('Unable to obtain ENV variables to generate API Key!!');
+        }
     }
 
     /**
@@ -79,8 +109,26 @@ class AuthorisationAndPaymentApiTest extends TestCase
      */
     public function testAuthorisationRequest()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $apiInstance = new AuthorisationAndPaymentApi(new GuzzleHttp\Client(), self::$config);
+        $id = uniqid();
+        $data = array(
+            'amount' => 1395,
+            'cardnumber' => '4000 0000 0000 0002',
+            'expmonth' => 12,
+            'expyear' => 2030,
+            'csc' => '012',
+            'identifier' => $id,
+            'merchantid' => self::$merchant_id,
+            'threedsecure' => array("tds_policy" => "2")
+        );
+
+        $authRequest = new AuthRequest($data);
+        $decision = $apiInstance->authorisationRequest($authRequest);
+        self::assertEquals("001", $decision['auth_response']['result_code']);
+        self::assertEquals($id, $decision['auth_response']['identifier']);
+        self::assertEquals("A12345", $decision['auth_response']['authcode']);
+        self::assertEquals(1395, $decision['auth_response']['amount']);
+        self::assertEquals(True,  Digest::validateDigest($decision['auth_response'], self::$licence_key));
     }
 
     /**
@@ -103,8 +151,61 @@ class AuthorisationAndPaymentApiTest extends TestCase
      */
     public function testCResRequest()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $apiInstance = new AuthorisationAndPaymentApi(new GuzzleHttp\Client(), self::$config);
+        $id = uniqid();
+        $data = array(
+            'amount' => 1396,
+            'cardnumber' => '4000 0000 0000 0002',
+            'expmonth' => 12,
+            'expyear' => 2030,
+            'csc' => '123',
+            'identifier' => $id,
+            'merchantid' => self::$merchant_id,
+            'threedsecure' => array(
+                "cp_bx" => "eyJhIjoiRkFwSCIsImMiOjI0LCJpIjoid3dIOTExTlBKSkdBRVhVZCIsImoiOmZhbHNlLCJsIjoiZW4tVVMiLCJoIjoxNDQwLCJ3IjoyNTYwLCJ0IjowLCJ1IjoiTW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTFfMl8zKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODkuMC40Mzg5LjgyIFNhZmFyaS81MzcuMzYiLCJ2IjoiMS4wLjAifQ",
+                "merchant_termurl" => "https://citypay.com/acs/return")
+        );
+
+        $authRequest = new AuthRequest($data);
+        $decision = $apiInstance->authorisationRequest($authRequest);
+
+        self::assertEmpty($decision['auth_response']);
+        self::assertNotEmpty($decision['request_challenged']);
+        self::assertEmpty($decision['authen_required']);
+
+        $response = $decision['request_challenged'];
+        self::assertNotEmpty($response['creq']);
+        self::assertNotEmpty($response['acs_url']);
+        self::assertNotEmpty($response['threedserver_trans_id']);
+
+        $client = new Client();
+        $headers['Content-Type'] = "application/x-www-form-urlencoded";
+        $httpBodyString = [
+            "threeDSSessionData" => $response['threedserver_trans_id'],
+            "creq"=> $response['creq'],
+            "transStatus" => "Y",
+            "reason" => "01"
+        ];
+        $httpBody = http_build_query($httpBodyString);;
+
+        $request = new Request(
+            'POST',
+            "https://sandbox.citypay.com/3dsv2/gen-rreq",
+            $headers,
+            $httpBody
+        );
+
+        $res = $client->send($request);
+
+
+        $content = json_decode((string) $res->getBody(), true);
+
+        $cResAuthRequest = new CResAuthRequest(array("cres" => $content['cres']));
+        $cResRequestResponse = $apiInstance->cResRequestWithHttpInfo($cResAuthRequest);
+        self::assertEquals(1396, $cResRequestResponse[0]['amount']);
+        self::assertEquals("A12345", $cResRequestResponse[0]['authcode']);
+        self::assertEquals("Y", $cResRequestResponse[0]['authen_result']);
+        self::assertEquals(1, $cResRequestResponse[0]['authorised']);
     }
 
     /**

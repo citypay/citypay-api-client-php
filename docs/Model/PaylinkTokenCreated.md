@@ -4,12 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**attachments** | [**\CityPay\Model\PaylinkAttachmentResult**](PaylinkAttachmentResult.md) |  | [optional]
+**attachments** | [**\CityPay\Model\PaylinkAttachmentResult[]**](PaylinkAttachmentResult.md) |  | [optional]
 **bps** | **string** | true if BPS has been enabled on this token. | [optional]
 **date_created** | **\DateTime** | Date and time the token was generated. | [optional]
 **errors** | [**\CityPay\Model\PaylinkErrorCode[]**](PaylinkErrorCode.md) |  | [optional]
 **id** | **string** | A unique id of the request. |
 **identifier** | **string** | The identifier as presented in the TokenRequest. | [optional]
+**merchantid** | **int** | The merchant id of the token. | [optional]
 **mode** | **string** | Determines whether the token is &#x60;live&#x60; or &#x60;test&#x60;. | [optional]
 **qrcode** | **string** | A URL of a qrcode which can be used to refer to the token URL. | [optional]
 **result** | **int** | The result field contains the result for the Paylink Token Request. 0 - indicates that an error was encountered while creating the token. 1 - which indicates that a Token was successfully created. |

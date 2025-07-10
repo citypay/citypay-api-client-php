@@ -4,7 +4,6 @@
     <include>
       <directory suffix=".php">./lib/Api</directory>
       <directory suffix=".php">./lib/Model</directory>
-         beStrictAboutTestsThatDoNotTestAnything="false"
     </include>
   </coverage>
   <testsuites>

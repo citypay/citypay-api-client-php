@@ -27,11 +27,19 @@
 
 namespace CityPay\Model\Model\Api;
 
-use CityPay\Model\Model\Configuration;
+use CityPay\Configuration;
 use CityPay\Model\Model\ApiException;
 use CityPay\Model\Model\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
-
+use CityPay\Api\CardHolderAccountApi;
+use CityPay\Model\AccountCreate;
+use CityPay\Model\AccountStatus;
+use CityPay\Model\ApiKey;
+use CityPay\Model\ChargeRequest;
+use CityPay\Model\RegisterCard;
+use GuzzleHttp;
+use CityPay\Model\CardStatus;
+use CityPay\Model\ContactDetails;
 /**
  * CardHolderAccountApiTest Class Doc Comment
  *
@@ -42,12 +50,38 @@ use PHPUnit\Framework\TestCase;
  */
 class CardHolderAccountApiTest extends TestCase
 {
-
+    private static $config;
+    private static $client_id;
+    private static $merchant_id;
+    private static $licence_key;
+    private $cha_id;
+    private $apiInstance;
     /**
      * Setup before running any test cases
      */
     public static function setUpBeforeClass(): void
     {
+        if (getenv("CP_MERCHANT_ID") && getenv("CP_LICENCE_KEY") && getenv("CP_CLIENT_ID")) {
+            $merchantId = getenv("CP_MERCHANT_ID");
+            $licenceKey = getenv("CP_LICENCE_KEY");
+            $clientId = getenv("CP_CLIENT_ID");
+            self::$client_id = $clientId;
+            self::$merchant_id = $merchantId;
+            self::$licence_key = $licenceKey;
+
+            // long method
+            // $apiKeyCredentials = new ApiKey($clientId, $licenceKey);
+            // $apiKey = $apiKeyCredentials->generate();
+
+            // static method
+            $apiKey = ApiKey::newKey($clientId, $licenceKey);
+
+            self::$config = Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', $apiKey);
+            self::$config = Configuration::getDefaultConfiguration()->setHost('https://sandbox.citypay.com');
+
+        } else {
+            echo('Unable to obtain ENV variables to generate API Key!!');
+        }
     }
 
     /**
@@ -55,6 +89,8 @@ class CardHolderAccountApiTest extends TestCase
      */
     public function setUp(): void
     {
+        $this->cha_id = uniqid();
+        $this->apiInstance = new CardHolderAccountApi(new GuzzleHttp\Client(), self::$config);
     }
 
     /**
@@ -79,6 +115,34 @@ class CardHolderAccountApiTest extends TestCase
      */
     public function testAccountCardDeleteRequest(): void
     {
+        $apiInstance = new CardHolderAccountApi(new GuzzleHttp\Client(), self::$config);
+
+        $cha_id = uniqid();
+        $account = [
+            'account_id' => $cha_id,
+            'contact' => [
+                'address1' => "7 Esplanade",
+                'area' => "St Helier",
+                'company' => "CityPay Limited",
+                'country' => "JE",
+                'email' => "dev@citypay.com",
+                'firstname' => "Integration",
+                'lastname' => "Test",
+                'postcode' => "JE2 3QA",
+            ]
+        ];
+        $account_create = new AccountCreate($account);
+        $apiInstance->accountCreate($account_create);
+
+        $card = new RegisterCard([
+            'cardnumber' => "4000 0000 0000 0002",
+            'expmonth' => 12,
+            'expyear' => 2030
+        ]);
+        $register_card = $apiInstance->accountCardRegisterRequest($cha_id, $card);
+
+        $delete_card = $apiInstance->accountCardDeleteRequest($cha_id, $register_card['cards'][0]['card_id']);
+        self::assertEquals('001', $delete_card['code']);
     }
 
     /**
@@ -89,6 +153,39 @@ class CardHolderAccountApiTest extends TestCase
      */
     public function testAccountCardRegisterRequest(): void
     {
+        $apiInstance = new CardHolderAccountApi(new GuzzleHttp\Client(), self::$config);
+        $cha_id = uniqid();
+
+        // Create the account first
+        $account = array(
+            'account_id' => $cha_id,
+            'contact' => array(
+                'address1' => "7 Esplanade",
+                'area' => "St Helier",
+                'company' => "CityPay Limited",
+                'country' => "JE",
+                'email' => "dev@citypay.com",
+                'firstname' => "Integration",
+                'lastname' => "Test",
+                'postcode' => "JE2 3QA",
+            )
+        );
+
+        $account_create = new AccountCreate($account);
+        $apiInstance->accountCreate($account_create);
+
+        $card = [
+            'cardnumber' => "4000 0000 0000 0002",
+            'expmonth' => 12,
+            'expyear' => 2030,
+        ];
+
+        $new_card = new RegisterCard($card);
+        $register_card = $apiInstance->accountCardRegisterRequest($cha_id, $new_card);
+        self::assertEquals($cha_id, $register_card['account_id']);
+        self::assertNotEmpty($register_card['cards']);
+        self::assertEquals(12, $register_card['cards'][0]['expmonth']);
+        self::assertEquals(2030, $register_card['cards'][0]['expyear']);
     }
 
     /**
@@ -99,6 +196,41 @@ class CardHolderAccountApiTest extends TestCase
      */
     public function testAccountCardStatusRequest(): void
     {
+        $apiInstance = new CardHolderAccountApi(new GuzzleHttp\Client(), self::$config);
+        $cha_id = uniqid();
+
+        // 1. Create the cardholder account
+        $account = [
+            'account_id' => $cha_id,
+            'contact' => [
+                'address1' => "7 Esplanade",
+                'area' => "St Helier",
+                'company' => "CityPay Limited",
+                'country' => "JE",
+                'email' => "dev@citypay.com",
+                'firstname' => "Integration",
+                'lastname' => "Test",
+                'postcode' => "JE2 3QA",
+            ]
+        ];
+        $account_create = new AccountCreate($account);
+        $apiInstance->accountCreate($account_create);
+
+        // 2. Register a card
+        $card = new RegisterCard([
+            'cardnumber' => "4000 0000 0000 0002",
+            'expmonth' => 12,
+            'expyear' => 2030
+        ]);
+        $register_card = $apiInstance->accountCardRegisterRequest($cha_id, $card);
+        $register_card['cards'][0]['card_id'];
+
+        //3. Change the card status
+        $card_status = new CardStatus(['card_status' => 'INACTIVE']);
+        $update_card = $apiInstance->accountCardStatusRequest($cha_id, $register_card['cards'][0]['card_id'], $card_status);;
+
+        //4. Assert response
+        self::assertEquals('001', $update_card['code']);
     }
 
     /**
@@ -109,6 +241,41 @@ class CardHolderAccountApiTest extends TestCase
      */
     public function testAccountChangeContactRequest(): void
     {
+        $apiInstance = new CardHolderAccountApi(new GuzzleHttp\Client(), self::$config);
+        $cha_id = uniqid();
+
+        // 1. Create the cardholder account
+        $account = [
+            'account_id' => $cha_id,
+            'contact' => [
+                'address1' => "7 Esplanade",
+                'area' => "St Helier",
+                'company' => "CityPay Limited",
+                'country' => "JE",
+                'email' => "dev@citypay.com",
+                'firstname' => "Integration",
+                'lastname' => "Test",
+                'postcode' => "JE2 3QA",
+            ]
+        ];
+        $account_create = new AccountCreate($account);
+        $apiInstance->accountCreate($account_create);
+
+        //2. Change the contact
+        $contact = [
+            'address1' => "Seven Esplanade",
+            'area' => "St Helier",
+            'company' => "CityPay Limited",
+            'country' => "JE",
+            'email' => "dev@citypay.com",
+            'firstname' => "Integration",
+            'lastname' => "Test",
+            'postcode' => "JE2 3QA",
+        ];
+
+        $account_update = new ContactDetails($contact);
+        $update_contact = $apiInstance->accountChangeContactRequest($cha_id, $account_update);
+        self::assertEquals('Seven Esplanade', $update_contact['contact']['address1']);
     }
 
     /**
@@ -119,6 +286,26 @@ class CardHolderAccountApiTest extends TestCase
      */
     public function testAccountCreate(): void
     {
+        $apiInstance = new CardHolderAccountApi(new GuzzleHttp\Client(), self::$config);
+        $cha_id = uniqid();
+
+        $account = array(
+            'account_id' => $cha_id,
+            'contact' => array(
+                'address1' => "7 Esplanade",
+                'area' => "St Helier",
+                'company' => "CityPay Limited",
+                'country' => "JE",
+                'email' => "dev@citypay.com",
+                'firstname' => "Integration",
+                'lastname' => "Test",
+                'postcode' => "JE2 3QA",
+            )
+        );
+        $account_create = new AccountCreate($account);
+        $create_result = $apiInstance->accountCreate($account_create);
+        self::assertEquals($cha_id, $create_result['account_id']);
+        self::assertEquals('7 Esplanade', $create_result['contact']['address1']);
     }
 
     /**
@@ -129,6 +316,29 @@ class CardHolderAccountApiTest extends TestCase
      */
     public function testAccountDeleteRequest(): void
     {
+        $apiInstance = new CardHolderAccountApi(new GuzzleHttp\Client(), self::$config);
+        $cha_id = uniqid();
+
+        //1. Create the account
+        $account = array(
+            'account_id' => $cha_id,
+            'contact' => array(
+                'address1' => "7 Esplanade",
+                'area' => "St Helier",
+                'company' => "CityPay Limited",
+                'country' => "JE",
+                'email' => "dev@citypay.com",
+                'firstname' => "Integration",
+                'lastname' => "Test",
+                'postcode' => "JE2 3QA",
+            )
+        );
+        $account_create = new AccountCreate($account);
+        $apiInstance->accountCreate($account_create);
+
+        //2. Delete the account
+        $deleteAccount = $apiInstance->accountDeleteRequest($cha_id);
+        self::assertEquals("001", $deleteAccount['code']);
     }
 
     /**
@@ -139,6 +349,76 @@ class CardHolderAccountApiTest extends TestCase
      */
     public function testAccountRetrieveRequest(): void
     {
+        $apiInstance = new CardHolderAccountApi(new GuzzleHttp\Client(), self::$config);
+        $cha_id = uniqid();
+
+        //1. Create the account
+        $account = array(
+            'account_id' => $cha_id,
+            'contact' => array(
+                'address1' => "7 Esplanade",
+                'area' => "St Helier",
+                'company' => "CityPay Limited",
+                'country' => "JE",
+                'email' => "dev@citypay.com",
+                'firstname' => "Integration",
+                'lastname' => "Test",
+                'postcode' => "JE2 3QA",
+            )
+        );
+        $account_create = new AccountCreate($account);
+        $apiInstance->accountCreate($account_create);
+
+        //2. Create a card
+        $card = [
+            'cardnumber' => "4000 0000 0000 0002",
+            'expmonth' => 12,
+            'expyear' => 2030,
+        ];
+
+        $new_card = new RegisterCard($card);
+        $apiInstance->accountCardRegisterRequest($cha_id, $new_card);
+
+        //3. retrieve the account
+        $retrieve = $apiInstance->accountRetrieveRequest($cha_id);
+        self::assertEquals($cha_id, $retrieve['account_id']);
+        self::assertEquals("7 Esplanade", $retrieve['contact']['address1']);
+        self::assertNotEmpty($retrieve['cards']);
+        self::assertEquals(12, $retrieve['cards'][0]['expmonth']);
+        self::assertEquals(2030, $retrieve['cards'][0]['expyear']);
+    }
+
+    /**
+     * Test case for accountExistRequest
+     *
+     * Account Exists.
+     *
+     */
+    public function testAccountExistRequest(): void
+    {
+        $apiInstance = new CardHolderAccountApi(new GuzzleHttp\Client(), self::$config);
+        $cha_id = uniqid();
+
+        //1. Create the account
+        $account = array(
+            'account_id' => $cha_id,
+            'contact' => array(
+                'address1' => "7 Esplanade",
+                'area' => "St Helier",
+                'company' => "CityPay Limited",
+                'country' => "JE",
+                'email' => "dev@citypay.com",
+                'firstname' => "Integration",
+                'lastname' => "Test",
+                'postcode' => "JE2 3QA",
+            )
+        );
+        $account_create = new AccountCreate($account);
+        $apiInstance->accountCreate($account_create);
+
+        //2. Check that the account exists
+        $account_exist = $apiInstance->accountExistsRequest($cha_id);
+        self::assertTrue($account_exist->getExists());;
     }
 
     /**
@@ -149,6 +429,29 @@ class CardHolderAccountApiTest extends TestCase
      */
     public function testAccountStatusRequest(): void
     {
+        $apiInstance = new CardHolderAccountApi(new GuzzleHttp\Client(), self::$config);
+        $cha_id = uniqid();
+
+        //1. Create the account
+        $account = array(
+            'account_id' => $cha_id,
+            'contact' => array(
+                'address1' => "7 Esplanade",
+                'area' => "St Helier",
+                'company' => "CityPay Limited",
+                'country' => "JE",
+                'email' => "dev@citypay.com",
+                'firstname' => "Integration",
+                'lastname' => "Test",
+                'postcode' => "JE2 3QA",
+            )
+        );
+        $account_create = new AccountCreate($account);
+        $apiInstance->accountCreate($account_create);
+
+        //2.Change the status of the account
+        $update_result = $apiInstance->accountStatusRequest($cha_id, new AccountStatus(['status' => 'DISABLED']));
+        self::assertEquals('001', $update_result['code']);;
     }
 
     /**
@@ -159,5 +462,60 @@ class CardHolderAccountApiTest extends TestCase
      */
     public function testChargeRequest(): void
     {
+        $apiInstance = new CardHolderAccountApi(new GuzzleHttp\Client(), self::$config);
+        $cha_id = uniqid();
+
+        //1. Create the account
+        $account = array(
+            'account_id' => $cha_id,
+            'contact' => array(
+                'address1' => "7 Esplanade",
+                'area' => "St Helier",
+                'company' => "CityPay Limited",
+                'country' => "JE",
+                'email' => "dev@citypay.com",
+                'firstname' => "Integration",
+                'lastname' => "Test",
+                'postcode' => "JE2 3QA",
+            )
+        );
+        $account_create = new AccountCreate($account);
+        $apiInstance->accountCreate($account_create);
+
+        //2. Create a card
+        $card = [
+            'cardnumber' => "4000 0000 0000 0002",
+            'expmonth' => 12,
+            'expyear' => 2030,
+        ];
+
+        $new_card = new RegisterCard($card);
+        $apiInstance->accountCardRegisterRequest($cha_id, $new_card);
+
+        //3. retrieve the account
+        $retrieve = $apiInstance->accountRetrieveRequest($cha_id);
+        self::assertEquals($cha_id, $retrieve['account_id']);
+        self::assertEquals("7 Esplanade", $retrieve['contact']['address1']);
+        self::assertNotEmpty($retrieve['cards']);
+        self::assertEquals(12, $retrieve['cards'][0]['expmonth']);
+        self::assertEquals(2030, $retrieve['cards'][0]['expyear']);
+
+        //4. Charge the card
+        $identifier = uniqid();
+        $req_data = [
+            'amount' => 7801,
+            'identifier' => $identifier,
+            'merchantid' => self::$merchant_id,
+            'token' => $retrieve['cards'][0]['token'],
+            'csc' => "012",
+            'threedsecure' => array("tds_policy" => "2")
+        ];
+        $charge_req = new ChargeRequest($req_data);
+        $charge_cha = $apiInstance->chargeRequest($charge_req);
+
+        self::assertEquals("001", $charge_cha['auth_response']['result_code']);
+        self::assertEquals($identifier, $charge_cha['auth_response']['identifier']);
+        self::assertEquals("A12345", $charge_cha['auth_response']['authcode']);
+        self::assertEquals(7801, $charge_cha['auth_response']['amount']);
     }
 }

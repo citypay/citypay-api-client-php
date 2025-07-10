@@ -27,10 +27,14 @@
 
 namespace CityPay\Test\Api;
 
+use CityPay\Api\OperationalFunctionsApi;
 use \CityPay\Configuration;
 use \CityPay\ApiException;
+use CityPay\Model\ApiKey;
+use CityPay\Model\Ping;
 use \CityPay\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
+use GuzzleHttp;
 
 /**
  * OperationalFunctionsApiTest Class Doc Comment
@@ -42,12 +46,36 @@ use PHPUnit\Framework\TestCase;
  */
 class OperationalFunctionsApiTest extends TestCase
 {
-
+    private static $config;
+    private static $client_id;
+    private static $merchant_id;
+    private static $licence_key;
     /**
      * Setup before running any test cases
      */
     public static function setUpBeforeClass(): void
     {
+        if (getenv("CP_MERCHANT_ID") && getenv("CP_LICENCE_KEY") && getenv("CP_CLIENT_ID")) {
+            $merchantId = getenv("CP_MERCHANT_ID");
+            $licenceKey = getenv("CP_LICENCE_KEY");
+            $clientId = getenv("CP_CLIENT_ID");
+            self::$client_id = $clientId;
+            self::$merchant_id = $merchantId;
+            self::$licence_key = $licenceKey;
+
+            // long method
+            // $apiKeyCredentials = new ApiKey($clientId, $licenceKey);
+            // $apiKey = $apiKeyCredentials->generate();
+
+            // static method
+            $apiKey = ApiKey::newKey($clientId, $licenceKey);
+
+            self::$config = Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', $apiKey);
+            self::$config = Configuration::getDefaultConfiguration()->setHost('https://sandbox.citypay.com');
+
+        } else {
+            echo('Unable to obtain ENV variables to generate API Key!!');
+        }
     }
 
     /**
@@ -55,6 +83,7 @@ class OperationalFunctionsApiTest extends TestCase
      */
     public function setUp(): void
     {
+
     }
 
     /**
@@ -115,8 +144,20 @@ class OperationalFunctionsApiTest extends TestCase
      */
     public function testListMerchantsRequest()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $apiInstance = new OperationalFunctionsApi(new GuzzleHttp\Client(), self::$config);
+        $result = $apiInstance->listMerchantsRequest(self::$client_id);
+        self::assertEquals('CityPay Test', $result['client_name']);
+        self::assertEquals(self::$client_id, $result['clientid']);
+        self::assertEquals('GBP', $result['merchants'][0]['currency']);
+        self::assertEquals(41412435, $result['merchants'][0]['merchantid']);
+        self::assertEquals('BOS FTPS Tests', $result['merchants'][0]['name']);
+        self::assertEquals('T', $result['merchants'][0]['status']);
+        self::assertEquals('Test', $result['merchants'][0]['status_label']);
+        self::assertEquals('GBP', $result['merchants'][1]['currency']);
+        self::assertEquals(self::$merchant_id, $result['merchants'][1]['merchantid']);
+        self::assertEquals('CityPay Test Account', $result['merchants'][1]['name']);
+        self::assertEquals('T', $result['merchants'][1]['status']);
+        self::assertEquals('Test', $result['merchants'][1]['status_label']);
     }
 
     /**
@@ -127,7 +168,13 @@ class OperationalFunctionsApiTest extends TestCase
      */
     public function testPingRequest()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $apiInstance = new OperationalFunctionsApi(new GuzzleHttp\Client(), self::$config);
+
+        $pingWithIdentifier = new Ping(array('identifier' => 'it_test'));
+        $resultWithIdentifier = $apiInstance->pingRequest($pingWithIdentifier);
+        self::assertEquals('044', $resultWithIdentifier['code']);
+        self::assertNotNull($resultWithIdentifier['context']);
+        self::assertEquals('it_test', $resultWithIdentifier['identifier']);
+        self::assertEquals('Ping OK', $resultWithIdentifier['message']);
     }
 }
