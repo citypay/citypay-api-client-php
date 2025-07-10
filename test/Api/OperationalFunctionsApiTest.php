@@ -172,9 +172,9 @@ class OperationalFunctionsApiTest extends TestCase
 
         $pingWithIdentifier = new Ping(array('identifier' => 'it_test'));
         $resultWithIdentifier = $apiInstance->pingRequest($pingWithIdentifier);
-        $this->assertEquals('044', $resultWithIdentifier['code']);
-        $this->assertNotNull($resultWithIdentifier['context']);
-        $this->assertEquals('it_test', $resultWithIdentifier['identifier']);
-        $this->assertEquals('Ping OK', $resultWithIdentifier['message']);
+        self::assertEquals('044', $resultWithIdentifier['code']);
+        self::assertNotNull($resultWithIdentifier['context']);
+        self::assertEquals('test', $resultWithIdentifier['identifier']);
+        self::assertEquals('Ping OK', $resultWithIdentifier['message']);
     }
 }
