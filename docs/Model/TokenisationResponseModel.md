@@ -1,4 +1,4 @@
-# # TokenisationResponseModel
+# TokenisationResponseModel
 
 ## Properties
 

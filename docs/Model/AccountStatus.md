@@ -1,4 +1,4 @@
-# # AccountStatus
+# AccountStatus
 
 ## Properties
 

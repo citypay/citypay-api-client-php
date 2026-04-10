@@ -1,4 +1,4 @@
-# # PaylinkBillPaymentTokenRequest
+# PaylinkBillPaymentTokenRequest
 
 ## Properties
 

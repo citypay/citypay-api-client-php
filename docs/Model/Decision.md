@@ -1,4 +1,4 @@
-# # Decision
+# Decision
 
 ## Properties
 

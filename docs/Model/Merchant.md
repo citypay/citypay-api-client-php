@@ -1,4 +1,4 @@
-# # Merchant
+# Merchant
 
 ## Properties
 

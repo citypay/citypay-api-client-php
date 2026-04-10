@@ -1,4 +1,4 @@
-# # PaylinkConfig
+# PaylinkConfig
 
 ## Properties
 

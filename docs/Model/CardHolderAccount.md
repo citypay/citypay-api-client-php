@@ -1,4 +1,4 @@
-# # CardHolderAccount
+# CardHolderAccount
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # BatchReportResponseModel
+# BatchReportResponseModel
 
 ## Properties
 
