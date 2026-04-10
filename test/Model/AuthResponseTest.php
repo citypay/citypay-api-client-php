@@ -43,6 +43,16 @@ use DateTime;
 class AuthResponseTest extends TestCase
 {
     /**
+     * @var mixed
+     */
+    private $instance;
+
+    /**
+     * @var mixed
+     */
+    private $instanceNoIdent;
+
+    /**
      * Setup before running each test case
      */
     public function setUp(): void

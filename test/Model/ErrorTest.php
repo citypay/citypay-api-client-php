@@ -42,6 +42,11 @@ use PHPUnit\Framework\TestCase;
 class ErrorTest extends TestCase
 {
     /**
+     * @var mixed
+     */
+    private $instance;
+
+    /**
      * Setup before running each test case
      */
     public function setUp(): void
