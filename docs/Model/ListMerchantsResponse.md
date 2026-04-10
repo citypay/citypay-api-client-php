@@ -1,4 +1,4 @@
-# # ListMerchantsResponse
+# ListMerchantsResponse
 
 ## Properties
 

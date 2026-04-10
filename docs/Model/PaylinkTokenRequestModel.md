@@ -1,4 +1,4 @@
-# # PaylinkTokenRequestModel
+# PaylinkTokenRequestModel
 
 ## Properties
 

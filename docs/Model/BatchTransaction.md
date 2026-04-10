@@ -1,4 +1,4 @@
-# # BatchTransaction
+# BatchTransaction
 
 ## Properties
 

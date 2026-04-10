@@ -1,4 +1,4 @@
-# # ProcessBatchRequest
+# ProcessBatchRequest
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # PaylinkAttachmentRequest
+# PaylinkAttachmentRequest
 
 ## Properties
 

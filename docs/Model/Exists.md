@@ -1,4 +1,4 @@
-# # Exists
+# Exists
 
 ## Properties
 
