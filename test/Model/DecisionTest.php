@@ -43,6 +43,11 @@ use DateTime;
 class DecisionTest extends TestCase
 {
     /**
+     * @var mixed
+     */
+    private $instance;
+
+    /**
      * Setup before running each test case
      */
     public function setUp(): void

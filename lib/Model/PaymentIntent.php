@@ -314,7 +314,7 @@ class PaymentIntent implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('amount', $data ?? [], null);
         $this->setIfExists('avs_postcode_policy', $data ?? [], null);
@@ -882,5 +882,4 @@ class PaymentIntent implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
 

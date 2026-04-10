@@ -254,7 +254,7 @@ class AuthenRequired implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param mixed[] $data Associated array of property values
      *                      initializing the model
      */
-    public function __construct(array $data = null)
+    public function __construct(?array $data = null)
     {
         $this->setIfExists('acs_url', $data ?? [], null);
         $this->setIfExists('md', $data ?? [], null);
@@ -473,5 +473,4 @@ class AuthenRequired implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
 
