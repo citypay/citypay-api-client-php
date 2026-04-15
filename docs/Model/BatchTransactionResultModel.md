@@ -1,4 +1,4 @@
-# # BatchTransactionResultModel
+# BatchTransactionResultModel
 
 ## Properties
 

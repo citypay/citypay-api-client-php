@@ -1,4 +1,4 @@
-# # PaymentIntentResponseModel
+# PaymentIntentResponseModel
 
 ## Properties
 
@@ -13,9 +13,9 @@ Name | Type | Description | Notes
 **external_ref** | **string** | An external reference of the intent. | [optional]
 **external_ref_source** | **string** | An external reference source of the intent. | [optional]
 **identifier** | **string** | An identifier of the intent. |
-**intent_status** | **string** | A status of the intent such as &#x60;unknown&#x60;, &#x60;open&#x60;, &#x60;requires_payment_method&#x60;, &#x60;requires_confirmation&#x60;, &#x60;requires_confirmation&#x60;, &#x60;requires_action&#x60;, &#x60;processing&#x60;, &#x60;succeeded&#x60;, &#x60;cancelled&#x60;, &#x60;requires_capture&#x60;, &#x60;failed&#x60;, &#x60;expired&#x60;, &#x60;requires_refund&#x60;, &#x60;refunded&#x60;. | [optional]
+**intent_status** | **string** | A status of the intent such as &#x60;unknown&#x60;, &#x60;open&#x60;, &#x60;requires_payment_method&#x60;, &#x60;requires_customer_confirmation&#x60;, &#x60;requires_merchant_confirmation&#x60;, &#x60;requires_customer_authentication&#x60;, &#x60;requires_authorisation&#x60;, &#x60;processing&#x60;, &#x60;succeeded&#x60;, &#x60;cancelled&#x60;, &#x60;requires_capture&#x60;, &#x60;failed&#x60;, &#x60;expired&#x60;, &#x60;requires_refund&#x60;, &#x60;refunded&#x60;. | [optional]
 **merchantid** | **int** | The merchant id of the intent. |
-**payment_type** | **string** | A type of the intent such as &#x60;None&#x60;, &#x60;Single&#x60;, &#x60;Subscription&#x60;. | [optional]
+**payment_type** | **string** | A type of the intent such as &#x60;None&#x60;, &#x60;Single&#x60;, &#x60;Subscription&#x60;, &#x60;Installment&#x60;. | [optional]
 **payment_intent_id** | **string** | The id of the intent. |
 **transactions** | [**\CityPay\Model\AuthReference**](AuthReference.md) |  | [optional]
 

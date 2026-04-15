@@ -9,6 +9,7 @@ All URIs are relative to https://api.citypay.com, except if the operation define
 | [**cResRequest()**](AuthorisationAndPaymentApi.md#cResRequest) | **POST** /v6/cres | CRes |
 | [**captureRequest()**](AuthorisationAndPaymentApi.md#captureRequest) | **POST** /v6/capture | Capture |
 | [**cardTokenisationRequest()**](AuthorisationAndPaymentApi.md#cardTokenisationRequest) | **POST** /v6/tokenise | Card Tokenisation Request |
+| [**postcodeLookupRequest()**](AuthorisationAndPaymentApi.md#postcodeLookupRequest) | **POST** /v6/postcode/lookup | Postcode Lookup |
 | [**refundRequest()**](AuthorisationAndPaymentApi.md#refundRequest) | **POST** /v6/refund | Refund |
 | [**retrievalRequest()**](AuthorisationAndPaymentApi.md#retrievalRequest) | **POST** /v6/retrieve | Transaction Retrieval |
 | [**verificationRequest()**](AuthorisationAndPaymentApi.md#verificationRequest) | **POST** /v6/verify | Verification |
@@ -36,7 +37,6 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
-
 
 $apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -110,7 +110,6 @@ $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-ke
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
 
-
 $apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -178,7 +177,6 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
-
 
 $apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -258,7 +256,6 @@ $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-ke
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
 
-
 $apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -325,7 +322,6 @@ $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-ke
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
 
-
 $apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -365,6 +361,70 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postcodeLookupRequest()`
+
+```php
+postcodeLookupRequest($postcode_lookup_model): \CityPay\Model\Result
+```
+
+Postcode Lookup
+
+Used when a client wants to:
+- Validate a postcode format before address capture, and/or
+- Retrieve a list of addresses associated with a postcode to help a user select the correct address.
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: cp-api-key
+$config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
+
+$apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$postcode_lookup_model = new \CityPay\Model\PostcodeLookupModel(); // \CityPay\Model\PostcodeLookupModel
+
+try {
+    $result = $apiInstance->postcodeLookupRequest($postcode_lookup_model);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AuthorisationAndPaymentApi->postcodeLookupRequest: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **postcode_lookup_model** | [**\CityPay\Model\PostcodeLookupModel**](../Model/PostcodeLookupModel.md)|  | |
+
+### Return type
+
+[**\CityPay\Model\Result**](../Model/Result.md)
+
+### Authorization
+
+[cp-api-key](../../README.md#cp-api-key)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`, `text/xml`
+- **Accept**: `application/json`, `text/xml`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `refundRequest()`
 
 ```php
@@ -389,7 +449,6 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
-
 
 $apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -462,7 +521,6 @@ $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-ke
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
 
-
 $apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -523,7 +581,6 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
-
 
 $apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -593,7 +650,6 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
-
 
 $apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.

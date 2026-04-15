@@ -1,4 +1,4 @@
-# # VoidRequest
+# VoidRequest
 
 ## Properties
 

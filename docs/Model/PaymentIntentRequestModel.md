@@ -1,9 +1,10 @@
-# # PaymentIntentRequestModel
+# PaymentIntentRequestModel
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**account_id** | **string** | A card holder account id used for uniquely identifying the account. This value will be used for future referencing of the account and to link your system to this API. This value is immutable and never changes. | [optional]
 **adjustments** | [**\CityPay\Model\Adjustments**](Adjustments.md) |  | [optional]
 **amount** | **int** | The amount to authorise in the lowest unit of currency with a variable length to a maximum of 12 digits.  No decimal points are to be included and no divisional characters such as 1,024.  The amount should be the total amount required for the transaction.  For example with GBP £1,021.95 the amount value is 102195. |
 **avs_postcode_policy** | **string** | A policy value which determines whether an AVS postcode policy is enforced or bypassed.  Values are:   &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   &#x60;1&#x60; for an enforced policy. Transactions that are enforced will be rejected if the AVS postcode numeric value does not match.   &#x60;2&#x60; to bypass. Transactions that are bypassed will be allowed through even if the postcode did not match.   &#x60;3&#x60; to ignore. Transactions that are ignored will bypass the result and not send postcode details for authorisation. | [optional]
@@ -17,6 +18,7 @@ Name | Type | Description | Notes
 **match_avsa** | **string** | A policy value which determines whether an AVS address policy is enforced, bypassed or ignored.  Values are:   &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   &#x60;1&#x60; for an enforced policy. Transactions that are enforced will be rejected if the AVS address numeric value does not match.   &#x60;2&#x60; to bypass. Transactions that are bypassed will be allowed through even if the address did not match.   &#x60;3&#x60; to ignore. Transactions that are ignored will bypass the result and not send address numeric details for authorisation. | [optional]
 **merchantid** | **int** | The merchant id of the intent, required if using the API key or not required if using a domain key. | [optional]
 **pre_auth** | **string** | A policy value which determines whether a pre auth policy is enforced or bypassed.  Values are:   &#x60;0&#x60; for the default policy (default value if not supplied). Your default values are determined by your account manager on setup of the account.   &#x60;1&#x60; for an enforced policy.  Enforces pre-authorisation when it does not pre-auth by default.   &#x60;2&#x60; to bypass. Bypasses pre-authorisation when it is enabled to pre auth by default.   &#x60;3&#x60; to ignore. The same as the default policy (0). Although it currently mirrors the default, this option is included for compatibility with other policies. | [optional]
+**recurring_intent** | [**\CityPay\Model\RecurringIntent**](RecurringIntent.md) |  | [optional]
 **ship_to** | [**\CityPay\Model\ContactDetails**](ContactDetails.md) |  | [optional]
 **tag** | **string[]** |  | [optional]
 **trans_info** | **string** | Further information that can be added to the transaction will display in reporting. Can be used for flexible values such as operator id. | [optional]

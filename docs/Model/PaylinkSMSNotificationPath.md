@@ -1,4 +1,4 @@
-# # PaylinkSMSNotificationPath
+# PaylinkSMSNotificationPath
 
 ## Properties
 

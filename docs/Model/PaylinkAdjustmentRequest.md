@@ -1,4 +1,4 @@
-# # PaylinkAdjustmentRequest
+# PaylinkAdjustmentRequest
 
 ## Properties
 
