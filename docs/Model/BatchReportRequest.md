@@ -1,4 +1,4 @@
-# # BatchReportRequest
+# BatchReportRequest
 
 ## Properties
 

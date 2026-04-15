@@ -1,4 +1,4 @@
-# # RegisterCard
+# RegisterCard
 
 ## Properties
 

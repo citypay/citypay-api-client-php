@@ -1,4 +1,4 @@
-# # PaylinkResendNotificationRequest
+# PaylinkResendNotificationRequest
 
 ## Properties
 

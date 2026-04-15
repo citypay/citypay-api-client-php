@@ -1,5 +1,11 @@
 # CityPay
 
+Generated from CityPay API version 6.13.14.
+
+
+[![PHP PHPUnit Tests](https://github.com/citypay/citypay-api-client-php/actions/workflows/build.yml/badge.svg)](https://github.com/citypay/citypay-api-client-php/actions/workflows/build.yml)
+
+
 
 Welcome to the CityPay API, a robust HTTP API payment solution designed for seamless server-to-server 
 transactional processing. Our API facilitates a wide array of payment operations, catering to diverse business needs. 
@@ -81,7 +87,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: cp-api-key
-$config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
+$config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', $apiKey = ApiKey::newKey($clientId, $licenceKey));
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
 
@@ -114,6 +120,7 @@ Class | Method | HTTP request | Description
 *AuthorisationAndPaymentApi* | [**cResRequest**](docs/Api/AuthorisationAndPaymentApi.md#cresrequest) | **POST** /v6/cres | CRes
 *AuthorisationAndPaymentApi* | [**captureRequest**](docs/Api/AuthorisationAndPaymentApi.md#capturerequest) | **POST** /v6/capture | Capture
 *AuthorisationAndPaymentApi* | [**cardTokenisationRequest**](docs/Api/AuthorisationAndPaymentApi.md#cardtokenisationrequest) | **POST** /v6/tokenise | Card Tokenisation Request
+*AuthorisationAndPaymentApi* | [**postcodeLookupRequest**](docs/Api/AuthorisationAndPaymentApi.md#postcodelookuprequest) | **POST** /v6/postcode/lookup | Postcode Lookup
 *AuthorisationAndPaymentApi* | [**refundRequest**](docs/Api/AuthorisationAndPaymentApi.md#refundrequest) | **POST** /v6/refund | Refund
 *AuthorisationAndPaymentApi* | [**retrievalRequest**](docs/Api/AuthorisationAndPaymentApi.md#retrievalrequest) | **POST** /v6/retrieve | Transaction Retrieval
 *AuthorisationAndPaymentApi* | [**verificationRequest**](docs/Api/AuthorisationAndPaymentApi.md#verificationrequest) | **POST** /v6/verify | Verification
@@ -154,8 +161,15 @@ Class | Method | HTTP request | Description
 *PaylinkApi* | [**tokenReopenRequest**](docs/Api/PaylinkApi.md#tokenreopenrequest) | **PUT** /paylink/{token}/reopen | Reopen Paylink Token
 *PaylinkApi* | [**tokenResendNotificationRequest**](docs/Api/PaylinkApi.md#tokenresendnotificationrequest) | **POST** /paylink/{token}/resend-notification | Resend a notification for Paylink Token
 *PaylinkApi* | [**tokenStatusRequest**](docs/Api/PaylinkApi.md#tokenstatusrequest) | **GET** /paylink/{token}/status | Paylink Token Status
+*PaymentIntentApi* | [**attachTokenRequest**](docs/Api/PaymentIntentApi.md#attachtokenrequest) | **POST** /v6/intent/attach | Attach a request to a Payment Intent
+*PaymentIntentApi* | [**authorisePaymentIntent**](docs/Api/PaymentIntentApi.md#authorisepaymentintent) | **POST** /v6/intent/authorise | Authorise a Payment Intent
+*PaymentIntentApi* | [**cancelPaymentIntent**](docs/Api/PaymentIntentApi.md#cancelpaymentintent) | **POST** /v6/intent/cancel | Cancel a Payment Intent
+*PaymentIntentApi* | [**confirmChallengeIntent**](docs/Api/PaymentIntentApi.md#confirmchallengeintent) | **POST** /v6/intent/confirm-challenge | Confirms a challenge response with an aim to transition the payment intent ready for authorisation
+*PaymentIntentApi* | [**confirmIntent**](docs/Api/PaymentIntentApi.md#confirmintent) | **POST** /v6/intent/confirm | Confirm a lock in consent to an intent for payment. Performs and initialises a 3-D secure authentication with an aim to transition the payment intent ready for authorisation
 *PaymentIntentApi* | [**createPaymentIntent**](docs/Api/PaymentIntentApi.md#createpaymentintent) | **POST** /v6/intent/create | Create a Payment Intent
 *PaymentIntentApi* | [**getPaymentIntent**](docs/Api/PaymentIntentApi.md#getpaymentintent) | **POST** /v6/intent/retrieve | Retrieves a Payment Intent
+*PaymentIntentApi* | [**updatePaymentIntent**](docs/Api/PaymentIntentApi.md#updatepaymentintent) | **POST** /v6/intent/update | Update a Payment Intent
+*PaymentIntentApi* | [**verifyIntentAuthorised**](docs/Api/PaymentIntentApi.md#verifyintentauthorised) | **GET** /v6/intent/verify-auth | Retrieves the successfully authorisation for a payment intent
 *ReportingApi* | [**batchedTransactionReportRequest**](docs/Api/ReportingApi.md#batchedtransactionreportrequest) | **POST** /v6/merchant-batch/{merchantid}/{batch_no}/transactions | Batch Transaction Report Request
 *ReportingApi* | [**merchantBatchReportRequest**](docs/Api/ReportingApi.md#merchantbatchreportrequest) | **POST** /v6/merchant-batch/report | Merchant Batch Report Request
 *ReportingApi* | [**merchantBatchRequest**](docs/Api/ReportingApi.md#merchantbatchrequest) | **GET** /v6/merchant-batch/{merchantid}/{batch_no} | Merchant Batch Request
@@ -174,14 +188,18 @@ Class | Method | HTTP request | Description
 - [Acknowledgement](docs/Model/Acknowledgement.md)
 - [AclCheckRequest](docs/Model/AclCheckRequest.md)
 - [AclCheckResponseModel](docs/Model/AclCheckResponseModel.md)
+- [AddressModel](docs/Model/AddressModel.md)
 - [AdjustmentCondition](docs/Model/AdjustmentCondition.md)
 - [Adjustments](docs/Model/Adjustments.md)
 - [AirlineAdvice](docs/Model/AirlineAdvice.md)
 - [AirlineSegment](docs/Model/AirlineSegment.md)
+- [AttachTokenRequest](docs/Model/AttachTokenRequest.md)
 - [AuthReference](docs/Model/AuthReference.md)
 - [AuthReferences](docs/Model/AuthReferences.md)
 - [AuthRequest](docs/Model/AuthRequest.md)
 - [AuthResponse](docs/Model/AuthResponse.md)
+- [AuthnModel](docs/Model/AuthnModel.md)
+- [AuthorisePaymentIntentRequestModel](docs/Model/AuthorisePaymentIntentRequestModel.md)
 - [Batch](docs/Model/Batch.md)
 - [BatchReportRequest](docs/Model/BatchReportRequest.md)
 - [BatchReportResponseModel](docs/Model/BatchReportResponseModel.md)
@@ -192,15 +210,21 @@ Class | Method | HTTP request | Description
 - [Bin](docs/Model/Bin.md)
 - [BinLookup](docs/Model/BinLookup.md)
 - [CResAuthRequest](docs/Model/CResAuthRequest.md)
+- [CancelPaymentIntentRequestModel](docs/Model/CancelPaymentIntentRequestModel.md)
 - [CaptureRequest](docs/Model/CaptureRequest.md)
 - [Card](docs/Model/Card.md)
 - [CardHolderAccount](docs/Model/CardHolderAccount.md)
 - [CardStatus](docs/Model/CardStatus.md)
 - [CardTokenisationRequest](docs/Model/CardTokenisationRequest.md)
 - [CardTokenisationResponse](docs/Model/CardTokenisationResponse.md)
+- [CardTokenisationResponseData](docs/Model/CardTokenisationResponseData.md)
+- [ChallengeModel](docs/Model/ChallengeModel.md)
 - [ChargeRequest](docs/Model/ChargeRequest.md)
 - [CheckBatchStatus](docs/Model/CheckBatchStatus.md)
 - [CheckBatchStatusResponse](docs/Model/CheckBatchStatusResponse.md)
+- [ConfirmChallengedIntentRequest](docs/Model/ConfirmChallengedIntentRequest.md)
+- [ConfirmPaymentIntentRequest](docs/Model/ConfirmPaymentIntentRequest.md)
+- [ConfirmPaymentIntentResponseModel](docs/Model/ConfirmPaymentIntentResponseModel.md)
 - [ContactDetails](docs/Model/ContactDetails.md)
 - [Decision](docs/Model/Decision.md)
 - [DirectPostRequest](docs/Model/DirectPostRequest.md)
@@ -209,6 +233,7 @@ Class | Method | HTTP request | Description
 - [DomainKeyRequest](docs/Model/DomainKeyRequest.md)
 - [DomainKeyResponse](docs/Model/DomainKeyResponse.md)
 - [Error](docs/Model/Error.md)
+- [ErrorResp](docs/Model/ErrorResp.md)
 - [EventDataModel](docs/Model/EventDataModel.md)
 - [Exists](docs/Model/Exists.md)
 - [ExternalMPI](docs/Model/ExternalMPI.md)
@@ -247,9 +272,12 @@ Class | Method | HTTP request | Description
 - [PaymentIntentReference](docs/Model/PaymentIntentReference.md)
 - [PaymentIntentRequestModel](docs/Model/PaymentIntentRequestModel.md)
 - [PaymentIntentResponseModel](docs/Model/PaymentIntentResponseModel.md)
+- [PaymentIntentSessionContext](docs/Model/PaymentIntentSessionContext.md)
 - [Ping](docs/Model/Ping.md)
+- [PostcodeLookupModel](docs/Model/PostcodeLookupModel.md)
 - [ProcessBatchRequest](docs/Model/ProcessBatchRequest.md)
 - [ProcessBatchResponse](docs/Model/ProcessBatchResponse.md)
+- [RecurringIntent](docs/Model/RecurringIntent.md)
 - [RefundRequest](docs/Model/RefundRequest.md)
 - [RegisterCard](docs/Model/RegisterCard.md)
 - [RegisterIpModel](docs/Model/RegisterIpModel.md)
@@ -258,10 +286,12 @@ Class | Method | HTTP request | Description
 - [RemittanceReportResponse](docs/Model/RemittanceReportResponse.md)
 - [RemittedClientData](docs/Model/RemittedClientData.md)
 - [RequestChallenged](docs/Model/RequestChallenged.md)
+- [Result](docs/Model/Result.md)
 - [RetrieveRequest](docs/Model/RetrieveRequest.md)
 - [ThreeDSecure](docs/Model/ThreeDSecure.md)
 - [TokenisationResponseModel](docs/Model/TokenisationResponseModel.md)
 - [TransactionReportRequest](docs/Model/TransactionReportRequest.md)
+- [UpdatePaymentIntentRequest](docs/Model/UpdatePaymentIntentRequest.md)
 - [VerificationRequest](docs/Model/VerificationRequest.md)
 - [VoidRequest](docs/Model/VoidRequest.md)
 - [WebHookChannelCreateRequest](docs/Model/WebHookChannelCreateRequest.md)
@@ -305,7 +335,7 @@ support@citypay.com
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `6.13.4`
-    - Package version: `1.1.4`
-    - Generator version: `7.14.0`
+- API version: `6.13.14`
+    - Package version: `1.1.5`
+    - Generator version: `7.21.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

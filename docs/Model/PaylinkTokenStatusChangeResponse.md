@@ -1,4 +1,4 @@
-# # PaylinkTokenStatusChangeResponse
+# PaylinkTokenStatusChangeResponse
 
 ## Properties
 

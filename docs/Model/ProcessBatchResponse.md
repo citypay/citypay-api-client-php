@@ -1,4 +1,4 @@
-# # ProcessBatchResponse
+# ProcessBatchResponse
 
 ## Properties
 
