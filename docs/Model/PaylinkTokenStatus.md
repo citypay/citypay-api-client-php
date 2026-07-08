@@ -1,4 +1,4 @@
-# # PaylinkTokenStatus
+# PaylinkTokenStatus
 
 ## Properties
 

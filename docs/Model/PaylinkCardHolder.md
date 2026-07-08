@@ -1,4 +1,4 @@
-# # PaylinkCardHolder
+# PaylinkCardHolder
 
 ## Properties
 

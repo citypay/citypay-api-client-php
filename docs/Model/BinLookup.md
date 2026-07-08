@@ -1,4 +1,4 @@
-# # BinLookup
+# BinLookup
 
 ## Properties
 

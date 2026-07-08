@@ -1,4 +1,4 @@
-# # WebHookChannelCreateRequest
+# WebHookChannelCreateRequest
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # WebHookSubscriptionRequest
+# WebHookSubscriptionRequest
 
 ## Properties
 

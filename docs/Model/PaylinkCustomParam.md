@@ -1,4 +1,4 @@
-# # PaylinkCustomParam
+# PaylinkCustomParam
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # TransactionReportRequest
+# TransactionReportRequest
 
 ## Properties
 

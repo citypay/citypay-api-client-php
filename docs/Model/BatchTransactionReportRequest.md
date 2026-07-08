@@ -1,4 +1,4 @@
-# # BatchTransactionReportRequest
+# BatchTransactionReportRequest
 
 ## Properties
 

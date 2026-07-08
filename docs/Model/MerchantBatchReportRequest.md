@@ -1,4 +1,4 @@
-# # MerchantBatchReportRequest
+# MerchantBatchReportRequest
 
 ## Properties
 

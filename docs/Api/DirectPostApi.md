@@ -31,7 +31,6 @@ perform a `Direct Post` integration who wish to handle the challenge flow themse
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new CityPay\Api\DirectPostApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -68,7 +67,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: `application/x-www-form-urlencoded`
-- **Accept**: `application/json`, `application/xml`, `application/x-www-form-urlencoded`
+- **Accept**: `application/json`, `application/xml`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -92,7 +91,6 @@ perform a `Direct Post` integration who wish to handle the challenge flow themse
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new CityPay\Api\DirectPostApi(
@@ -131,7 +129,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: `application/x-www-form-urlencoded`
-- **Accept**: `application/json`, `application/xml`, `application/x-www-form-urlencoded`
+- **Accept**: `application/json`, `application/xml`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -164,7 +162,6 @@ $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-domain
 $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
-
 
 $apiInstance = new CityPay\Api\DirectPostApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -199,7 +196,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`, `application/x-www-form-urlencoded`, `text/xml`
-- **Accept**: `application/json`, `application/xml`, `application/x-www-form-urlencoded`, `text/xml`
+- **Accept**: `application/json`, `application/xml`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -232,7 +229,6 @@ $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-domain
 $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
-
 
 $apiInstance = new CityPay\Api\DirectPostApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -267,7 +263,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`, `application/x-www-form-urlencoded`, `text/xml`
-- **Accept**: `application/json`, `application/xml`, `application/x-www-form-urlencoded`, `text/xml`
+- **Accept**: `application/json`, `application/xml`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -302,7 +298,6 @@ $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-ke
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
 
-
 $apiInstance = new CityPay\Api\DirectPostApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -336,7 +331,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/json`, `application/x-www-form-urlencoded`, `text/xml`
-- **Accept**: `application/json`, `application/xml`, `application/x-www-form-urlencoded`, `text/xml`
+- **Accept**: `application/json`, `application/xml`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

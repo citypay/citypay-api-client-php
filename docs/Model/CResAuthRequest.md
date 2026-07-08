@@ -1,4 +1,4 @@
-# # CResAuthRequest
+# CResAuthRequest
 
 ## Properties
 

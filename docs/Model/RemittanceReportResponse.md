@@ -1,4 +1,4 @@
-# # RemittanceReportResponse
+# RemittanceReportResponse
 
 ## Properties
 

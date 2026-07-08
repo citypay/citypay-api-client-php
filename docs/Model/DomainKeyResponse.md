@@ -1,4 +1,4 @@
-# # DomainKeyResponse
+# DomainKeyResponse
 
 ## Properties
 

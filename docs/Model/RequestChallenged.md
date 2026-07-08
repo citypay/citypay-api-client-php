@@ -1,4 +1,4 @@
-# # RequestChallenged
+# RequestChallenged
 
 ## Properties
 

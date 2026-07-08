@@ -1,4 +1,4 @@
-# # DomainKeyCheckRequest
+# DomainKeyCheckRequest
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # FindPaymentIntentRequest
+# FindPaymentIntentRequest
 
 ## Properties
 

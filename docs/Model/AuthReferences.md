@@ -1,4 +1,4 @@
-# # AuthReferences
+# AuthReferences
 
 ## Properties
 
