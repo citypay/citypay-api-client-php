@@ -1,4 +1,4 @@
-# # CheckBatchStatus
+# CheckBatchStatus
 
 ## Properties
 

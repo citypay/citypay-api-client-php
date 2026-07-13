@@ -1,4 +1,4 @@
-# # VerificationRequest
+# VerificationRequest
 
 ## Properties
 

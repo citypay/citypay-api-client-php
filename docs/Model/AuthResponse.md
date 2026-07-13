@@ -1,4 +1,4 @@
-# # AuthResponse
+# AuthResponse
 
 ## Properties
 
@@ -35,6 +35,7 @@ Name | Type | Description | Notes
 **scheme_logo** | **string** | A url containing a logo of the card scheme. | [optional]
 **sha256** | **string** | A SHA256 digest value of the transaction used to validate the response data The digest is calculated by concatenating   * authcode   * amount   * response_code   * merchant_id   * trans_no   * identifier   * licence_key - which is not provided in the response. | [optional]
 **trans_status** | **string** | Used to identify the status of a transaction. The status is used to track a transaction through its life cycle.  &lt;table&gt; &lt;tr&gt; &lt;th&gt;Id&lt;/th&gt; &lt;th&gt;Description&lt;/th&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;O&lt;/td&gt; &lt;td&gt;Transaction is open for settlement&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;A&lt;/td&gt; &lt;td&gt;Transaction is assigned for settlement and can no longer be voided&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;S&lt;/td&gt; &lt;td&gt;Transaction has been settled&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;D&lt;/td&gt; &lt;td&gt;Transaction has been declined&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;R&lt;/td&gt; &lt;td&gt;Transaction has been rejected&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;P&lt;/td&gt; &lt;td&gt;Transaction has been authorised only and awaiting a capture. Used in pre-auth situations&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;C&lt;/td&gt; &lt;td&gt;Transaction has been cancelled&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;E&lt;/td&gt; &lt;td&gt;Transaction has expired&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;I&lt;/td&gt; &lt;td&gt;Transaction has been initialised but no action was able to be carried out&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;H&lt;/td&gt; &lt;td&gt;Transaction is awaiting authorisation&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;.&lt;/td&gt; &lt;td&gt;Transaction is on hold&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;V&lt;/td&gt; &lt;td&gt;Transaction has been verified&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt; | [optional]
+**trans_type** | **string** | The type of transaction. | [optional]
 **transno** | **int** | The resulting transaction number, ordered incrementally from 1 for every merchant_id. The value will default to less than 1 for transactions that do not have a transaction number issued. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

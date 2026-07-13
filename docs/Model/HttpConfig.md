@@ -1,4 +1,4 @@
-# # HttpConfig
+# HttpConfig
 
 ## Properties
 

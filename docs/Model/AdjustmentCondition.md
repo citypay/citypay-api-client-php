@@ -1,4 +1,4 @@
-# # AdjustmentCondition
+# AdjustmentCondition
 
 ## Properties
 

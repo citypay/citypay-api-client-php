@@ -1,4 +1,4 @@
-# # PaylinkFieldGuardModel
+# PaylinkFieldGuardModel
 
 ## Properties
 

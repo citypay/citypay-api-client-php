@@ -1,4 +1,4 @@
-# # RemittedClientData
+# RemittedClientData
 
 ## Properties
 

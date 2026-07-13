@@ -1,4 +1,4 @@
-# # PaylinkStateEvent
+# PaylinkStateEvent
 
 ## Properties
 

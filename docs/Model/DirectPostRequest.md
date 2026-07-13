@@ -1,4 +1,4 @@
-# # DirectPostRequest
+# DirectPostRequest
 
 ## Properties
 

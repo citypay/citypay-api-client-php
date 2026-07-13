@@ -1,4 +1,4 @@
-# # CardStatus
+# CardStatus
 
 ## Properties
 

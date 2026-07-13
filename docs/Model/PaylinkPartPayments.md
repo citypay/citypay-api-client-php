@@ -1,4 +1,4 @@
-# # PaylinkPartPayments
+# PaylinkPartPayments
 
 ## Properties
 

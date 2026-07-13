@@ -1,4 +1,4 @@
-# # NetSummaryResponse
+# NetSummaryResponse
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # AirlineSegment
+# AirlineSegment
 
 ## Properties
 

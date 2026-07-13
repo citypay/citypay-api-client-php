@@ -1,4 +1,4 @@
-# # MerchantBatchReportResponse
+# MerchantBatchReportResponse
 
 ## Properties
 

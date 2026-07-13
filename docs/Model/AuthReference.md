@@ -1,4 +1,4 @@
-# # AuthReference
+# AuthReference
 
 ## Properties
 
@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 **env** | **string** | The environment that the transaction is process within based on the transaction type. | [optional]
 **identifier** | **string** | The identifier of the transaction used to process the transaction. | [optional]
 **initiation** | **string** | The initiation of the payment. The value will be C for Card holder initiated and M for a merchant initiated transaction. | [optional]
-**instrument** | **string** | The payment instrument used such as Card, Cash, Bank, Crypto, ApplePay, GooglePay, Click2Pay, PayPal, OpenBankingPayment. | [optional]
+**instrument** | **string** | The payment instrument used such as Card, Cash, Bank, Crypto, ApplePay, GooglePay, Click2Pay, PayPal, OpenBankingPayment, Cheque, BNPL. | [optional]
 **maskedpan** | **string** | A masking of the card number which was used to process the tranasction. | [optional]
 **merchantid** | **int** | The merchant id of the transaction result. | [optional]
 **meta** | **array<string,string>** |  | [optional]

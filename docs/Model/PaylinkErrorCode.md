@@ -1,4 +1,4 @@
-# # PaylinkErrorCode
+# PaylinkErrorCode
 
 ## Properties
 

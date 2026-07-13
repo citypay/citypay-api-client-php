@@ -1,4 +1,4 @@
-# # RegisterIpModel
+# RegisterIpModel
 
 ## Properties
 

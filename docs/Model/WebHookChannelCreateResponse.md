@@ -1,10 +1,10 @@
-# # WebHookChannelCreateResponse
+# WebHookChannelCreateResponse
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**config** | **string** | The resultant config object. | [optional]
+**config** | **object** | The resultant config object. | [optional]
 **endpoint_id** | **string** | The id of the endpoint being used. | [optional]
 **web_channel_id** | **string** | The id returned for the generated channel. | [optional]
 
