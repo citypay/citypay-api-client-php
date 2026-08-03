@@ -1,4 +1,4 @@
-# PaymentIntentResponseModel
+# # PaymentIntentResponseModel
 
 ## Properties
 

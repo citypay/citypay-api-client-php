@@ -36,6 +36,7 @@ $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-ke
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
 
+
 $apiInstance = new CityPay\Api\OperationalFunctionsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -99,6 +100,7 @@ $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-ke
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
 
+
 $apiInstance = new CityPay\Api\OperationalFunctionsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -161,6 +163,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
+
 
 $apiInstance = new CityPay\Api\OperationalFunctionsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -229,6 +232,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
+
 
 $apiInstance = new CityPay\Api\OperationalFunctionsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -303,6 +307,7 @@ $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-ke
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
 
+
 $apiInstance = new CityPay\Api\OperationalFunctionsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -363,6 +368,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
+
 
 $apiInstance = new CityPay\Api\OperationalFunctionsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.

@@ -1,4 +1,4 @@
-# AuthorisePaymentIntentRequestModel
+# # AuthorisePaymentIntentRequestModel
 
 ## Properties
 

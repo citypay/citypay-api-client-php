@@ -11,6 +11,7 @@ All URIs are relative to https://api.citypay.com, except if the operation define
 | [**applePayDomainsVerifyRequest()**](AuthorisationAndPaymentApi.md#applePayDomainsVerifyRequest) | **POST** /v6/apple-pay/domains/verify | Verify Apple Pay Domains |
 | [**applePayOnboardApiRequest()**](AuthorisationAndPaymentApi.md#applePayOnboardApiRequest) | **POST** /v6/apple-pay/onboard | Apple Pay Onboarding |
 | [**applePayRegistrationGetRequest()**](AuthorisationAndPaymentApi.md#applePayRegistrationGetRequest) | **GET** /v6/apple-pay/registration | Get Apple Pay Registration |
+| [**applePayRegistrationImportRequest()**](AuthorisationAndPaymentApi.md#applePayRegistrationImportRequest) | **POST** /v6/apple-pay/registration/import | Import Apple Pay Registration |
 | [**authorisationRequest()**](AuthorisationAndPaymentApi.md#authorisationRequest) | **POST** /v6/authorise | Authorisation |
 | [**binRangeLookupRequest()**](AuthorisationAndPaymentApi.md#binRangeLookupRequest) | **POST** /v6/bin | Bin Lookup |
 | [**cResRequest()**](AuthorisationAndPaymentApi.md#cResRequest) | **POST** /v6/cres | CRes |
@@ -31,7 +32,7 @@ applePayAvailabilityRequest()
 
 Apple Pay Availability
 
-Returns Apple Pay availability and registration state for the authenticated client licence key. Use this endpoint before onboarding to determine whether Apple Pay is already configured or whether domain onboarding is required.
+Returns Apple Pay availability and registration state for the authenticated client licence key. Use this endpoint before onboarding to determine whether Apple Pay is already configured, whether an existing Apple registration can be imported, or whether domain onboarding is required.
 
 
 ### Example
@@ -45,6 +46,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
+
 
 $apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -104,6 +106,7 @@ $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-ke
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
 
+
 $apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -161,6 +164,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
+
 
 $apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -223,6 +227,7 @@ $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-ke
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
 
+
 $apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -280,6 +285,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
+
 
 $apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -342,6 +348,7 @@ $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-ke
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
 
+
 $apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -403,6 +410,7 @@ $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-ke
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
 
+
 $apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -414,6 +422,65 @@ try {
     $apiInstance->applePayRegistrationGetRequest();
 } catch (Exception $e) {
     echo 'Exception when calling AuthorisationAndPaymentApi->applePayRegistrationGetRequest: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[cp-api-key](../../README.md#cp-api-key)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `applePayRegistrationImportRequest()`
+
+```php
+applePayRegistrationImportRequest()
+```
+
+Import Apple Pay Registration
+
+Imports an existing Web Merchant Registration API registration into CityPay's local domain management for the authenticated client licence key. Use this when availability reports that registration import is required; CityPay retains the merchant's existing partner merchant identifier and domains.
+
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: cp-api-key
+$config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
+
+
+$apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+
+try {
+    $apiInstance->applePayRegistrationImportRequest();
+} catch (Exception $e) {
+    echo 'Exception when calling AuthorisationAndPaymentApi->applePayRegistrationImportRequest: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -459,6 +526,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
+
 
 $apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -532,6 +600,7 @@ $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-ke
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
 
+
 $apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -599,6 +668,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
+
 
 $apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -678,6 +748,7 @@ $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-ke
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
 
+
 $apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -744,6 +815,7 @@ $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-ke
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
 
+
 $apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -808,6 +880,7 @@ $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-ke
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
 
+
 $apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -871,6 +944,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
+
 
 $apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -943,6 +1017,7 @@ $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-ke
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
 
+
 $apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -1003,6 +1078,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
+
 
 $apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -1072,6 +1148,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $config = CityPay\Configuration::getDefaultConfiguration()->setApiKey('cp-api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = CityPay\Configuration::getDefaultConfiguration()->setApiKeyPrefix('cp-api-key', 'Bearer');
+
 
 $apiInstance = new CityPay\Api\AuthorisationAndPaymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
